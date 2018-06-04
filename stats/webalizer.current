@@ -1,0 +1,462 @@
+# Webalizer V2.23-05 Incremental Data - 06/04/2018 03:46:05
+2018 6 4 3 46 5
+440 433 17 113 17 11 22111136 40 29 0
+5 2 104 1 4
+230 229 12625773 7 17 14
+116 112 5653552 8 7 5
+16 14 212364 5 12 6
+78 78 3619447 5 4 4
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+0 0 0 0 0 0
+51 51 2636563 3
+6 6 172492 6
+76 76 3570803 2
+7 7 19225 3
+0 0 0 0
+0 0 0 0
+0 0 0 0
+28 28 1161252 3
+0 0 0 0
+19 19 216354 3
+0 0 0 0
+0 0 0 0
+104 100 5311377 4
+12 12 753712 2
+0 0 0 0
+7 7 397928 2
+1 1 1598599 0
+50 50 2378020 2
+4 3 60514 4
+3 2 70398 3
+0 0 0 0
+14 14 863967 0
+11 10 187000 3
+47 47 2712932 0
+0
+0
+0
+433
+0
+0
+0
+0
+0
+0
+0
+4
+0
+0
+0
+0
+0
+0
+0
+0
+0
+2
+1
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+# -urls- 
+/sitemap_index.xml
+0 2 1 2800 0 0
+/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js
+0 3 7696942 194376 0 0
+/wp-content/themes/bridge/js/plugins/lemmon-slider.min.js
+0 5 86474601729701678 30295 0 0
+/wp-content/themes/bridge-child/fonts/sf-ui-display-light-58646b33e0551.woff
+0 1 390587520257 115004 0 0
+/wp-content/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min.js
+0 1 1527978940 35624 0 0
+/wp-content/uploads/logo.png
+1 2 24478960 7274 0 0
+/wp-includes/js/jquery/ui/progressbar.min.js
+0 4 0 9888 0 0
+/wp-includes/js/jquery/ui/effect-transfer.min.js
+0 2 0 1714 0 0
+/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js
+0 3 0 59343 0 0
+/wp-content/themes/bridge-child/js/bootstrap.min.js
+0 2 0 74090 0 0
+/wp-content/themes/bridge/css/style_dynamic.css
+0 5 0 16110 0 0
+/wp-content/themes/bridge/css/elegant-icons/style.min.css
+0 6 0 130614 0 0
+/wp-includes/js/jquery/ui/slider.min.js
+0 3 18446744073709551615 32961 0 0
+/wp-includes/js/jquery/ui/spinner.min.js
+0 4 0 28416 0 0
+/wp-includes/js/jquery/ui/sortable.min.js
+0 3 0 74697 0 0
+/wp-includes/js/jquery/ui/effect-blind.min.js
+0 3 0 3417 0 0
+/wp-includes/js/jquery/ui/effect-fold.min.js
+0 3 24480528 3090 0 0
+/post-sitemap.xml
+0 2 0 17758 0 0
+/author/admin/
+0 1 24534192 68013 0 0
+/wp-content/themes/bridge/js/plugins/jquery.touchSwipe.min.js
+0 4 0 47220 0 0
+/wp-content/themes/bridge/js/plugins/smoothPageScroll.min.js
+0 5 0 3335 0 0
+/wp-includes/js/jquery/ui/effect-bounce.min.js
+0 3 0 3741 0 0
+/wp-content/themes/bridge/css/print.css
+0 7 0 4277 0 0
+/wp-includes/js/jquery/ui/effect-size.min.js
+0 1 0 3351 0 0
+/wp-includes/js/jquery/ui/dialog.min.js
+0 2 0 24278 0 0
+/wp-content/themes/bridge-child/youtube/modal-video.min.css
+0 7 0 14483 0 0
+/wp-content/themes/bridge-child/owlcarousel/assets/owl.carousel.min.css
+0 6 0 17616 0 0
+/wp-content/plugins/revslider/public/assets/js/extensions/revolution.extension.slideanims.min.js
+0 1 0 29401 0 0
+/wp-content/themes/bridge/css/style_dynamic_responsive.css
+0 5 0 2405 0 0
+/wp-includes/js/jquery/ui/button.min.js
+0 3 0 21708 0 0
+/wp-content/themes/bridge/js/plugins/imagesloaded.js
+0 4 0 22236 0 0
+/wp-includes/js/jquery/ui/effect-shake.min.js
+0 4 0 4404 0 0
+/wp-includes/js/jquery/ui/selectable.min.js
+0 3 0 12774 0 0
+/wp-content/themes/bridge-child/js/jquery.elevatezoom-3.0.8.min.js
+0 3 0 98766 0 0
+/wp-content/themes/bridge-child/css/bootstrap.min.css
+0 5 0 606000 0 0
+/wp-includes/js/jquery/ui/effect-explode.min.js
+0 2 0 2352 0 0
+/wp-includes/js/jquery/ui/effect-scale.min.js
+0 4 0 4488 0 0
+/wp-content/themes/bridge-child/web-fonts-with-css/webfonts/fa-solid-900.woff
+0 1 0 50524 0 0
+/wp-content/themes/bridge/js/plugins/jquery.carouFredSel-6.2.1.min.js
+0 6 0 375798 0 0
+/wp-includes/js/jquery/ui/droppable.min.js
+0 4 0 25068 0 0
+/anh-duc-phong-xxx-chung-cu-jamona-quan-7/
+0 1 0 52504 1 0
+/wp-content/themes/bridge-child/youtube/modal-video.min.js
+0 4 0 25208 0 0
+/wp-content/themes/bridge/js/plugins.js
+0 6 0 2859768 0 0
+/wp-content/themes/bridge-child/owlcarousel/owl.carousel.min.js
+0 5 0 213830 0 0
+/wp-content/uploads/3.jpg
+1 1 0 1598599 0 0
+/wp-content/themes/bridge/css/custom_css.css
+0 8 0 16 0 0
+/wp-includes/js/jquery/ui/draggable.min.js
+0 3 0 56715 0 0
+/wp-content/themes/bridge/js/plugins/TweenLite.min.js
+0 6 0 152712 0 0
+/wp-includes/js/jquery/ui/mouse.min.js
+0 2 0 6296 0 0
+/wp-content/themes/bridge/js/plugins/jquery.stretch.js
+0 4 0 16612 0 0
+/wp-content/themes/bridge/css/dripicons/dripicons.css
+0 6 0 69276 0 0
+/wp-includes/js/comment-reply.min.js
+0 4 0 4312 0 0
+/wp-includes/js/jquery/jquery-migrate.min.js
+0 3 0 30168 0 0
+/wp-content/themes/bridge/css/webkit_stylesheet.css
+0 4 0 172 0 0
+/wp-content/themes/bridge-child/js/custom.js
+0 7 0 2534 0 0
+/wp-includes/js/jquery/ui/core.min.js
+0 4 0 16000 0 0
+/wp-includes/js/jquery/ui/resizable.min.js
+0 3 0 55278 0 0
+/wp-login.php
+0 1 24533968 2385 0 0
+/wp-content/themes/bridge/css/responsive.min.css
+0 9 0 1033092 0 0
+/wp-content/plugins/contact-form-7/includes/css/styles.css
+0 4 0 6732 0 0
+/wp-includes/js/jquery/ui/effect-drop.min.js
+0 2 0 1994 0 0
+/wp-content/themes/bridge/css/stylesheet.min.css
+0 7 0 4610501 0 0
+/wp-includes/js/jquery/jquery.js
+0 4 0 388736 0 0
+/wp-content/themes/bridge-child/web-fonts-with-css/webfonts/fa-regular-400.woff
+0 1 0 14712 0 0
+/wp-includes/js/wp-embed.min.js
+0 6 0 8388 0 0
+/wp-content/themes/bridge-child/style.css
+0 6 0 125940 0 0
+/wp-content/plugins/contact-form-7/includes/js/scripts.js
+0 3 0 43653 0 0
+/wp-includes/js/wp-emoji-release.min.js
+0 6 0 70326 0 0
+/wp-content/themes/bridge/img/logo_white.png
+1 1 0 4990 0 0
+/wp-includes/js/jquery/ui/datepicker.min.js
+0 1 0 36508 0 0
+/wp-content/plugins/revslider/public/assets/css/settings.css
+0 4 0 120288 0 0
+/wp-content/themes/bridge/js/default_dynamic.js
+0 4 0 15648 0 0
+/wp-content/themes/bridge/js/plugins/qode-like.min.js
+0 5 0 2960 0 0
+/wp-content/themes/bridge-child/bootstrap/bootstrap.js
+0 1 0 69707 0 0
+/xmlrpc.php
+0 1 24533744 425 0 0
+/wp-includes/js/jquery/ui/effect-slide.min.js
+0 2 0 1924 0 0
+/wp-includes/js/jquery/ui/effect-pulsate.min.js
+0 4 0 3192 0 0
+/wp-content/themes/bridge/img/logo_black.png
+1 1 0 5208 0 0
+/
+0 10 0 599748 9 2
+/wp-content/themes/bridge-child/web-fonts-with-css/css/fontawesome-all.min.css
+0 7 0 247513 0 0
+/wp-content/themes/bridge-child/css/tab.css
+0 6 0 5352 0 0
+/wp-includes/js/jquery/ui/widget.min.js
+0 2 0 13816 0 0
+/wp-content/themes/bridge/js/plugins/jquery.mousewheel.min.js
+0 5 0 6960 0 0
+/wp-content/themes/bridge/style.css
+0 11 0 5819 0 0
+/chi-hien-phong-80x-doi-can-ha-noi/
+0 1 24506576 52472 1 0
+/wp-includes/js/jquery/ui/effect-highlight.min.js
+0 3 0 2367 0 0
+/wp-content/themes/bridge/js/plugins/jquery.fullPage.min.js
+0 5 0 118395 0 0
+/wp-content/themes/bridge-child/youtube/jquery-modal-video.min.js
+0 4 0 25184 0 0
+/wp-includes/js/jquery/ui/tabs.min.js
+0 3 0 36330 0 0
+/wp-content/uploads/thiet-ke-6-500x400.png
+1 2 0 620518 0 0
+/wp-includes/js/jquery/ui/tooltip.min.js
+0 2 0 11410 0 0
+/wp-content/themes/bridge/css/linea-icons/style.css
+0 6 0 468480 0 0
+/wp-includes/js/jquery/ui/accordion.min.js
+0 3 0 25752 0 0
+/wp-includes/js/jquery/ui/autocomplete.min.js
+0 3 0 24849 0 0
+/robots.txt
+0 3 0 201 0 0
+/wp-content/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js
+0 3 0 331689 0 0
+/page-sitemap.xml
+0 1 0 3580 0 0
+/wp-content/themes/bridge/css/font-awesome/css/font-awesome.min.css
+0 7 0 217000 0 0
+/wp-content/plugins/js_composer/assets/css/js_composer.min.css
+0 5 0 2310950 0 0
+/wp-cron.php
+0 20 0 0 18 17
+/wp-includes/js/jquery/ui/menu.min.js
+0 3 0 28800 0 0
+/wp-includes/js/wp-a11y.min.js
+0 5 0 3265 0 0
+/wp-includes/js/jquery/ui/effect-clip.min.js
+0 2 0 1836 0 0
+/album_construction-sitemap.xml
+0 1 0 5228 0 0
+/wp-includes/js/jquery/ui/effect.min.js
+0 2 0 26840 0 0
+/wp-content/themes/bridge-child/bootstrap/bootstrap.css
+0 3 0 438030 0 0
+/wp-content/uploads/thiet-ke-6.png
+1 1 0 1492882 0 0
+/wp-content/themes/bridge/js/plugins/packery-mode.pkgd.min.js
+0 5 0 68090 0 0
+/wp-includes/js/jquery/ui/effect-fade.min.js
+0 3 0 1545 0 0
+/wp-includes/js/jquery/ui/position.min.js
+0 2 0 13054 0 0
+/wp-content/themes/bridge/js/custom_js.js
+0 5 0 425 0 0
+/wp-content/themes/bridge/js/plugins/ScrollToPlugin.min.js
+0 6 0 15198 0 0
+/wp-content/themes/bridge/js/default.min.js
+0 4 0 790432 0 0
+# End Of Table - urls
+# -sites- (monthly)
+42.116.84.34
+0 1 1 310259 0 0
+-
+crawl-66-249-66-27.googlebot.com
+0 6 6 660662 1 1528074140
+/chi-hien-phong-80x-doi-can-ha-noi/
+163-172-4-153.rev.poneytelecom.eu
+0 2 2 120020 1 1527816950
+/
+jobqueue-listener.jobqueue.netcraft.com-uda03324265ae11e894194646838d6ab1u-digitalocean-2gb
+0 2 1 59874 1 1527892176
+/
+crawl-66-249-79-1.googlebot.com
+0 159 159 8014768 2 1527844366
+/
+localhost
+0 103 99 5311377 1 1527943591
+-
+static.vnpt.vn
+0 20 20 0 18 1528083965
+/wp-cron.php
+msnbot-207-46-13-91.search.msn.com
+0 1 1 1400 0 0
+-
+swim.bette.example.com
+0 6 4 130912 1 1528052439
+/author/admin/
+crawl-66-249-66-26.googlebot.com
+0 66 66 2955393 0 0
+-
+crawl-66-249-79-4.googlebot.com
+0 50 50 1439823 2 1527866630
+/
+msnbot-207-46-13-200.search.msn.com
+0 1 1 67 0 0
+-
+crawl-66-249-66-28.googlebot.com
+0 2 2 1992 0 0
+-
+crawl-66-249-79-6.googlebot.com
+0 18 18 1442306 1 1527839336
+/
+msnbot-157-55-39-76.search.msn.com
+0 1 1 1598599 0 0
+-
+ec2-52-67-140-87.sa-east-1.compute.amazonaws.com
+0 1 1 60047 1 1528046723
+/
+msnbot-157-55-39-196.search.msn.com
+0 1 1 3637 0 0
+-
+# End Of Table - sites (monthly)
+# -sites- (daily)
+crawl-66-249-66-27.googlebot.com
+0 6 6 660662 1 1528074140
+/chi-hien-phong-80x-doi-can-ha-noi/
+static.vnpt.vn
+0 3 3 0 3 1528083965
+/wp-cron.php
+msnbot-207-46-13-91.search.msn.com
+0 1 1 1400 0 0
+-
+crawl-66-249-66-26.googlebot.com
+0 66 66 2955393 0 0
+-
+crawl-66-249-66-28.googlebot.com
+0 2 2 1992 0 0
+-
+# End Of Table - sites (daily)
+# -referrers- 
+http://thietkethicongnghetinh.com/anh-duc-phong-xxx-chung-cu-jamona-quan-7/
+0 102
+http://thietkethicongnghetinh.com/chi-hien-phong-80x-doi-can-ha-noi/
+0 72
+http://thietkethicongnghetinh.com/sofa/
+0 8
+http://thietkethicongnghetinh.com/
+0 99
+http://thietkethicongnghetinh.com/wp-login.php
+0 1
+https://www.google.com.vn/
+0 1
+http://thietkethicongnghetinh.com/wp-cron.php
+0 20
+http://thietkethicongnghetinh.com/chi-ha-bach-mai/
+0 42
+http://thietkethicongnghetinh.com/den/
+0 5
+- (Direct Request)
+0 20
+http://thietkethicongnghetinh.com/tham/
+0 3
+http://thietkethicongnghetinh.com/do-trang-tri/
+0 1
+http://thietkethicongnghetinh.com/ban/
+0 48
+http://thietkethicongnghetinh.com/xmlrpc.php
+0 2
+http://www.google.com/
+0 1
+http://thietkethicongnghetinh.com/lien-he/
+0 14
+http://thietkethicongnghetinh.com
+0 1
+# End Of Table - referrers
+# -agents- 
+Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko
+0 2
+WordPress/4.9.6; http://thietkethicongnghetinh.com
+0 20
+Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.57 Safari/537.36
+0 6
+Mozilla/5.0 (compatible; NetcraftSurveyAgent/1.0; +info@netcraft.com)
+0 2
+Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
+0 18
+Mozilla/5.0 (compatible; bingbot/2.0; +http://www.bing.com/bingbot.htm)
+0 4
+Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Safari/537.36
+0 191
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+0 1
+Mozilla/5.0 (Linux; Android 4.4.2; LV_117 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mo
+0 103
+Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile S
+0 92
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36
+0 1
+# End Of Table - agents
+# -search strings- 
+# End Of Table - search strings
+# -usernames- 
+# End Of Table - usernames
