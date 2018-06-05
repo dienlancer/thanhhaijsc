@@ -255,6 +255,44 @@ function showSocialIcon(){
 	<?php
 }
 /* end social icon */
+/* begin search right */
+add_shortcode('search_right','showSearchRight');
+function showSearchRight(){
+	$terms = get_terms( array(
+		'taxonomy' => 'category_product',
+		'hide_empty' => false,  ) );			
+	?>	
+	<form name="frm-search" method="POST" class="ritae" action="/tim-kiem-du-an">
+		<div>
+			<select name="category_product" class="xima">
+				<?php 
+					foreach ($terms as $key => $value) {						
+						echo '<option value="'.$value->term_id.'">'.$value->name.'</option>';
+					}
+				?>
+			</select>
+		</div>
+		<div>
+			<input type="text" name="q" class="lina" placeholder="Bạn cần gì hôm nay ?">
+		</div>
+		<div class="oppo">
+			<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
+		</div>	
+		<a class="kitae" href="javascript:void(0);">
+			<div class="icon-header"><i class="fas fa-cart-arrow-down"></i></div>
+			<div class="gian-ho"><font color="#ffffff">Giỏ hàng</font></div>
+		</a>
+		<div class="lexa">
+			<div class="icon-header"><i class="fas fa-phone"></i></div>
+			<div>
+				<div><font color="#ffffff">1900.1267</font></div>
+				<div><font color="#ffffff">Hotline mua hàng</font></div>
+			</div>
+		</div>	
+	</form>
+	<?php
+}
+/* end search right */
 /* begin ảnh công trình */
 add_shortcode( 'show_album', 'showAlbum' );
 function showAlbum($atts){

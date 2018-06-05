@@ -29,10 +29,10 @@ var add_for_admin_bar = 0;
 
 var logo_height = 130; // proya logo height
 var logo_width = 280; // proya logo width
-	logo_height = 114;
-	logo_width = 130;
+	logo_height = 116;
+	logo_width = 175;
 	
-			header_top_height = 33;
+	header_top_height = 0;
 var loading_text;
 loading_text = 'Loading new posts...';
 var finished_text;
@@ -117,7 +117,7 @@ function codeAddress(data) {
 			var marker = new google.maps.Marker({
 				map: map, 
 				position: results[0].geometry.location,
-								icon:  'http://thietkethicongnghetinh.dienkim/wp-content/themes/bridge/img/pin.png',
+								icon:  'http://thanhhaijsc.dienkim/wp-content/themes/bridge/img/pin.png',
 								title: data['store_title']
 			});
 			google.maps.event.addListener(marker, 'click', function() {
@@ -150,8 +150,8 @@ function showContactMap() {
 }
 
 var no_ajax_pages = [];
-var qode_root = 'http://thietkethicongnghetinh.dienkim/';
-var theme_root = 'http://thietkethicongnghetinh.dienkim/wp-content/themes/bridge/';
+var qode_root = 'http://thanhhaijsc.dienkim/';
+var theme_root = 'http://thanhhaijsc.dienkim/wp-content/themes/bridge/';
 var header_style_admin = "";
 if(typeof no_ajax_obj !== 'undefined') {
 	no_ajax_pages = no_ajax_obj.no_ajax_pages;
