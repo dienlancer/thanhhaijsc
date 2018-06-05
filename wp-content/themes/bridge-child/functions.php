@@ -113,7 +113,10 @@ function showCategoryProductMenu(){
 	<div class="categoryproductmnsc">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-12"><?php wp_nav_menu($args); ?></div>
+				<div class="col-lg-3">
+					<?php wp_nav_menu($args); ?>		
+				</div>
+				<div class="col-lg-9"></div>
 			</div>
 		</div>		
 	</div>
