@@ -637,31 +637,7 @@ li.narrow .second .inner ul{
   color: #ffffff;  
   margin-left: 10px;  
 }
-.category-product-menu li:nth-child(1)::before{
-  content: '\f26c';
-  font-family: 'fontawesome';
-  color: #ffffff;  
-}
-.category-product-menu li:nth-child(2)::before{
-  content: '\f0a0';
-  font-family: 'fontawesome';
-  color: #ffffff;  
-}
-.category-product-menu li:nth-child(3)::before{
-  content: '\f0a0';
-  font-family: 'fontawesome';
-  color: #ffffff;  
-}
-.category-product-menu li:nth-child(4)::before{
-  content: '\f26c';
-  font-family: 'fontawesome';
-  color: #ffffff;  
-}
-.category-product-menu li:nth-child(5)::before{
-  content: '\f26c';
-  font-family: 'fontawesome';
-  color: #ffffff;  
-}
+
 @media (max-width: 768px) { 
 
 }
