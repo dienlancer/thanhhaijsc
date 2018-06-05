@@ -120,6 +120,28 @@ function showCategoryProductMenu(){
 	<?php	
 }
 /* end category product menu */
+/* begin navbar */
+add_shortcode('nav_bar','showNavbar');
+function showNavbar(){
+	?>
+	<div class="nav_bar">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="canon">
+						<div class="fata">
+							<i><span></span><span></span><span></span></i>
+						</div>
+						<div class="margin-left-15"><b>Danh mục sản phẩm</b></div>						
+					</div>
+				</div>
+				<div class="col-lg-9"></div>
+			</div>
+		</div>
+	</div>
+	<?php
+}
+/* end navbar */
 /* begin search right */
 add_shortcode('search_right','showSearchRight');
 function showSearchRight(){

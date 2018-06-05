@@ -602,6 +602,28 @@ li.narrow .second .inner ul{
 .categoryproductmnsc .container{
 	background: transparent;
 }
+.nav_bar{
+	    background: #f4f4f4;
+    
+}
+.canon{
+	padding: 8px 15px;
+	background:#000000d1;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.fata i{
+      display: table-cell;
+    vertical-align: middle;
+}
+.fata span{
+  width: 16px;
+    height: 1px;
+    background-color: #fff;
+    display: block;
+    margin-bottom: 4px;
+}
 @media (max-width: 768px) { 
 	.alsjgjfiosjofsj{
 		padding: 0 10px;
