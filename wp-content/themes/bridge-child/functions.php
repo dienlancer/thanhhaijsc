@@ -88,6 +88,38 @@ function script_fanpage(){
 	echo $strScript;
 }
 /* end fanpage */
+/* begin category product menu */
+add_shortcode('category_product_sc','showCategoryProductMenu');
+function showCategoryProductMenu(){	
+	$args = array( 
+		'menu'              => '', 
+		'container'         => '', 
+		'container_class'   => '', 
+		'container_id'      => '', 
+		'menu_class'        => 'category-product-menu', 
+		'menu_id'           => '', 
+		'echo'              => true, 
+		'fallback_cb'       => 'wp_page_menu', 
+		'before'            => '', 
+		'after'             => '', 
+		'link_before'       => '', 
+		'link_after'        => '', 
+		'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',  
+		'depth'             => 3, 
+		'walker'            => '', 
+		'theme_location'    => 'category-product-menu' 
+	);
+	?>
+	<div class="categoryproductmnsc">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12"><?php wp_nav_menu($args); ?></div>
+			</div>
+		</div>		
+	</div>
+	<?php	
+}
+/* end category product menu */
 /* begin search right */
 add_shortcode('search_right','showSearchRight');
 function showSearchRight(){

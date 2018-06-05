@@ -589,6 +589,19 @@ li.narrow .second .inner ul{
 .lexa{
 	display: flex;
 }
+.bg-slider{
+	position: relative;
+}
+.categoryproductmnsc{
+	position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    width: 100%;
+}
+.categoryproductmnsc .container{
+	background: transparent;
+}
 @media (max-width: 768px) { 
 	.alsjgjfiosjofsj{
 		padding: 0 10px;
