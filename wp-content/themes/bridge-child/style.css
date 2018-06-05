@@ -563,7 +563,6 @@ li.narrow .second .inner ul{
 }
 .kitae{
 	display: flex;
-	margin-left: 20px;
 }
 .kitae:hover{
 	text-decoration: none;
@@ -589,7 +588,6 @@ li.narrow .second .inner ul{
 }
 .lexa{
 	display: flex;
-	margin-left: 25px;
 }
 @media (max-width: 768px) { 
 	.alsjgjfiosjofsj{
