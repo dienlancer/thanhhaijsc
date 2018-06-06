@@ -138,7 +138,26 @@ function showNavbar(){
 						<div class="margin-left-15"><b>Danh mục sản phẩm</b></div>						
 					</div>
 				</div>
-				<div class="col-lg-9"></div>
+				<div class="col-lg-9">
+					<div class="rafaen">
+						<div class="riu">
+							<div><img src="<?php echo site_url('wp-content/uploads/ball.gif'); ?>"></div>
+							<div class="sale-hot"><b>Mua Online Ưu Đãi Hơn Đến 2 Triệu</b></div>
+						</div>	
+						<div class="kaki">
+							<div class="phiba">&nbsp;</div>
+							<div class="sale-hot"><b>Khuyến Mãi HOT</b></div>
+						</div>	
+						<div class="himlam">
+							<div class="dola">&nbsp;</div>
+							<div class="sale-hot"><b>Trả Góp 0%</b></div>
+						</div>																
+						<div class="goc-cong-nghe">
+							<div class="icon-goc-cong-nghe"></div>
+							<div class="margin-left-10 limiavia"><a href="javascript:void(0);"><b>Góc Công Nghệ</b></a></div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -148,6 +167,8 @@ function showNavbar(){
 /* begin search right */
 add_shortcode('search_right','showSearchRight');
 function showSearchRight(){
+	global $zendvn_sp_settings;	
+	$telephone=$zendvn_sp_settings['telephone'];
 	$terms = get_terms( array(
 		'taxonomy' => 'category_product',
 		'hide_empty' => false,  ) );	
@@ -187,7 +208,7 @@ function showSearchRight(){
 			<div class="lexa">
 				<div class="icon-header"><i class="fas fa-phone"></i></div>
 				<div>
-					<div><font color="#ffffff">1900.1267</font></div>
+					<div><font color="#ffffff"><?php echo $telephone; ?></font></div>
 					<div><font color="#ffffff">Hotline mua hàng</font></div>
 				</div>
 			</div>	
