@@ -10,8 +10,7 @@ class AdminProductController{
 		preg_match('#(?:.+\/)(.+)#', $_SERVER['SCRIPT_NAME'],$matches);
 		$phpFile = $matches[1];
 		if($zController->getParams("post_type")=="zaproduct"){
-			if($phpFile == 'post.php' || $phpFile == 'post-new.php'){
-				add_action("add_meta_boxes",array($this,"display"));								
+			if($phpFile == 'post.php' || $phpFile == 'post-new.php'){				
 				if($zController->isPost()){
 					add_action("save_post",array($this,"save"));
 				}
@@ -106,11 +105,7 @@ class AdminProductController{
 		);
 		$newArr = array_merge($newArr,$new_columns);
 		return $newArr;
-	}
-	public function display(){
-		add_meta_box($this->_metabox_id,"Images of product",array($this,"thumbnail"),"zaproduct");
-		add_meta_box($this->_metabox_id."-detail","Detail",array($this,"detail"),"zaproduct");
-	}
+	}	
 	public function save($post_id){
 
 		global $zController,$zendvn_sp_settings;	
@@ -122,71 +117,18 @@ class AdminProductController{
 		$thumbnail_id 	= get_post_thumbnail_id($post_id);	
 		$featureImg=wp_get_attachment_image_src($thumbnail_id,"single-post-thumbnail");	
 		$imgThumbnailHelper=$zController->getHelper("ImgThumbnail");			
-		if(count($featureImg)>0){						
+		if($featureImg != null){						
 			$imgThumbnailHelper->resizeImage($featureImg[0],$width,$height);
 		}		
-		if(count($arrParam[$this->create_id('img-url')]) > 0){			
-			foreach ($arrParam[$this->create_id('img-url')] as $key => $value) {				
-				if(!empty($value)){
-					$imgThumbnailHelper->resizeImage($value,$width,$height);
-				}
-			}
-		}		
-		
-		//zendvn-sp-zsproduct-nonce
+
 		if(!isset($arrParam[$wpnonce_name])) return $post_id;
 		
 		if(!wp_verify_nonce($arrParam[$wpnonce_name],$wpnonce_action)) return $post_id;
 		
 		if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
 		
-		if(!current_user_can('edit_post')) return $post_id;
-		
-		$arrData =  array(			
-			'img-ordering' 	=> array_map('absint',$arrParam[$this->create_id('img-ordering')]),
-			'img-url' 		=> $arrParam[$this->create_id('img-url')],					
-			'price' 		=> filter_var($arrParam[$this->create_id('price')],FILTER_VALIDATE_FLOAT),
-			'sale_price' 	=> filter_var($arrParam[$this->create_id('sale_price')],FILTER_VALIDATE_FLOAT),			
-			
-		);
-		if(!isset($arrParam['save'])){
-			$arrData['view'] = 0;
-		}
-		foreach ($arrData as $key => $val){
-			update_post_meta($post_id, $this->create_key($key), $val);
-		}				
-	}
-	public function detail(){
-		global $zController , $post ;
-		$vHtml=new HtmlControl(); 
-		wp_nonce_field($this->_metabox_id,$this->_metabox_id . "-nonce");	
-			
-		// Tạo phần tử chứa giá
-		$inputID = $this->create_id("price");
-		$inputName = $this->create_id("price");
-		$inputValue = get_post_meta($post->ID,$this->create_key("price"),true);
-		$inputValue=filter_var($inputValue,FILTER_VALIDATE_FLOAT);
-		$label='<label><b>Price</b></label>';
-		$textbox=$vHtml->cmsTextbox($inputID,$inputName,"", $inputValue);
-		$html='<div class="form-field">'.$label.'<br/>'.$textbox.'</div>';
-		echo $html;		
-		// tạo phần tử chứa giá khuyến mãi
-		$inputID = $this->create_id("sale_price");
-		$inputName = $this->create_id("sale_price");
-		$inputValue = get_post_meta($post->ID,$this->create_key("sale_price"),true);
-		$inputValue=filter_var($inputValue,FILTER_VALIDATE_FLOAT);
-		$label='<label><b>Sale price</b></label>';
-		$textbox=$vHtml->cmsTextbox($inputID,$inputName,"", $inputValue);
-		$html='<div class="form-field">'.$label.'<br/>'.$textbox.'</div>';
-		echo $html;	
-		
-	}
-	public function thumbnail(){
-		global $zController;
-		wp_nonce_field($this->_metabox_id,$this->_metabox_id . "-nonce");
-		$zController->_data["controller"]=$this;
-		$zController->getView("/backend/product/thumbnail.php");
-	}
+		if(!current_user_can('edit_post')) return $post_id;					
+	}	
 	public function create_id($val){
 		return $this->_prefix_id . $val;
 	}

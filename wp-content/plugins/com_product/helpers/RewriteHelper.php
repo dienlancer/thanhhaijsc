@@ -10,9 +10,9 @@ class RewriteHelper{
 	}		
 	public function add_tags_rule(){
 		add_rewrite_tag('%zaproduct%', '([^/]+)');
-		add_permastruct('zaproduct', 'chi-tiet-san-pham/%zaproduct%.html');		
+		add_permastruct('zaproduct', 'san-pham/%zaproduct%.html');		
 		add_rewrite_tag('%za_category%', '([^/]+)');
-		add_permastruct('za_category', 'loai-san-pham/%za_category%.html');		
+		add_permastruct('za_category', '%za_category%.html');		
 		flush_rewrite_rules(false);
 	}
 	
