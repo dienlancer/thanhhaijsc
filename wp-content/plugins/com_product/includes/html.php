@@ -137,20 +137,14 @@ public function fnPrice($value){
 		$fileName = $currentName[0];     
 		return $fileName;
 	}
-	public function getResizedImg($file_url,$width,$height)
-	{		
-		preg_match("/[^\/|\\\]+$/", $file_url,$current_name);
-		$image_name = $current_name[0];
-		$ext = pathinfo($image_name, PATHINFO_EXTENSION);  
-		$image_slug=sanitize_title($image_name);		
-		$pattern_ext='#.png|.jpg|.gif#';
-  		$pattern_dot='#\.#';
-  		$pattern_ngang='#-#';
-  		$image_slug=preg_replace($pattern_ngang, '.', $image_slug);           
-  		$image_slug=preg_replace($pattern_ext, '', $image_slug);
-  		$image_slug=preg_replace($pattern_dot, '-', $image_slug);
-  		$image_name=$image_slug.'-'.$width.'x'.$height.'.'.$ext;
-		$image_url=site_url("wp-content/uploads/".$image_name);
-		return $image_url;	
+	public function getSmallImage($fileUrl)
+	{
+		global $zendvn_sp_settings;
+		$width=$zendvn_sp_settings["product_width"];    
+		$height=$zendvn_sp_settings["product_height"];   
+		preg_match("/[^\/|\\\]+$/", $fileUrl,$currentName);
+		$fileName = $currentName[0];  
+		$smallImg=site_url("wp-content/uploads/".$width."x".$height."-".$fileName);
+		return $smallImg;	
 	}
 }

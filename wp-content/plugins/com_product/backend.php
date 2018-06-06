@@ -33,12 +33,12 @@ class Backend{
 		wp_enqueue_style('thickbox');
 	}
 	public function add_js_file(){
-		wp_register_script("multi-media-button",PLUGIN_URL . "public/backend/js/multi-media-button.js" ,array(),null,false);
+		wp_register_script("multi-media-button",PLUGIN_URL . "public/backend/js/multi-media-button.js" ,array('jquery'),'1.0',true);
 		wp_enqueue_script("multi-media-button");	
 		wp_enqueue_media();
-		wp_register_script("single-media-button",PLUGIN_URL . "public/backend/js/single-media-button.js" ,array(),null,false);
+		wp_register_script("single-media-button",PLUGIN_URL . "public/backend/js/single-media-button.js" ,array('jquery'),'1.0',true);
 		wp_enqueue_script("single-media-button");	
-		wp_enqueue_script('media-upload');
+		wp_enqueue_script('media-upload');		
 	}
 	public function menus(){
 		add_menu_page('Shopping', 'Shopping', 'manage_options', $this->_menuSlug,
@@ -46,7 +46,12 @@ class Backend{
 
 		add_submenu_page($this->_menuSlug, 'Dashboard', 'Dashboard', 'manage_options', 
 						$this->_menuSlug ,array($this,'dispatch_function'));				
-						
+
+		add_submenu_page($this->_menuSlug, 'Category', 'Category', 'manage_options', 
+						$this->_menuSlug . '-categories',array($this,'dispatch_function'));						
+
+		add_submenu_page($this->_menuSlug, 'Product ', 'Product', 'manage_options',
+						$this->_menuSlug . '-products',array($this,'dispatch_function'));					
 						
 		add_submenu_page($this->_menuSlug, 'Invoice', 'Invoice', 'manage_options',
 						$this->_menuSlug . '-invoice',array($this,'dispatch_function'));

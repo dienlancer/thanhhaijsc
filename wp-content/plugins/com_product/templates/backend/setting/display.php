@@ -10,27 +10,15 @@ if(!$zController->isPost()){
 }
 $vHtml 				= new HtmlControl();
 
-
+$inputID 			= $option_name . '_product_number';
+$inputName 			= $option_name . '[product_number]';
+$inputValue 		= !empty(@$data['product_number']) ?  @$data['product_number'] : '';	
+$product_number		= $vHtml->cmsTextbox($inputID,$inputName,"regular-text", $inputValue);
 
 $inputID 			= $option_name . '_article_number';
 $inputName 			= $option_name . '[article_number]';
 $inputValue 		= !empty(@$data['article_number']) ? @$data['article_number'] : '';	
 $article_number		= $vHtml->cmsTextbox($inputID,$inputName,"regular-text", $inputValue);
-
-$inputID 			= $option_name . '_article_width';
-$inputName 			= $option_name . '[article_width]';
-$inputValue 		= !empty(@$data['article_width']) ? @$data['article_width'] : '';			
-$article_width		= $vHtml->cmsTextbox($inputID,$inputName,"regular-text", $inputValue);
-
-$inputID 			= $option_name . '_article_height';
-$inputName 			= $option_name . '[article_height]';
-$inputValue 		= !empty(@$data['article_height']) ? @$data['article_height'] : '';			
-$article_height		= $vHtml->cmsTextbox($inputID,$inputName,"regular-text", $inputValue);	
-
-$inputID 			= $option_name . '_product_number';
-$inputName 			= $option_name . '[product_number]';
-$inputValue 		= !empty(@$data['product_number']) ?  @$data['product_number'] : '';	
-$product_number		= $vHtml->cmsTextbox($inputID,$inputName,"regular-text", $inputValue);
 
 $inputID 			= $option_name . '_product_width';
 $inputName 			= $option_name . '[product_width]';
@@ -41,8 +29,6 @@ $inputID 			= $option_name . '_product_height';
 $inputName 			= $option_name . '[product_height]';
 $inputValue 		= !empty(@$data['product_height']) ? @$data['product_height'] : '';			
 $product_height		= $vHtml->cmsTextbox($inputID,$inputName,"regular-text", $inputValue);	
-
-
 
 $inputID 			= $option_name . '_currency_unit';
 $inputName 			= $option_name . '[currency_unit]';
@@ -165,20 +151,9 @@ $ban_do			=$vHtml->cmsTextarea($inputID,$inputName,"widefat",$inputValue,8,120);
 							<b><i><label >Articles in a page</label></i></b>
 						</th>
 						<td><?php echo $article_number;?></td>
-					</tr>			
-					<tr>
-						<th scope="row">
-							<b><i><label >Width</label></i></b>
-						</th>
-						<td><?php echo $article_width;?></td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<b><i><label >Height</label></i></b>
-						</th>
-						<td><?php echo $article_height;?></td>
-					</tr>					
+					</tr>						
 				</tbody>
+
 			</table>
 		</div>
 		<h2><i><font color="red">Show product in FrontEnd</font></i></h2>

@@ -4,7 +4,7 @@ class ImgThumbnail{
 		
 	}	
 	public function resizeImage($fileUrl,$width,$height){   		
-		global $zController;		
+		global $zController,$zendvn_sp_settings;		
 	    $vHtml=new HtmlControl();
 	    $currentName=$vHtml->getFileName($fileUrl);	    
 		$filePath=wp_upload_dir()["path"] . DS . $currentName;
