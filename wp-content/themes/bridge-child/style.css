@@ -14,7 +14,7 @@ Template: bridge
 /* begin standard */
 body{
 	font-family: 'sf-ui-display-light';
-	background: url('images/bg.svg');
+	background: url('images/bg.svg') repeat;
 }
 .margin-bottom-5{margin-bottom:5px;}
 .margin-bottom-10{margin-bottom:10px;}
@@ -795,6 +795,29 @@ li.narrow .second .inner ul{
     height: 19px;    
 }
 /* end pp2 */
+.category-home-box{
+    
+  width: 100%;
+  background: #ffffff;
+  padding:0 10px 10px 10px;
+}
+.category-home-title,{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.category-home-title a{
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #333;
+}
+.box-product-intro-title{
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+.box-product-intro-title a{
+      font-size: 12px;
+}
 @media (max-width: 768px) { 
 
 }

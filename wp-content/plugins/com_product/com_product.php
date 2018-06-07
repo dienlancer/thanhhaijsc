@@ -10,7 +10,8 @@ Author URI: http://cloudbeauty.vn
 ob_start();
 require_once 'define.php';
 require_once PLUGIN_PATH . DS .  'includes'. DS .'Controller.php';
-global $zController,$zendvn_sp_settings;
+$zController;
+$zendvn_sp_settings;
 $zController = new zController();
 $zendvn_sp_settings = get_option('zendvn_sp_setting',array());
 if(!class_exists('HtmlControl')){

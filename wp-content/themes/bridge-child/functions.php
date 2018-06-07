@@ -217,3 +217,105 @@ function showSearchRight(){
 	<?php
 }
 /* end search right */
+/* begin category homepage */
+add_shortcode('category_home','loadCategoryHome');
+function loadCategoryHome($attrs){
+	$term_slug=$attrs['cat'];
+	$term = get_term_by('slug', $term_slug, 'za_category');	
+	$term_link= get_term_link($term,'za_category');		
+	$source_term_id=array($term->term_id);
+	$alias='category-home-'.$term_slug;
+	$vHtml=new HtmlControl();
+	?>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="category-home-box">
+					<h2 class="category-home-title"><a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a></h2>
+					<div class="row">
+						<div class="col-lg-3"><img src="<?php echo site_url('wp-content/uploads/sony.jpg'); ?>"></div>
+						<div class="col-lg-9">
+							<?php 
+							$args = array(
+								'post_type' => 'zaproduct',  
+								'orderby' => 'id',
+								'order'   => 'DESC',  
+								'posts_per_page' => 8,        								
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'za_category',
+										'field'    => 'term_id',
+										'terms'    => $source_term_id,									
+									),
+								),
+							); 
+							$the_query=new WP_Query($args);	
+							if($the_query->have_posts()){
+								?>
+								<div>
+									<script type="text/javascript" language="javascript">
+										jQuery(document).ready(function(){
+											jQuery(".<?php echo $alias; ?>").owlCarousel({
+												autoplay:false,                    
+												loop:true,
+												margin:10,                        
+												nav:false,            
+												mouseDrag: true,
+												touchDrag: true,                                
+												responsiveClass:true,
+												responsive:{
+													0:{
+														items:1
+													},
+													600:{
+														items:4
+													},
+													1000:{
+														items:4
+													}
+												}
+											});
+											var chevron_left='<i class="fa fa-chevron-left"></i>';
+											var chevron_right='<i class="fa fa-chevron-right"></i>';
+											jQuery("div.<?php echo $alias; ?> div.owl-prev").html(chevron_left);
+											jQuery("div.<?php echo $alias; ?> div.owl-next").html(chevron_right);
+										});                
+									</script>
+									<div class="owl-carousel <?php echo $alias; ?> owl-theme">
+										<?php 
+										while ($the_query->have_posts()){
+											$the_query->the_post();
+											$post_id=$the_query->post->ID;							
+											$permalink=get_the_permalink($post_id);
+											$title=get_the_title($post_id);
+											$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
+											$thumbnail=$vHtml->getSmallImage($featured_img);
+											$price=get_post_meta($post_id,"price",true);
+											$sale_price=get_post_meta($post_id,"sale_price",true);
+											?>
+											<div class="box-product">
+												<div class="box-product-img">
+													<center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></figure></center>
+												</div>
+												<h3 class="box-product-intro-title"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo substr($title,0,30).'...'; ?></b></a></h3>
+												<div><?php echo $price; ?></div>
+												<div><?php echo $sale_price; ?></div>
+											</div>
+											<?php
+										}
+										wp_reset_postdata();  
+										?>	
+									</div>
+								</div>
+								<?php								
+							}
+							?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<?php 
+}
+/* end category homepage */
