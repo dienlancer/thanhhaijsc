@@ -6,14 +6,14 @@ class AdminCategoryModel{
 	public function create(){
 	
 		$labels = array(
-				'name'				=> 'ZCategory',
-				'singular' 			=> 'ZCategory',
-				'menu_name'			=> 'zcategory',				
-				'edit_item'			=> 'Edit zcategory',
-				'update_item'		=> 'Update zcategory',
-				'add_new_item'		=> 'Add new zcategory',
-				'search_items'		=> 'Search categories',
-				'popular_items'		=> 'Categories are using',
+				'name'				=> 'Danh mục sản phẩm',
+				'singular' 			=> 'Danh mục sản phẩm',
+				'menu_name'			=> 'za_category',				
+				'edit_item'			=> 'Chỉnh sửa',
+				'update_item'		=> 'Cập nhật',
+				'add_new_item'		=> 'Thêm mới',
+				'search_items'		=> 'Tìm kiếm',
+				'popular_items'		=> 'Item đang được sử dụng',
 				'separate_items_with_commas' => 'Separate tags with commas 123',
 				'choose_from_most_used' => 'Choose from the most used tags 123',
 				'not_found'			=> 'No book category found',

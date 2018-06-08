@@ -5,17 +5,17 @@ class AdminProductModel{
 	}
 	public function create(){		
 		$labels = array(
-				'name' 				=> 'ZA Product',
-				'singular_name' 	=> 'ZA Product',
-				'menu_name'			=> 'ZA Product',
-				'name_admin_bar' 	=> 'ZA Product',
-				'add_new'			=> 'Add ZA Product',
-				'add_new_item'		=> 'Add New ZA Product',
-				'search_items' 		=> 'Search ZA Product',
+				'name' 				=> 'Sản phẩm',
+				'singular_name' 	=> 'Sản phẩm',
+				'menu_name'			=> 'Sản phẩm',
+				'name_admin_bar' 	=> 'Sản phẩm',
+				'add_new'			=> 'Thêm mới',
+				'add_new_item'		=> 'Thêm mới',
+				'search_items' 		=> 'Tìm kiếm',
 				'not_found'			=> 'No products found',
 				'not_found_in_trash'=> 'No products found in Trash',
-				'view_item' 		=> 'View product',
-				'edit_item'			=> 'Edit product',
+				'view_item' 		=> 'Xem',
+				'edit_item'			=> 'Chỉnh sửa',
 				);
 		$args = array(
 				'labels'               => $labels,

@@ -27,7 +27,7 @@ class AdminProductController{
 	public function za_category_list(){
 		global $zController;
 		wp_dropdown_categories(array(
-			'show_option_all' => __("Show All ZA Category"),
+			'show_option_all' => __("Danh mục sản phẩm"),
 			'taxonomy'			=> 'za_category',
 			'name'				=> 'za_category',
 			'orderby'			=> 'name',

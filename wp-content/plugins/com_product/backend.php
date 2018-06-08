@@ -10,7 +10,7 @@ class Backend{
 		if(isset($_GET['page'])) $this->_page = $_GET['page'];		
 		add_action('admin_menu', array($this,'menus'));
 		if(
-			
+			$this->_page == 'zendvn-sp-manager-manufacturer'			|| 
 			$this->_page == 'zendvn-sp-manager-invoice'			|| 
 			$this->_page == 'zendvn-sp-manager-setting' 		|| 			
 			$this->_page == 'zendvn-sp-manager-user'
@@ -42,41 +42,40 @@ class Backend{
 	}
 	public function menus(){
 		add_menu_page('Shopping', 'Shopping', 'manage_options', $this->_menuSlug,
-						array($this,'dispatch_function'),'',3);
+						array($this,'dispatch_function'),'',3);			
+		add_submenu_page($this->_menuSlug, 'Hãng sản xuất', 'Hãng sản xuất', 'manage_options', 
+						$this->_menuSlug . '-manufacturer',array($this,'dispatch_function'));	
 
-		add_submenu_page($this->_menuSlug, 'Dashboard', 'Dashboard', 'manage_options', 
-						$this->_menuSlug ,array($this,'dispatch_function'));				
+		add_submenu_page($this->_menuSlug, 'Category', 'Danh mục sản phẩm', 'manage_options', 
+						$this->_menuSlug . '-category',array($this,'dispatch_function'));						
 
-		add_submenu_page($this->_menuSlug, 'Category', 'Category', 'manage_options', 
-						$this->_menuSlug . '-categories',array($this,'dispatch_function'));						
-
-		add_submenu_page($this->_menuSlug, 'Product ', 'Product', 'manage_options',
-						$this->_menuSlug . '-products',array($this,'dispatch_function'));					
+		add_submenu_page($this->_menuSlug, 'Product ', 'Sản phẩm', 'manage_options',
+						$this->_menuSlug . '-product',array($this,'dispatch_function'));					
 						
-		add_submenu_page($this->_menuSlug, 'Invoice', 'Invoice', 'manage_options',
+		add_submenu_page($this->_menuSlug, 'Invoice', 'Hóa đơn', 'manage_options',
 						$this->_menuSlug . '-invoice',array($this,'dispatch_function'));
 
-		add_submenu_page($this->_menuSlug, 'Setting', 'Setting', 'manage_options',
+		add_submenu_page($this->_menuSlug, 'Setting', 'Cấu hình', 'manage_options',
 						$this->_menuSlug . '-setting',array($this,'dispatch_function'));		
 
-		add_submenu_page($this->_menuSlug, 'User', 'User', 'manage_options',
+		add_submenu_page($this->_menuSlug, 'User', 'Người dùng', 'manage_options',
 						$this->_menuSlug . '-user',array($this,'dispatch_function'));	
 	}	
 	public function dispatch_function(){		
 		global $zController;
 		$page = $this->_page;
-		switch ($page) {
+		switch ($page) {	
 			case 'zendvn-sp-manager-setting':
-				$zController->getController('/backend','AdminSettingController');
-				break;		
+			$zController->getController('/backend','AdminSettingController');
+			break;		
 			case 'zendvn-sp-manager-invoice':
-				$zController->getController('/backend','AdminInvoiceController');
+			$zController->getController('/backend','AdminInvoiceController');
 			break;						
 			case 'zendvn-sp-manager-user':
-				$zController->getController('/backend','AdminUserController');
+			$zController->getController('/backend','AdminUserController');
 			break;
 			default:				
-				break;
+			break;
 		}		
 	}
 }

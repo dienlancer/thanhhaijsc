@@ -70,7 +70,6 @@ function vnkings_admin_menus() {
    remove_menu_page( 'tools.php' );     
    remove_menu_page( 'edit.php?post_type=acf' );   
    remove_menu_page( 'vc-general' );    
-   remove_menu_page( 'wpseo_dashboard' ); 
 }
 add_action( 'admin_menu', 'vnkings_admin_menus' );
 /* end ẩn menu */

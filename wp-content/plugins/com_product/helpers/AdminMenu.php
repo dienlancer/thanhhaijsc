@@ -19,11 +19,13 @@ class AdminMenu{
 	
 		$zendvn_sp_manager = $submenu['zendvn-sp-manager'];
 		foreach ($zendvn_sp_manager as $key => $val){
-			if($val[2] == 'zendvn-sp-manager-categories'){
-				$zendvn_sp_manager[$key][2] = 'edit-tags.php?taxonomy=za_category&post_type=zaproduct';
+			if($val[2] == 'zendvn-sp-manager-manufacturer'){
+				$zendvn_sp_manager[$key][2] = 'edit-tags.php?taxonomy=za_manufacturer&post_type=zaproduct';
 			}
-				
-			if($val[2] == 'zendvn-sp-manager-products'){
+			if($val[2] == 'zendvn-sp-manager-category'){
+				$zendvn_sp_manager[$key][2] = 'edit-tags.php?taxonomy=za_category&post_type=zaproduct';
+			}				
+			if($val[2] == 'zendvn-sp-manager-product'){
 				$zendvn_sp_manager[$key][2] = 'edit.php?post_type=zaproduct';
 			}
 		}

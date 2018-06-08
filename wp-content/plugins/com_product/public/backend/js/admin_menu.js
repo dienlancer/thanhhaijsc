@@ -12,7 +12,10 @@ jQuery(document).ready(function($){
 			var url ='edit-tags.php?taxonomy=za_category&post_type=zaproduct';
 			$(elemt + " a[href='" + url + "']").addClass('current').parent().addClass('current');
 		}
-		
+		if(taxonomy == 'za_manufacturer'){
+			var url ='edit-tags.php?taxonomy=za_manufacturer&post_type=zaproduct';
+			$(elemt + " a[href='" + url + "']").addClass('current').parent().addClass('current');
+		}
 		if(taxonomy == undefined){
 			var url ='edit.php?post_type=zaproduct';
 			$(elemt + " a[href='" + url + "']").addClass('current').parent().addClass('current');
