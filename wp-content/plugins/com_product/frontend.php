@@ -3,7 +3,8 @@ class Frontend{
 	public function __construct(){
 		global $zController;
 		add_action('init', array($zController->getModel("/backend","AdminCategoryModel"),'create'));
-		add_action('init', array($zController->getModel("/backend","AdminProductModel"),'create'));				
+		add_action('init', array($zController->getModel("/backend","AdminManufacturerModel"),'create'));	
+		add_action('init', array($zController->getModel("/backend","AdminProductModel"),'create'));					
 		add_filter('template_include', array($this,'load_template'));			
 		add_action('init', array($this,'do_output_buffer'));				
 	}	

@@ -284,23 +284,31 @@ function loadCategoryHome($attrs){
 										<?php 
 										while ($the_query->have_posts()){
 											$the_query->the_post();
-											$post_id=$the_query->post->ID;							
-											//echo "<pre>".print_r($the_query->post,true)."</pre>";
+											$post_id=$the_query->post->ID;																		
 											$permalink=get_the_permalink($post_id);
 											$title=get_the_title($post_id);
 											$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
 											$thumbnail=$vHtml->getSmallImage($featured_img);
 											$price=get_post_meta($post_id,"price",true);
 											$sale_price=get_post_meta($post_id,"sale_price",true);
-											$term_manufacturer = get_the_terms($the_query->post,  'za_manufacturer' );     
-											echo "<pre>".print_r($term_manufacturer,true)."</pre>";
+											$intro=get_post_meta($post_id,"intro",true);
+											$source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );     					
+											$manufacturer_name='';
+											$manufacturer_link='';
+											if(count($source_manufacturer) > 0){
+												$manufacturer_name=$source_manufacturer[0]->name;
+												$manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');													
+											}
 											?>
 											<div class="box-product">
 												<div class="box-product-img">
 													<center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></figure></center>
 												</div>
-
-												<h3 class="box-product-intro-title"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo substr($title,0,30).'...'; ?></b></a></h3>
+												<div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link; ?>"><?php echo $manufacturer_name; ?></a></div>
+												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo substr($title,0,40).'...'; ?></b></a></div>
+												<div class="box-product-intro margin-top-10">
+													<?php echo $intro; ?>
+												</div>
 												<div><?php echo $price; ?></div>
 												<div><?php echo $sale_price; ?></div>
 											</div>

@@ -10,6 +10,7 @@ Template: bridge
 @import url("../bridge/style.css");
 /* begin font */
 @font-face{font-family:"sf-ui-display-light";src:url("fonts/sf-ui-display-light-58646b33e0551.woff") format('truetype');}
+@font-face{font-family:"bebas-neue";src:url("fonts/BebasNeue-Regular.ttf") format('truetype');}
 /* end font */
 /* begin standard */
 body{
@@ -697,53 +698,6 @@ li.narrow .second .inner ul{
     border-bottom: 17.5px solid transparent;
     border-left: 15px solid #fff;
 }
-/* begin pp1 */
-/*.category-product-menu{
-  list-style: none;
-  background:#000000c7;  
-}
-.category-product-menu li{      
-    padding: 10px 10px;   
-    position: relative; 
-    display: flex;
-    align-items: center;
-}
-.category-product-menu a{
-  text-decoration: none;
-  color: #ffffff;  
-  margin-left: 10px;  
-}
-.category-product-menu li:nth-child(1)::before{
-	    background: url(images/icons.png) no-repeat -466px -235px;
-    content: '';
-    width: 25px;
-    height: 13px;
-}
-.category-product-menu li:nth-child(2)::before{
-	    background: url(images/icons.png) no-repeat -416px -232px;
-    content: '';
-    width: 23px;
-    height: 20px;
-}
-.category-product-menu li:nth-child(3)::before{
-	background: url(images/icons.png) no-repeat -379px -236px;
-    content: '';
-    width: 25px;
-    height: 13px;
-}
-.category-product-menu li:nth-child(4)::before{
-	    background: url(images/icons.png) no-repeat -223px -233px;
-    content: '';
-    width: 25px;
-    height: 15px;
-}
-.category-product-menu li:nth-child(5)::before{
-	    background: url(images/icons.png) no-repeat -188px -230px;
-    content: '';
-    width: 25px;
-    height: 19px;
-}*/
-/* end pp1 */
 /* begin pp2 */
 .category-product-menu{
   list-style: none;  
@@ -806,17 +760,31 @@ li.narrow .second .inner ul{
   margin-bottom: 0;
 }
 .category-home-title a{
-  font-size: 16px;
-  text-transform: uppercase;
-  font-weight: bold;
-  color: #333;
+  font-size: 20px;
+  text-transform: uppercase;  
+  color: #333;  
+  text-decoration: none;  
 }
-.box-product-intro-title{
+.box-product-title{
   margin-bottom: 0;
-  margin-top: 10px;
+  margin-top: 0px;
 }
-.box-product-intro-title a{
-      font-size: 12px;
+.box-product-title a{
+      font-size: 15px;
+      color: #333;      
+}
+.manufacturer-name a{
+  
+  text-transform: uppercase;
+  font-family: 'bebas-neue';
+  font-size: 20px;
+  color: #333;
+  text-decoration: none;
+}
+.box-product-intro{
+
+  color: #818181;
+  font-size: 12px;
 }
 @media (max-width: 768px) { 
 
