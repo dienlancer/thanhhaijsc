@@ -293,11 +293,11 @@ function loadCategoryHome($attrs){
 											$sale_price=get_post_meta($post_id,"sale_price",true);
 											$html_price='';                     
 											if((int)@$sale_price > 0){              
-												$price_off_html='<div class="price-off margin-top-10">'.$vHtml->fnPrice($price).' đ</div>' ;                 
-												$price_on_html ='<div class="price-on margin-top-10">'.$vHtml->fnPrice($sale_price).' đ</div>';										
+												$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
+												$price_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price).' đ</div>';										
 												$html_price=$price_off_html . $price_on_html ;              
 											}else{
-												$html_price='<div class="price-on margin-top-10">'.$vHtml->fnPrice($price).' đ</div>' ;                  
+												$html_price='<div class="price-on">'.$vHtml->fnPrice($price).' đ</div>' ;                  
 											}   	
 											$intro=get_post_meta($post_id,"intro",true);
 											$source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );     					
