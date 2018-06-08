@@ -291,13 +291,21 @@ function loadCategoryHome($attrs){
 											$thumbnail=$vHtml->getSmallImage($featured_img);
 											$price=get_post_meta($post_id,"price",true);
 											$sale_price=get_post_meta($post_id,"sale_price",true);
+											$html_price='';                     
+											if((int)@$sale_price > 0){              
+												$price_off_html='<div class="price-off margin-top-10">'.$vHtml->fnPrice($price).' đ</div>' ;                 
+												$price_on_html ='<div class="price-on margin-top-10">'.$vHtml->fnPrice($sale_price).' đ</div>';										
+												$html_price=$price_off_html . $price_on_html ;              
+											}else{
+												$html_price='<div class="price-on margin-top-10">'.$vHtml->fnPrice($price).' đ</div>' ;                  
+											}   	
 											$intro=get_post_meta($post_id,"intro",true);
 											$source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );     					
 											$manufacturer_name='';
 											$manufacturer_link='';
 											if(count($source_manufacturer) > 0){
 												$manufacturer_name=$source_manufacturer[0]->name;
-												$manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');													
+												$manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');							
 											}
 											?>
 											<div class="box-product">
@@ -309,8 +317,7 @@ function loadCategoryHome($attrs){
 												<div class="box-product-intro margin-top-10">
 													<?php echo $intro; ?>
 												</div>
-												<div><?php echo $price; ?></div>
-												<div><?php echo $sale_price; ?></div>
+												<?php echo $html_price; ?>
 											</div>
 											<?php
 										}

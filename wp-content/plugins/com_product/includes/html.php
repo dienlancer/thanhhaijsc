@@ -120,10 +120,10 @@ public function fnPrice($value){
 	$strCurrency="";
 	switch ($language) {
 		case "vi_VN":
-		$strCurrency= number_format($value,0,",",".") . ' đ';
+		$strCurrency= number_format($value,0,",",".") ;
 		break;
 		case "en_US":
-		$strCurrency='$'.number_format($value,0,".",",");
+		$strCurrency=number_format($value,0,".",",");
 		break;
 	}
 	return $strCurrency;

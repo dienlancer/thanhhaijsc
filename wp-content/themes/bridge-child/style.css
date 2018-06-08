@@ -17,6 +17,9 @@ body{
 	font-family: 'sf-ui-display-light';
 	background: url('images/bg.svg') repeat;
 }
+a:hover,a:focus{
+    text-decoration: none;
+}
 .margin-bottom-5{margin-bottom:5px;}
 .margin-bottom-10{margin-bottom:10px;}
 .margin-bottom-15{margin-bottom:15px;}
@@ -567,7 +570,7 @@ li.narrow .second .inner ul{
 	display: flex;
 }
 .kitae:hover{
-	text-decoration: none;
+	
 }
 .oppo a{
 	    background: #ffe300;
@@ -704,7 +707,7 @@ li.narrow .second .inner ul{
   background:#2d2d2de0
 }
 .category-product-menu a{
-  text-decoration: none;
+  
   color: #ffffff;  
   
   padding: 10px 10px;   
@@ -763,7 +766,7 @@ li.narrow .second .inner ul{
   font-size: 20px;
   text-transform: uppercase;  
   color: #333;  
-  text-decoration: none;  
+    
 }
 .box-product-title{
   margin-bottom: 0;
@@ -779,12 +782,19 @@ li.narrow .second .inner ul{
   font-family: 'bebas-neue';
   font-size: 20px;
   color: #333;
-  text-decoration: none;
+  
 }
 .box-product-intro{
 
   color: #818181;
   font-size: 12px;
+}
+.price-off{
+	text-decoration: line-through;
+}
+.price-on{
+	font-size: 16px;
+	color: #f86666
 }
 @media (max-width: 768px) { 
 
