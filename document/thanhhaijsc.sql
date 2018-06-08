@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2018 at 10:58 AM
+-- Generation Time: Jun 08, 2018 at 10:59 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -1121,7 +1121,7 @@ INSERT INTO `xzv_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (3903, 861, '_yoast_wpseo_content_score', '30'),
 (3904, 861, '_thumbnail_id', '854'),
 (3905, 863, '_vc_post_settings', 'a:1:{s:10:\"vc_grid_id\";a:0:{}}'),
-(3906, 863, '_edit_lock', '1528448118:1'),
+(3906, 863, '_edit_lock', '1528448379:1'),
 (3907, 863, '_edit_last', '1'),
 (3908, 863, 'slide_template', 'default'),
 (3909, 863, '_yoast_wpseo_primary_za_category', '13'),
@@ -1135,7 +1135,7 @@ INSERT INTO `xzv_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (3917, 864, '_yoast_wpseo_primary_za_category', '13'),
 (3918, 864, '_yoast_wpseo_content_score', '30'),
 (3919, 865, '_vc_post_settings', 'a:1:{s:10:\"vc_grid_id\";a:0:{}}'),
-(3920, 865, '_edit_lock', '1528448124:1'),
+(3920, 865, '_edit_lock', '1528448383:1'),
 (3921, 865, '_edit_last', '1'),
 (3923, 865, 'slide_template', 'default'),
 (3924, 865, '_yoast_wpseo_primary_za_category', '13'),
@@ -1148,14 +1148,14 @@ INSERT INTO `xzv_postmeta` (`meta_id`, `post_id`, `meta_key`, `meta_value`) VALU
 (3931, 860, '_zendvn_sp_zaproduct_view', '0'),
 (3932, 851, '_zendvn_sp_zaproduct_view', '0'),
 (3933, 867, '_vc_post_settings', 'a:1:{s:10:\"vc_grid_id\";a:0:{}}'),
-(3934, 867, '_edit_lock', '1528448087:1'),
+(3934, 867, '_edit_lock', '1528448378:1'),
 (3935, 867, '_edit_last', '1'),
 (3936, 867, '_thumbnail_id', '857'),
 (3937, 867, 'slide_template', 'default'),
 (3938, 867, '_yoast_wpseo_primary_za_category', '13'),
 (3939, 867, '_yoast_wpseo_content_score', '30'),
 (3940, 868, '_vc_post_settings', 'a:1:{s:10:\"vc_grid_id\";a:0:{}}'),
-(3941, 868, '_edit_lock', '1528448193:1'),
+(3941, 868, '_edit_lock', '1528448378:1'),
 (3942, 868, '_edit_last', '1'),
 (3943, 868, '_thumbnail_id', '858'),
 (3944, 868, 'slide_template', 'default'),
