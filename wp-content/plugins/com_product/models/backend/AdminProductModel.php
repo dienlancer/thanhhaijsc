@@ -27,7 +27,7 @@ class AdminProductModel{
  				'menu_position'        => 5,
  				'capability_type'      => 'post',
  				'supports'             => array('title' ,'editor','author','custom-fields' ,'comments','thumbnail'),
- 				'taxonomies'           => array('za_category'),
+ 				'taxonomies'           => array('za_category','za_manufacturer'),
  				'has_archive'          => true,
  				'rewrite'              => array('slug'=>'zaproduct'),
  				'_edit_link'           => 'post.php?&post_type=zaproduct&post=%d',

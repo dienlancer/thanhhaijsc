@@ -248,7 +248,7 @@ function loadCategoryHome($attrs){
 									),
 								),
 							); 
-							$the_query=new WP_Query($args);	
+							$the_query=new WP_Query($args);								
 							if($the_query->have_posts()){
 								?>
 								<div>
@@ -285,17 +285,21 @@ function loadCategoryHome($attrs){
 										while ($the_query->have_posts()){
 											$the_query->the_post();
 											$post_id=$the_query->post->ID;							
+											//echo "<pre>".print_r($the_query->post,true)."</pre>";
 											$permalink=get_the_permalink($post_id);
 											$title=get_the_title($post_id);
 											$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
 											$thumbnail=$vHtml->getSmallImage($featured_img);
 											$price=get_post_meta($post_id,"price",true);
 											$sale_price=get_post_meta($post_id,"sale_price",true);
+											$term_manufacturer = get_the_terms($the_query->post,  'za_manufacturer' );     
+											echo "<pre>".print_r($term_manufacturer,true)."</pre>";
 											?>
 											<div class="box-product">
 												<div class="box-product-img">
 													<center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></figure></center>
 												</div>
+
 												<h3 class="box-product-intro-title"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo substr($title,0,30).'...'; ?></b></a></h3>
 												<div><?php echo $price; ?></div>
 												<div><?php echo $sale_price; ?></div>
