@@ -1,3 +1,24 @@
 Jun 09 2018 02:31:10
 {"Number":2,"Message":"fopen(E:\\demo\\thanhhaijsc\\wp-content\\plugins\\all-in-one-wp-migration\\storage\\hct3q6h5hizt\\filemap.list): failed to open stream: No such file or directory","File":"E:\\demo\\thanhhaijsc\\wp-content\\plugins\\all-in-one-wp-migration\\functions.php","Line":852}
 
+Jun 09 2018 05:11:27
+{"Number":2,"Message":"mysqli_query(): MySQL server has gone away","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1924}
+
+Jun 09 2018 05:11:27
+{"Number":2,"Message":"mysqli_query(): Error reading result set's header","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1924}
+
+Jun 09 2018 05:11:29
+{"Number":2,"Message":"mysqli_real_connect(): (HY000\/2002): No connection could be made because the target machine actively refused it.\r\n","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1533}
+
+Jun 09 2018 05:11:32
+{"Number":2,"Message":"mysqli_real_connect(): (HY000\/2002): No connection could be made because the target machine actively refused it.\r\n","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1533}
+
+Jun 09 2018 05:11:35
+{"Number":2,"Message":"mysqli_real_connect(): (HY000\/2002): No connection could be made because the target machine actively refused it.\r\n","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1533}
+
+Jun 09 2018 05:11:38
+{"Number":2,"Message":"mysqli_real_connect(): (HY000\/2002): No connection could be made because the target machine actively refused it.\r\n","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1533}
+
+Jun 09 2018 05:11:41
+{"Number":2,"Message":"mysqli_real_connect(): (HY000\/2002): No connection could be made because the target machine actively refused it.\r\n","File":"E:\\demo\\thanhhaijsc\\wp-includes\\wp-db.php","Line":1533}
+
