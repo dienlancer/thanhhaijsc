@@ -218,21 +218,83 @@ function showSearchRight(){
 /* end search right */
 /* begin category homepage */
 add_shortcode('category_home','loadCategoryHome');
-function loadCategoryHome($attrs){
+function loadCategoryHome($attrs){		
 	$term_slug=$attrs['cat'];
 	$term = get_term_by('slug', $term_slug, 'za_category');	
 	$term_link= get_term_link($term,'za_category');		
 	$source_term_id=array($term->term_id);
 	$alias='category-home-'.$term_slug;
+	$alias_ads='category-home-ads-'.$term_slug;
+	$source_manufacturer_slug=explode(',', $attrs['manufacturer']);	
+	$source_ads=explode(',', $attrs['ads']);	
 	$vHtml=new HtmlControl();
 	?>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="category-home-box">
-					<h2 class="category-home-title"><a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a></h2>
 					<div class="row">
-						<div class="col-lg-3"><img src="<?php echo site_url('wp-content/uploads/sony.jpg'); ?>"></div>
+						<div class="col-lg-3"><h2 class="category-home-title"><a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a></h2></div>
+						<div class="col-lg-9">							
+							<div class="gakake">
+								<?php 
+								foreach ($source_manufacturer_slug as $key => $value) {
+									$row_term = get_term_by('slug', $value, 'za_manufacturer');	
+									$row_term_link= get_term_link($row_term,'za_manufacturer');		
+									?>
+									<div class="row-manufacturer"><a href="<?php echo $row_term_link; ?>"><?php echo $row_term->name; ?></a></div>
+									<?php
+								}
+								?>
+								<div class="view-all-category">
+									<a href="<?php echo $term_link; ?>">
+										<div class="labalaba">
+											<div>Xem tất cả các sản phẩm</div>
+											<div class="margin-left-5"><i class="fas fa-angle-right"></i></div>
+										</div>										
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>					
+					<div class="row margin-top-10">
+						<div class="col-lg-3">
+							<div>
+								<script type="text/javascript" language="javascript">
+									jQuery(document).ready(function(){
+										jQuery(".<?php echo $alias_ads; ?>").owlCarousel({
+											autoplay:true,                    
+											loop:true,
+											margin:0,                        
+											nav:false,            
+											mouseDrag: true,
+											touchDrag: true,                                
+											responsiveClass:true,
+											responsive:{
+												0:{
+													items:1
+												},
+												600:{
+													items:1
+												},
+												1000:{
+													items:1
+												}
+											}
+										});											
+									});                
+								</script>
+								<div class="owl-carousel <?php echo $alias_ads; ?> owl-theme">
+									<?php 
+									foreach ($source_ads as $key => $value) {
+										?>
+										<div><img src="<?php echo site_url('wp-content/uploads/'.$value); ?>"></div>
+										<?php
+									}
+									?>
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-9">
 							<?php 
 							$args = array(
@@ -255,7 +317,7 @@ function loadCategoryHome($attrs){
 									<script type="text/javascript" language="javascript">
 										jQuery(document).ready(function(){
 											jQuery(".<?php echo $alias; ?>").owlCarousel({
-												autoplay:false,                    
+												autoplay:true,                    
 												loop:true,
 												margin:10,                        
 												nav:false,            
@@ -310,7 +372,7 @@ function loadCategoryHome($attrs){
 											?>
 											<div class="box-product">
 												<div class="box-product-img">
-													<center><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></figure></center>
+													<center><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></center>
 												</div>
 												<div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link; ?>"><?php echo $manufacturer_name; ?></a></div>
 												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo substr($title,0,40).'...'; ?></b></a></div>
