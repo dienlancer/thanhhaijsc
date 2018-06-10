@@ -353,6 +353,7 @@ function loadCategoryHome($attrs){
 											$thumbnail=$vHtml->getSmallImage($featured_img);
 											$price=get_post_meta($post_id,"price",true);
 											$sale_price=get_post_meta($post_id,"sale_price",true);
+											$sku=get_post_meta($post_id,"sku",true);
 											$html_price='';                     
 											if((int)@$sale_price > 0){              
 												$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
@@ -376,6 +377,7 @@ function loadCategoryHome($attrs){
 												</div>
 												<div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link; ?>"><?php echo $manufacturer_name; ?></a></div>
 												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
+												<div class="margin-top-10"><?php echo $sku; ?></div>
 												<div class="box-product-intro margin-top-10">
 													<?php echo $intro; ?>
 												</div>
