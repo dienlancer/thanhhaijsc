@@ -375,7 +375,7 @@ function loadCategoryHome($attrs){
 													<center><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></center>
 												</div>
 												<div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link; ?>"><?php echo $manufacturer_name; ?></a></div>
-												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo substr($title,0,40).'...'; ?></b></a></div>
+												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
 												<div class="box-product-intro margin-top-10">
 													<?php echo $intro; ?>
 												</div>
