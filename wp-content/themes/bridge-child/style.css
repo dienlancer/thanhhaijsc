@@ -609,9 +609,6 @@ li.narrow .second .inner ul{
     z-index: 9;
     width: 100%;
 }
-.categoryproductmnsc .container{
-	background: transparent;
-}
 .nav_bar , .nav_bar .container{
 	    background: #ffffff;    
 }
@@ -815,6 +812,12 @@ li.narrow .second .inner ul{
 .labalaba{
   display: flex;
   align-items: center;
+}
+.phibo{
+  margin-top: 100px;
+}
+.page-col-r,.page-col-l{
+  background: #ffffff;
 }
 @media (max-width: 768px) { 
 

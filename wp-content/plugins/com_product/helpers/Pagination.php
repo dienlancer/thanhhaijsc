@@ -17,82 +17,21 @@ class Pagination{
 		$this->currentPage			= $pagination['currentPage'];
 		$this->totalPage			= ceil($this->totalItems/$pagination['totalItemsPerPage']);
 	}
-	
-	/*
-	public function showPagination(){
-		// Pagination
-		$paginationHTML = '';
-		if($this->totalPage > 1){
-			$start 	= '<div class="button2-right off"><div class="start"><span>Bắt đầu</span></div></div>';
-			$prev 	= '<div class="button2-right off"><div class="prev"><span>Lùi</span></div></div>';
-			if($this->currentPage > 1){
-				$start 	= '<div class="button2-right"><div class="start"><a onclick="javascript:changePage(1)" href="#">Bắt đầu</a></div></div>';
-				$prev 	= '<div class="button2-right"><div class="prev"><a onclick="javascript:changePage('.($this->currentPage-1).')" href="#">Lùi</a></div></div>';
-			}
-		
-			$next 	= '<div class="button2-left off"><div class="next"><span>Tiếp theo</span></div></div>';
-			$end 	= '<div class="button2-left off"><div class="end"><span>Cuối</span></div></div>';
-			if($this->currentPage < $this->totalPage){
-				$next 	= '<div class="button2-left"><div class="next"><a onclick="javascript:changePage('.($this->currentPage+1).')" href="#">Tiếp theo</a></div></div>';
-				$end 	= '<div class="button2-left"><div class="end"><a href="#" onclick="javascript:changePage('.$this->totalPage.')">Cuối</a></div></div>';
-			}
-		
-			if($this->pageRange < $this->totalPage){
-				if($this->currentPage == 1){
-					$startPage 	= 1;
-					$endPage 	= $this->pageRange;
-				}else if($this->currentPage == $this->totalPage){
-					$startPage		= $this->totalPage - $this->pageRange + 1;
-					$endPage		= $this->totalPage;
-				}else{
-					$startPage		= $this->currentPage - ($this->pageRange-1)/2;
-					$endPage		= $this->currentPage + ($this->pageRange-1)/2;
-		
-					if($startPage < 1){
-						$endPage	= $endPage + 1;
-						$startPage = 1;
-					}
-		
-					if($endPage > $this->totalPage){
-						$endPage	= $this->totalPage;
-						$startPage 	= $endPage - $this->pageRange + 1;
-					}
-				}
-			}else{
-				$startPage		= 1;
-				$endPage		= $this->totalPage;
-			}
-
-			$listPages = '<div class="button2-left"><div class="page">';
-			for($i = $startPage; $i <= $endPage; $i++){
-				if($i == $this->currentPage) {
-					$listPages .= '<span>'.$i.'</span>';
-				}else{
-					$listPages .= '<a href="#" onclick="javascript:changePage('.$i.')">'.$i.'</a>';
-				}
-			}
-			$listPages .= '</div></div>';
-			$endPagination	= '<div class="limit">Page '.$this->currentPage.' of '.$this->totalPage.'</div>';
-			$paginationHTML = '<div class="pagination">' . $start . $prev . $listPages . $next . $end  . '</div>';
-		}
-		return $paginationHTML;
-	}
-	*/
 	public function showPagination(){		
 		$paginationHTML = '';
 		if($this->totalPage > 1){
 			$start 	= '<li ><span>Bắt đầu</span></li>';
 			$prev 	= '<li ><span>Lùi</span></li>';
 			if($this->currentPage > 1){
-				$start 	= '<li ><a onclick="javascript:changePage(1)" href="#">Bắt đầu</a></li>';
-				$prev 	= '<li ><a onclick="javascript:changePage('.($this->currentPage-1).')" href="#">Lùi</a></li>';
+				$start 	= '<li ><a onclick="javascript:changePage(1,this)" href="javascript:void(0);">Bắt đầu</a></li>';
+				$prev 	= '<li ><a onclick="javascript:changePage('.($this->currentPage-1).',this)" href="javascript:void(0);">Lùi</a></li>';
 			}
 		
 			$next 	= '<li ><span>Tiếp theo</span></li>';
 			$end 	= '<li ><span>Cuối</span></li>';
 			if($this->currentPage < $this->totalPage){
-				$next 	= '<li ><a onclick="javascript:changePage('.($this->currentPage+1).')" href="#">Tiếp theo</a></li>';
-				$end 	= '<li ><a href="#" onclick="javascript:changePage('.$this->totalPage.')">Cuối</a></li>';
+				$next 	= '<li ><a onclick="javascript:changePage('.($this->currentPage+1).',this)" href="javascript:void(0);">Tiếp theo</a></li>';
+				$end 	= '<li ><a href="javascript:void(0);" onclick="javascript:changePage('.$this->totalPage.',this)">Cuối</a></li>';
 			}
 		
 			if($this->pageRange < $this->totalPage){
@@ -126,7 +65,7 @@ class Pagination{
 				if($i == $this->currentPage) {
 					$listPages .= '<li class="active"><span>'.$i.'</span></li>';
 				}else{
-					$listPages .= '<li><a href="#" onclick="javascript:changePage('.$i.')">'.$i.'</a></li>';
+					$listPages .= '<li><a href="javascript:void(0);" onclick="javascript:changePage('.$i.',this)">'.$i.'</a></li>';
 				}
 			}
 			$listPages .= '';

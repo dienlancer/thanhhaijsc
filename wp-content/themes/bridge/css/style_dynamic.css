@@ -5,11 +5,21 @@
 
 
 
+.header_bottom,
+.header_top,
+.fixed_top_header .bottom_header{
+	background-color: rgba(221,0,34,1);
+}
 
 
 
 
 
+
+
+header.sticky .header_bottom{
+	background-color: rgba(221,0,34,1) !important;
+}
 
 
 .header_top,
