@@ -583,7 +583,7 @@ function loadManufacturerPage($attrs){
 			echo '<div class="row">';
 		}
 		?>
-		<div class="col-lg-4"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div>
+		<div class="col-lg-4"><div class="margin-top-15"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div></div>
 		<?php
 		$k++;
 		if($k%3==0 || $k==count($source_slug)){

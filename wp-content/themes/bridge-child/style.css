@@ -814,6 +814,9 @@ li.narrow .second .inner ul{
 .phibo{
   margin-top: 100px;
 }
+.col-left{
+  background: #ffffff;
+}
 .col-right{
   background: #ffffff;
   padding: 10px;
