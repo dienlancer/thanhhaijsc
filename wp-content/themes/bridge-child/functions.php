@@ -309,7 +309,7 @@ function loadCategoryPage($attrs){
 			</div>			
 			<?php
 			$k++;
-			if($k%4==0){
+			if($k%4==0 || $k == $the_query->post_count){
 				echo '</div>';
 			}				
 		}
@@ -522,11 +522,9 @@ function loadManufacturerPage($attrs){
 		<div class="col-lg-4"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div>
 		<?php
 		$k++;
-		if($k%3==0){
+		if($k%3==0 || $k==count($source_slug)){
 			echo '</div>';
 		}
-	}	
-	//echo '</div>';
-
+	}			
 }
 /* end manufacturer_page */
