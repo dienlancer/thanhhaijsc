@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 <?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "top-sidebar.php"; ?>
 <?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"; ?>
-<div class="container">
+<div class="container margin-top-15">
 	<div class="row">
 		<div class="col-lg-3"></div>
 		<div class="col-lg-9">

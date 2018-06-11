@@ -816,8 +816,11 @@ li.narrow .second .inner ul{
 }
 .col-right{
   background: #ffffff;
+  padding: 10px;
 }
-
+.box-product{
+  margin-top: 15px;
+}
 .bg-slider{
   position: relative;
 }

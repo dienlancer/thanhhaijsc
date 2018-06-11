@@ -216,6 +216,70 @@ function showSearchRight(){
 	<?php
 }
 /* end search right */
+/* begin banner */
+add_shortcode('banner','loadBanner');
+function loadBanner($attrs){
+	$term_slug=$attrs['item'];	
+	$term = get_term_by('slug', $term_slug, 'za_banner');	
+	$source_term_id=array($term->term_id);		
+	?>
+	<div>
+        <script type="text/javascript" language="javascript">
+            jQuery(document).ready(function(){
+                jQuery(".top-banner").owlCarousel({
+                    autoplay:true,                    
+                    loop:true,
+                    margin:0,                        
+                    nav:false,            
+                    mouseDrag: true,
+                    touchDrag: true,                                
+                    responsiveClass:true,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:1
+                        },
+                        1000:{
+                            items:1
+                        }
+                    }
+                });
+
+            });                
+        </script>
+        <div class="owl-carousel top-banner owl-theme">
+            <?php 
+            $args = array(
+            	'post_type' => 'zabanner',  
+            	'orderby' => 'id',
+            	'order'   => 'DESC',  		      							
+            	'tax_query' => array(
+            		array(
+            			'taxonomy' => 'za_banner',
+            			'field'    => 'term_id',
+            			'terms'    => $source_term_id,									
+            		),
+            	),
+            ); 
+            $the_query = new WP_Query( $args );
+            if($the_query->have_posts()){
+                while ($the_query->have_posts()){
+                    $the_query->the_post();
+                    $post_id=$the_query->post->ID;  
+                    $featured_img=get_the_post_thumbnail_url($post_id, 'full'); 
+                    ?>
+                    <div><img src="<?php echo $featured_img; ?>"></div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+	<?php
+}
+/* end banner */
 /* begin category page */
 add_shortcode('category_page','loadCategoryPage');
 function loadCategoryPage($attrs){			
