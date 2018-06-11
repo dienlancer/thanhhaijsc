@@ -43,45 +43,43 @@ $pagination=$zController->getPagination("Pagination",$arrPagination);
         if($the_query->have_posts()){
             $k=1;
             while ($the_query->have_posts()){
-                $the_query->the_post();     
-                $post_id=$the_query->post->ID;                          
-                $permalink=get_the_permalink($post_id);
-                $title=get_the_title($post_id);
-                $excerpt=get_post_meta($post_id,"intro",true);
-                $excerpt=substr($excerpt, 0,300).'...';         
-                $featureImg=get_the_post_thumbnail_url($post_id, 'full');   
-                $smallImg=$vHtml->getSmallImage($featureImg);                
-                $price=get_post_meta($post_id,$product_meta_key."price",true);
-                $sale_price=get_post_meta($post_id,$product_meta_key."sale_price",true);            
-                $html_price='';                     
-                if((int)@$sale_price > 0){              
-                    $price_html ='<span class="price-regular tutu">'.$vHtml->fnPrice($price).'</span>';
-                    $sale_price_html='<span class="price-sale-nanim">'.$vHtml->fnPrice($sale_price).'</span>' ;                 
-                    $html_price='<div class="col-xs-6"><center>'.$price_html.'</center></div><div class="col-xs-6"><center>'.$sale_price_html.'</center></div><div class="clr"></div>' ;              
-                }else{
-                    $html_price='<center><span class="tutu">'.$vHtml->fnPrice($price).'</span></center>' ;                  
-                }   
+            	$the_query->the_post();
+            	$post_id=$the_query->post->ID;																		
+            	$permalink=get_the_permalink($post_id);
+            	$title=get_the_title($post_id);
+            	$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
+            	$thumbnail=$vHtml->getSmallImage($featured_img);
+            	$price=get_post_meta($post_id,"price",true);
+            	$sale_price=get_post_meta($post_id,"sale_price",true);
+            	$sku=get_post_meta($post_id,"sku",true);
+            	$html_price='';                     
+            	if((int)@$sale_price > 0){              
+            		$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
+            		$price_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price).' đ</div>';										
+            		$html_price=$price_off_html . $price_on_html ;              
+            	}else{
+            		$html_price='<div class="price-on">'.$vHtml->fnPrice($price).' đ</div>' ;                  
+            	}   	
+            	$intro=get_post_meta($post_id,"intro",true);
+            	$source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );     					
+            	$manufacturer_name='';
+            	$manufacturer_link='';
+            	if(count($source_manufacturer) > 0){
+            		$manufacturer_name=$source_manufacturer[0]->name;
+            		$manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');							
+            	}
                 ?>
-                <div class="col-sm-4 no-padding-left">
-                    <div class="margin-top-10 box-product">
-                        <div class="box-product-img"><figure><a href="<?php echo $permalink; ?>"><img src="<?php echo $smallImg; ?>" /></a></figure></div>                    
-                        <div class="box-product-title"><center><a href="<?php echo $permalink; ?>"><?php echo $title; ?></a></center></div>    
-                        <div class="box-product-star margin-top-15">                              
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>                               
-                                    </div>
-                        <div class="box-product-price margin-top-10">
-                            <?php echo $html_price; ?>
-                        </div>
-                        <div class="margin-top-10 box-product-cart">
-                            <center>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="addToCart(<?php echo $post_id; ?>,1);" >Add to cart</a>
-                            </center>
-                        </div>
-                    </div>
+                <div class="box-product">
+                	<div class="box-product-img">
+                		<center><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></center>
+                	</div>
+                	<div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link; ?>"><?php echo $manufacturer_name; ?></a></div>
+                	<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
+                	<div class="margin-top-10"><?php echo $sku; ?></div>
+                	<div class="box-product-intro margin-top-10">
+                		<?php echo $intro; ?>
+                	</div>
+                	<?php echo $html_price; ?>
                 </div>
                 <?php
                 if($k%3==0 || $k==$the_query->post_count){
