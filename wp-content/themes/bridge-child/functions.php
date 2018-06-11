@@ -218,7 +218,7 @@ function showSearchRight(){
 /* end search right */
 /* begin category page */
 add_shortcode('category_page','loadCategoryPage');
-function loadCategoryPage($attrs){		
+function loadCategoryPage($attrs){			
 	$term_slug=$attrs['cat'];
 	$term = get_term_by('slug', $term_slug, 'za_category');	
 	$term_link= get_term_link($term,'za_category');		

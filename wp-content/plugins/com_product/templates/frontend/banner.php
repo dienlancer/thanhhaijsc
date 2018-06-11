@@ -1,0 +1,79 @@
+<div class="bg-slider">
+    <div>
+        <script type="text/javascript" language="javascript">
+            jQuery(document).ready(function(){
+                jQuery(".banner").owlCarousel({
+                    autoplay:true,                    
+                    loop:true,
+                    margin:0,                        
+                    nav:false,            
+                    mouseDrag: true,
+                    touchDrag: true,                                
+                    responsiveClass:true,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        600:{
+                            items:1
+                        },
+                        1000:{
+                            items:1
+                        }
+                    }
+                });
+
+            });                
+        </script>
+        <div class="owl-carousel banner owl-theme">
+            <?php 
+            $args = array(
+                'post_type' => 'banner',  
+                'orderby' => 'date',
+                'order'   => 'DESC',                                        
+            );   
+            $the_query = new WP_Query( $args );
+            if($the_query->have_posts()){
+                while ($the_query->have_posts()){
+                    $the_query->the_post();
+                    $post_id=$the_query->post->ID;  
+                    $featured_img=get_the_post_thumbnail_url($post_id, 'full'); 
+                    ?>
+                    <div><img src="<?php echo $featured_img; ?>"></div>
+                    <?php
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <div class="categoryproductmnsc">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <?php 
+                    $args = array( 
+                        'menu'              => '', 
+                        'container'         => '', 
+                        'container_class'   => '', 
+                        'container_id'      => '', 
+                        'menu_class'        => 'category-product-menu', 
+                        'menu_id'           => '', 
+                        'echo'              => true, 
+                        'fallback_cb'       => 'wp_page_menu', 
+                        'before'            => '', 
+                        'after'             => '', 
+                        'link_before'       => '', 
+                        'link_after'        => '', 
+                        'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',  
+                        'depth'             => 3, 
+                        'walker'            => '', 
+                        'theme_location'    => 'category-product-menu' 
+                    );
+                    wp_nav_menu($args); 
+                    ?>        
+                </div>
+                <div class="col-lg-9"></div>
+            </div>
+        </div>      
+    </div>
+</div>

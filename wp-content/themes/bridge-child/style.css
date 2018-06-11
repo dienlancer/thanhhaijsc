@@ -594,9 +594,7 @@ li.narrow .second .inner ul{
 .lexa{
 	display: flex;
 }
-.bg-slider{
-	position: relative;
-}
+
 .riu{
 	display: flex;
 	align-items: center;
@@ -816,7 +814,13 @@ li.narrow .second .inner ul{
 .phibo{
   margin-top: 100px;
 }
+.col-right{
+  background: #ffffff;
+}
 
+.bg-slider{
+  position: relative;
+}
 @media (max-width: 768px) { 
 
 }

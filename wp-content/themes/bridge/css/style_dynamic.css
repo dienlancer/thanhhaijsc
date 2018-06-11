@@ -3,6 +3,14 @@
 
 
 
+    .transparent_content,
+	.transparent_content.overlapping_content .content .content_inner > .container,
+	.transparent_content.overlapping_content .content .content_inner > .full_width > .full_width_inner{
+		
+		
+		
+		}
+
 
 
 .header_bottom,
