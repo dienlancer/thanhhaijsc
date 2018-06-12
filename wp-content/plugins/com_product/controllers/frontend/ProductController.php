@@ -88,72 +88,131 @@ class ProductController{
 		global $zController,$wpdb;		
 		$checked=1;
 		$msg=array();
-		$data=array();						
-		if($zController->isPost()){		
-			$action = $zController->getParams('action');					
-			if(check_admin_referer($action,'security_code')){	
-				$data=$_POST;
-				$email=mb_strtolower(trim($_POST["email"]),'UTF-8') ;
-				$username=mb_strtolower(trim($_POST["username"]),'UTF-8') ;
-				$password=mb_strtolower($_POST["password"],'UTF-8') ;
-				$password_confirm=mb_strtolower($_POST["password_confirm"],'UTF-8') ;
-				// kiểm tra email hợp lệ			
-				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$msg["email"] = 'Email is invalid';
-					$data["email"] = '';
-					$checked=0;
-				}
-				if(!preg_match("#^[a-z_][a-z0-9_\.\s]{4,31}$#", $username)){
-					$msg["username"] = 'Username is invalid';
+		$data=array();							
+		if($zController->isPost()){				
+			$action = @$zController->getParams('action');					
+			if(check_admin_referer(@$action,'security_code')){	
+				$data=@$_POST;
+				$username=@$_POST["username"];
+				$password=@$_POST["password"] ;
+				$password_confirmed=@$_POST["password_confirmed"] ;
+				$email=@$_POST["email"] ;		
+				$fullname=@$_POST["fullname"];	
+				$address=@$_POST["address"];
+				$phone=@$_POST["phone"];			
+				$tbuser = $wpdb->prefix . 'shk_user';				
+				if(mb_strlen(@$username) < 6){
+					$msg["username"] = 'Username phải từ 6 ký tự trở lên';
 					$data["username"] = "";	
 					$checked=0;
-				}
-				if(mb_strlen($password) < 6){
-					$msg["password"] = 'Password is invalid';
-					$data["password"] = "";
-					$data["password_confirm"] = "";	
+				}elseif(!preg_match("#^[a-z_][a-z0-9_\.\s]{4,31}$#",  mb_strtolower(trim(@$username),'UTF-8')   )){
+					$msg["username"] = 'Username không hợp lệ';
+					$data["username"] = "";	
 					$checked=0;
-				}
-				if(strcmp($password, $password_confirm)!=0){
-					$msg["password_confirm"] = 'PasswordConfirm is not matched Password';
-					$data["password_confirm"] = "";		
-					$checked=0;
-				}			
-				$tbuser = $wpdb->prefix . 'shk_user';			
-				$query ="SELECT u.id
-						FROM 
-						`".$tbuser."` u
-						WHERE lower(trim(u.email)) = '".$email."'
-					";								
-				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(!empty($lst)){
-					$msg["email"] = 'Email đã tồn tại';
+				}else{
+					$query =" 
+					SELECT u.id
+					FROM 
+					{$tbuser} u
+					WHERE lower(trim(u.username)) = '".mb_strtolower(trim(@$username),'UTF-8')."'
+					";					
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count(@$lst) > 0){
+						$msg["username"] = 'Username đã tồn tại';
+						$data["username"] = '';
+						$checked=0;
+					}
+				}	
+				if(mb_strlen(@$password) < 10 ){
+					$msg["password"] = "Mật khẩu tối thiểu phải 10 ký tự";
+					$data['password']='';
+					$data['password_confirmed']='';
+					$checked = 0;                
+				}else{
+					if(strcmp(@$password, @$password_confirmed) !=0 ){
+						$msg["password"] = "Xác nhận mật khẩu không trùng khớp";
+						$data['password']='';
+						$data['password_confirmed']='';
+						$checked = 0;                  
+					}
+				}  
+				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
+					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
 					$checked=0;
+				}else{
+						
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.email)) = '".mb_strtolower(trim(@$email),'UTF-8')."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["email"] = 'Email đã tồn tại';
+						$data["email"] = '';
+						$checked=0;
+					}
+				}								
+				if(mb_strlen($fullname) < 15){
+					$msg["fullname"] = 'Tên công ty phải từ 15 ký tự trở lên';    
+					$data['fullname']='';        
+					$checked = 0;
+				}else{
+								
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.fullname)) = '".mb_strtolower(trim(@$fullname),'UTF-8')."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["fullname"] = 'Họ tên đã tồn tại';
+						$data["fullname"] = '';
+						$checked=0;
+					}
 				}
-				$query =" 
-						SELECT u.id
-						FROM 
-						{$tbuser} u
-						WHERE lower(trim(u.username)) = '".$username."'
-					";					
-				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(!empty($lst)){
-					$msg["username"] = 'Username đã tồn tại';
-					$data["username"] = '';
-					$checked=0;
-				}				
+				if(mb_strlen($address) < 15){
+					$msg["address"] = 'Địa chỉ phải từ 15 ký tự trở lên';      
+					$data['address']='';      
+					$checked = 0;
+				}   
+				if(mb_strlen($phone) < 10){
+					$msg["phone"] = 'Điện thoại công ty phải từ 10 ký tự trở lên';   
+					$data['phone']='';         
+					$checked = 0;
+				}else{							
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.phone)) = '".mb_strtolower(trim(@$phone),'UTF-8')."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["phone"] = 'Số điện thoại đã tồn tại';
+						$data["phone"] = '';
+						$checked=0;
+					}
+				}													
 				if((int)@$checked==1){
+					$table = $wpdb->prefix . 'shk_user';	
+					$query = "INSERT INTO {$table} (`username`, `password`,`email`, `fullname`, `address`, `phone`,`status`) VALUES
+					(%s,%s,%s,%s,%s,%s,%d)";
+					$info = $wpdb->prepare($query,
+						$username,md5($password),$email,$fullname,$address,$phone,1
+					);				
+					$wpdb->query($info);		
 					$model = $zController->getModel("/frontend","UserModel");
-					$model->save_item();					
 					$info=$model->getUserByUsername($username);					
 					$id=(int)$info[0]["id"];	
 					$ssName="vmuser";
 					$ssValue="userlogin";
-					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);							
+					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);		
+					$ssUser->reset();					
 					$user=array("username" => $username,"id"=>$id);
 					$ssUser->set($ssValue,$user);	
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');	
+					echo '<script language="javascript" type="text/javascript">alert("Đăng ký thành công")</script';
 					$permarlink = get_permalink($pageID);
 					wp_redirect($permarlink);				
 				}
@@ -167,45 +226,93 @@ class ProductController{
 		global $zController,$wpdb;		
 		$checked=1;
 		$msg=array();
-		$data=array();
-				
-		if($zController->isPost()){		
-			$action = $zController->getParams('action');		
-			if(check_admin_referer($action,'security_code')){	
-				$data=$_POST;
-				$email=mb_strtolower(trim($_POST["email"]),'UTF-8') ;				
-				// kiểm tra email hợp lệ			
-				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
+		$data=array();							
+		if($zController->isPost()){				
+			$action = @$zController->getParams('action');					
+			if(check_admin_referer(@$action,'security_code')){	
+				$data=@$_POST;
+				$id=(int)(@$_POST["id"]);					
+				$email=@$_POST["email"] ;		
+				$fullname=@$_POST["fullname"];	
+				$address=@$_POST["address"];
+				$phone=@$_POST["phone"];			
+				$tbuser = $wpdb->prefix . 'shk_user';											
+				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
 					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
 					$checked=0;
-				}								
-				$id=(int)($_POST["id"]);
-				$tbuser = $wpdb->prefix . 'shk_user';			
-				$query ="SELECT u.id
-						FROM 
-						`".$tbuser."` u
-						WHERE lower(trim(u.email)) = '".$email."' and u.id != '".$id."'
+				}else{						
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.email)) = '".mb_strtolower(trim(@$email),'UTF-8')."' and u.id != '".$id."'
 					";								
-				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(!empty($lst)){
-					$msg["email"] = 'Email đã tồn tại';
-					$data["email"] = '';
-					$checked=0;
-				}					
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["email"] = 'Email đã tồn tại';
+						$data["email"] = '';
+						$checked=0;
+					}
+				}								
+				if(mb_strlen(@$fullname) < 15){
+					$msg["fullname"] = 'Tên công ty phải từ 15 ký tự trở lên';    
+					$data['fullname']='';        
+					$checked = 0;
+				}else{
+								
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.fullname)) = '".mb_strtolower(trim(@$fullname),'UTF-8')."' and u.id != '".$id."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["fullname"] = 'Họ tên đã tồn tại';
+						$data["fullname"] = '';
+						$checked=0;
+					}
+				}
+				if(mb_strlen(@$address) < 15){
+					$msg["address"] = 'Địa chỉ phải từ 15 ký tự trở lên';      
+					$data['address']='';      
+					$checked = 0;
+				}   
+				if(mb_strlen(@$phone) < 10){
+					$msg["phone"] = 'Điện thoại công ty phải từ 10 ký tự trở lên';   
+					$data['phone']='';         
+					$checked = 0;
+				}else{							
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.phone)) = '".mb_strtolower(trim(@$phone),'UTF-8')."' and u.id != '".$id."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["phone"] = 'Số điện thoại đã tồn tại';
+						$data["phone"] = '';
+						$checked=0;
+					}
+				}													
 				if((int)@$checked==1){
+					$table = $wpdb->prefix . 'shk_user';						
+					$query = "UPDATE {$table} set `email` = %s, `fullname` = %s, `address` = %s, `phone` = %s where `id` = %d ";
+					$info = $wpdb->prepare($query,$email,$fullname,$address,$phone,$id);			
+					$wpdb->query($info);		
 					$model = $zController->getModel("/frontend","UserModel");
-					$model->update_item();
-					$id=(int)($_POST["id"]);
-					$info=$model->getUserById($id);			
-					$username=trim($info[0]["username"]);													
+					$info=$model->getUserById($id);									
+					$username=@$info[0]["username"];
 					$ssName="vmuser";
 					$ssValue="userlogin";
-					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);			
+					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);		
+					$ssUser->reset();					
 					$user=array("username" => $username,"id"=>$id);
-					$ssUser->set($ssValue,$user);			
-					$checked['success']='Cập nhật thành công'; 	
-				}	 				
+					$ssUser->set($ssValue,$user);	
+					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');	
+					echo '<script language="javascript" type="text/javascript">alert("Cập nhật thành công")</script';
+					$permarlink = get_permalink($pageID);
+					wp_redirect($permarlink);				
+				}
 			}
 		}	
 		$zController->_data["data"] = $data;
@@ -225,16 +332,16 @@ class ProductController{
 				$id=(int)$_POST["id"];
 				$username=$_POST["username"];
 				$password=mb_strtolower($_POST["password"],'UTF-8') ;
-                $password_confirm=mb_strtolower($_POST["password_confirm"],'UTF-8') ;     
+                $password_confirmed=mb_strtolower($_POST["password_confirmed"],'UTF-8') ;     
                 if(mb_strlen($password) < 6){
-                  $msg["password"] = 'Password is invalid';
+                  $msg["password"] = 'Mật khẩu phải từ 6 ký tự trở lên';
                   $data["password"] = "";
-                  $data["password_confirm"] = ""; 
+                  $data["password_confirmed"] = ""; 
                   $checked=0;
                 }
-                if(strcmp($password, $password_confirm)!=0){
-                  $msg["password_confirm"] = 'PasswordConfirm is not matched Password';
-                  $data["password_confirm"] = "";   
+                if(strcmp($password, $password_confirmed)!=0){
+                  $msg["password_confirmed"] = 'Mật khẩu và mật khẩu xác nhận phải trùng khớp';
+                  $data["password_confirmed"] = "";   
                   $checked=0;
                 }    
                 if((int)@$checked==1){
@@ -335,7 +442,7 @@ class ProductController{
                 }
 				// kiểm tra email hợp lệ			
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$msg["email"] 	= 'Email is invalid';
+					$msg["email"] 	= 'Email không hợp lệ';
 					$data["email"] 	= '';
 					$checked=0;
 				}								
@@ -347,7 +454,7 @@ class ProductController{
 						WHERE lower(trim(u.email)) = '".$email."' and u.id != '".$id."'
 					";								
 				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(!empty($lst)){
+				if(count($lst) > 0){
 					$msg["email"] = 'Email đã tồn tại';
 					$data["email"] = '';
 					$checked=0;
@@ -378,7 +485,7 @@ class ProductController{
 				$email=trim($_POST["email"]) ;
 				$username=trim($_POST["username"]) ;
 				$password=$_POST["password"] ;
-				$password_confirm=$_POST["password_confirm"] ;						
+				$password_confirmed=$_POST["password_confirmed"] ;						
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",mb_strtolower($email,"UTF-8")  )){
 					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
@@ -392,12 +499,12 @@ class ProductController{
 				if(mb_strlen($password) < 6){
 					$msg["password"] = 'Mật khẩu phải từ 6 ký tự trở lên';
 					$data["password"] = "";
-					$data["password_confirm"] = "";	
+					$data["password_confirmed"] = "";	
 					$checked=0;
 				}
-				if(strcmp($password, $password_confirm)!=0){
-					$msg["password_confirm"] = 'Mật khẩu và mật khẩu xác nhận phải trùng nhau';
-					$data["password_confirm"] = "";		
+				if(strcmp($password, $password_confirmed)!=0){
+					$msg["password_confirmed"] = 'Mật khẩu và mật khẩu xác nhận phải trùng nhau';
+					$data["password_confirmed"] = "";		
 					$checked=0;
 				}			
 				$tbuser = $wpdb->prefix . 'shk_user';			
@@ -407,7 +514,7 @@ class ProductController{
 						WHERE lower(trim(u.email)) = '".mb_strtolower($email,'UTF-8')."'
 					";								
 				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(!empty($lst)){
+				if(count($lst) > 0){
 					$msg["email"] = 'Email đã tồn tại';
 					$data["email"] = '';
 					$checked=0;
@@ -419,7 +526,7 @@ class ProductController{
 						WHERE lower(trim(u.username)) = '".mb_strtolower($username,'UTF-8')."'
 					";					
 				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(!empty($lst)){
+				if(count($lst) > 0){
 					$msg["username"] = 'Username đã tồn tại';
 					$data["username"] = '';
 					$checked=0;

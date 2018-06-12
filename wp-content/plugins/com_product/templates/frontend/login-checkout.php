@@ -139,7 +139,7 @@
                             </tr>
                             <tr>
                                 <td align="right"><b><i>Xác nhận mật khẩu :</i></b></td>
-                                <td><input type="password" name="password_confirm" value="<?php echo @$data["password_confirm"]; ?>" /></td>        
+                                <td><input type="password" name="password_confirmed" value="<?php echo @$data["password_confirmed"]; ?>" /></td>        
                             </tr>               
                             <tr>
                                 <td align="right"><b><i>Email :</i></b></td>

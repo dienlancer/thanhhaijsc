@@ -91,7 +91,7 @@
                     </tr>
                     <tr>
                         <td align="right">Xác nhận mật khẩu</td>
-                        <td><input type="password" name="password_confirm" /></td>        
+                        <td><input type="password" name="password_confirmed" /></td>        
                     </tr>   
                     <tr>           
                         <td></td>

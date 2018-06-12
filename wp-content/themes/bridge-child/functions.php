@@ -188,7 +188,7 @@ function showTopBar(){
 	$ssValue="userlogin";	
 	$arrUser=array();
 	$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);	
-	$arrUser = @$ssUser->get($ssValue);	
+	$arrUser = @$ssUser->get($ssValue);		
 	?>
 	<div class="container">
 		<div class="row">
@@ -205,8 +205,8 @@ function showTopBar(){
 							?>
 							<li><a  href="<?php echo $account_link; ?>"><?php echo $arrUser["username"]; ?></a></li>
 							<li><a  href="<?php echo $security_link; ?>">Đổi mật khẩu</a></li>                                
-							<li><a  href="<?php echo $history_link; ?>">Invoice</a></li>
-							<li><a  href="<?php echo site_url("index.php?action=logout") ; ?>">Logout</a></li>
+							<li><a  href="<?php echo $history_link; ?>">Lịch sử giao dịch</a></li>
+							<li><a  href="<?php echo site_url('index.php?action=logout') ?>">Logout</a></li>
 							<?php                                     
 						}
 						?>   						

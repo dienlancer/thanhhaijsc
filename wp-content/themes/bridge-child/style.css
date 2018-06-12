@@ -102,6 +102,21 @@ figure{overflow:hidden;position:relative;display:inline-block;vertical-align:top
 figure img{-webkit-transition:all 0.5s linear;transition:all 0.5s linear;-webkit-transform:scale3d(1, 1, 1);transform:scale3d(1, 1, 1);}
 figure:hover img{-webkit-transform:scale3d(1.2, 1.2, 1);transform:scale3d(1.2, 1.2, 1);}
 /* end standard */
+/* begin note */
+.note-danger {
+    background-color: #fef7f8;    
+    border-left: 5px solid #f0868e;
+    color: #210406;
+}
+.note-success {
+    background-color: #c0edf1;    
+    border-left: 5px solid #58d0da;
+    color: #000;
+}
+.note {   
+    padding: 15px 30px 15px 15px;        
+}
+/* end note */
 /* begin header menu */
 .header_top .phone , .sfas a{
 	color: #ffffff;
@@ -897,6 +912,15 @@ div.bellesa-cart a {
 }
 .top-email a{
   color: #ffffff;
+}
+.siman{
+  background: #ffffff;
+}
+.td-right{
+  text-align: right;
+}
+.td-left{
+  text-align: left;
 }
 @media (max-width: 768px) { 
 

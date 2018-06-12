@@ -28,3 +28,29 @@ function addToCart(product_id,quantity){
 		}
 	});
 }
+function showMsg(ctrl,data){		
+	var ul='<ul>';	
+	$.each(data.msg,function(index,value){
+		ul+='<li>'+value+'</li>';
+	});                    
+	ul+='</ul>';
+	var type_msg = '';
+	if(parseInt(data.checked) == 1){
+		type_msg='note-success';
+	}else{
+		type_msg='note-danger';
+	}
+	jQuery('.'+ctrl).empty();
+	jQuery('.'+ctrl).removeClass('note-success');
+	jQuery('.'+ctrl).removeClass('note-danger');
+	jQuery('.'+ctrl).append(ul);	
+	jQuery('.'+ctrl).addClass(type_msg);                    
+	jQuery('.'+ctrl).show();     
+	setTimeout(hideMsg,60000,ctrl);		 
+}
+function hideMsg(ctrl){
+    jQuery('.'+ctrl).fadeOut();
+}       
+jQuery(document).ready(function(){		
+	setTimeout(hideMsg,60000,'note');		
+});
