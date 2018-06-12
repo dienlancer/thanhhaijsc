@@ -67,10 +67,11 @@ class ProductController{
 		$ssCart 	= $zController->getSession('SessionHelper',$ssName,$ssValue);
 		$arrCart = @$ssCart->get($ssValue)['cart'];	
 		unset($arrCart[$id]);				
-		$cart=$arrCart;
+		$cart['cart']=$arrCart;
 		$ssCart->set($ssValue,$cart);
-		if(empty($arrCart))
+		if(count($arrCart)==0){					
 			$ssCart->reset();
+		}
 		$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');	
 		$permarlink = get_permalink($pageID);
 		wp_redirect($permarlink);
