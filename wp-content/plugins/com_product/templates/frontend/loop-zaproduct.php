@@ -36,7 +36,7 @@ if($the_query->have_posts()){
         $term = wp_get_object_terms( $post_id,  'za_category' );                    
         $term_name=$term[0]->name;
         $term_slug=$term[0]->slug;
-        $product_code=get_post_meta( $post_id,'code', true );        
+        $product_sku=get_post_meta( $post_id,'code', true );        
         $price_text="";
         $sale_price_text="";
         $price=get_post_meta( $post_id, $meta_key . 'price', true );            

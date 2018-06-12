@@ -1,6 +1,5 @@
 <?php
-class AjaxController{
-	
+class AjaxController{	
 	public function __construct(){				
 		add_action('wp_ajax_add_to_cart',array($this,'add_to_cart'));
 		add_action('wp_ajax_show_lst_invoice_detail',array($this,'show_lst_invoice_detail'));
@@ -13,15 +12,14 @@ class AjaxController{
 	public function add_to_cart(){
 		global $zController;
 		$vHtml=new HtmlControl();  
-		$id=(int)($zController->getParams("id"));	
-		$quantity=(int)($zController->getParams("quantity"));	
+		$id=(int)@$zController->getParams("id");	
+		$quantity=(int)@$zController->getParams("quantity");	
 		$arg=array(
 			'p'=>$id,
 			'post_type'=>'zaproduct'
-		);		
-		$meta_key = "_zendvn_sp_zaproduct_";            
-		$product_id=(int)0;
-		$product_code='';
+		);				
+		$product_id=0;
+		$product_sku='';
 		$product_name='';
 		$product_image='';
 		$product_price=0;
@@ -34,14 +32,14 @@ class AjaxController{
 			while ($the_query->have_posts()) {
 				$the_query->the_post();                            
 				$post_id=$the_query->post->ID;                                             				              
-				$title=get_the_title($post_id);                    				
-				$featureImg=wp_get_attachment_url(get_post_thumbnail_id($post_id));
-				$featureImg=$vHtml->getFileName($featureImg);
-				$product_image=$featureImg;				
-				$price=get_post_meta( $post_id, $meta_key . 'price', true );
-				$sale_price=get_post_meta( $post_id, $meta_key . 'sale_price', true );       				       
+				$title=get_the_title($post_id);          				          				
+				$featured_img=get_the_post_thumbnail_url($post_id, 'full');        
+				$featured_img=$vHtml->getFileName($featured_img);
+				$product_image=$featured_img;				
+				$price=get_post_meta( $post_id, 'price', true );
+				$sale_price=get_post_meta( $post_id, 'sale_price', true );       				       
 				$product_id=$post_id;
-				$product_code=get_post_meta( $post_id, 'code', true );
+				$product_sku=get_post_meta( $post_id, 'sku', true );
 				$product_name=$title; 		
 				$product_price=$price;
 				if(!empty($sale_price)){
@@ -63,7 +61,7 @@ class AjaxController{
 						}
 					}					
 					$arrCart[$product_id]["product_id"]=$product_id;	
-					$arrCart[$product_id]["product_code"]=$product_code;
+					$arrCart[$product_id]["product_sku"]=$product_sku;
 					$arrCart[$product_id]["product_name"]=$product_name;			
 					$arrCart[$product_id]["product_image"]=$product_image;					
 					$arrCart[$product_id]["product_price"]=$product_price;											

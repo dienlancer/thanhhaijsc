@@ -167,7 +167,7 @@
 			$width=$zendvn_sp_settings["product_width"];	
 		$height=$zendvn_sp_settings["product_height"];		
 			foreach ($arrInvoiceDetail as $key => $value) {
-				$product_code=$value["product_code"];
+				$product_sku=$value["product_sku"];
 				$product_name=$value["product_name"];
 				$product_image=$value["product_image"];
 				$newFileUrl=wp_upload_dir()["url"] . DS . $width . "x" . $height . "-" . $product_image; 
@@ -176,7 +176,7 @@
 				$product_total_price=$vHtml->fnPrice(@$value["product_total_price"]);
 			 	?>
 			 	<tr>
-					<td><?php echo $product_code; ?></td>
+					<td><?php echo $product_sku; ?></td>
 					<td><?php echo $product_name; ?></td>
 					<td align="center"><img  src="<?php echo $newFileUrl; ?>" width="84" height="112" /></td>
 					<td align="right"><?php echo $product_price; ?></td>

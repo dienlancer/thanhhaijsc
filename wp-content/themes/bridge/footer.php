@@ -407,6 +407,30 @@ if(is_array($footer_classes_array) && count($footer_classes_array)) {
 	
 </div>
 </div>
+<div class="modal fade modal-add-cart" id="modal-alert-add-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header relative">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
+      </div>
+      <div class="modal-body">
+
+      </div>      
+    </div>
+  </div>
+</div>  
+<div class="modal fade modal-invoice-report" id="modal-history-invoice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
+      </div>
+      <div class="modal-body">
+        
+      </div>      
+    </div>
+  </div>
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>

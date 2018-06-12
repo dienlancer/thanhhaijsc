@@ -14,9 +14,9 @@ function wp_schools_enqueue_scripts() {
 	wp_enqueue_script('owlcarousel_js');
 	/* end owlcarousel */
 	/* begin bootstrap */
-	wp_register_style( 'bootstrap_css', get_stylesheet_directory_uri() . '/css/bootstrap.min.css' ,array(),false,'all' );
+	wp_register_style( 'bootstrap_css', get_stylesheet_directory_uri() . '/css/bootstrap.css' ,array(),false,'all' );
 	wp_enqueue_style( 'bootstrap_css' );
-	wp_register_script('bootstrap_js',get_stylesheet_directory_uri() . '/js/bootstrap.min.js',array(),false,false);
+	wp_register_script('bootstrap_js',get_stylesheet_directory_uri() . '/js/bootstrap.js',array(),false,false);
 	wp_enqueue_script('bootstrap_js');
 	/* end bootstrap */
 	/* begin elevatezoom */
@@ -39,6 +39,10 @@ function wp_schools_enqueue_scripts() {
 	wp_register_script('customy_js',get_stylesheet_directory_uri() . '/js/custom.js',array(),false,false);
 	wp_enqueue_script('customy_js');
 	/* end custom js */
+	/* begin style */
+	wp_register_style( 'product', get_stylesheet_directory_uri() . '/css/product.css',array(),false,'all'   );
+	wp_enqueue_style( 'product' );
+	/* end style */	
 	/* begin style */
 	wp_register_style( 'childstyle', get_stylesheet_directory_uri() . '/style.css',array(),false,'all'   );
 	wp_enqueue_style( 'childstyle' );
@@ -166,7 +170,7 @@ function showNavbar(){
 /* begin search right */
 add_shortcode('search_right','showSearchRight');
 function showSearchRight(){
-	global $zendvn_sp_settings;	
+	global $zController, $zendvn_sp_settings;	
 	$telephone=$zendvn_sp_settings['telephone'];
 	$terms = get_terms( array(
 		'taxonomy' => 'category_product',
@@ -175,7 +179,9 @@ function showSearchRight(){
 	$source_category[]=array('id'=>0,'name'=>'Tất cả danh mục');
 	foreach ($terms as $key => $value) {
 		$source_category[]=array('id'=>$value->term_id,'name'=>$value->name);
-	}		
+	}
+	$page_id_cart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');  
+	$cart_link=get_permalink($page_id_cart );			
 	?>	
 	<div class="row">
 		<div class="col-lg-6">
@@ -198,7 +204,7 @@ function showSearchRight(){
 			</form>
 		</div>
 		<div class="col-lg-2">
-			<a class="kitae" href="javascript:void(0);">
+			<a class="kitae" href="<?php echo $cart_link; ?>">
 				<div class="icon-header"><i class="fas fa-cart-arrow-down"></i></div>
 				<div class="gian-ho"><font color="#ffffff">Giỏ hàng</font></div>
 			</a>

@@ -54,14 +54,14 @@ class ProductModel{
 	public function getLstNewProducts(){	
 		global $wpdb;
 		$table = $wpdb->prefix . 'shk_product';	
-		$sql = "SELECT p.id , p.product_code , p.product_name , p.product_image , p.product_slug , p.product_status,p.product_price FROM {$table} p where p.product_status = 1 and p.product_new = 1 order by p.product_published_date DESC " ;
+		$sql = "SELECT p.id , p.product_sku , p.product_name , p.product_image , p.product_slug , p.product_status,p.product_price FROM {$table} p where p.product_status = 1 and p.product_new = 1 order by p.product_published_date DESC " ;
 		$result = $wpdb->get_results($sql,ARRAY_A);		
 		return $result;
 	}
 	public function getLstBestSeller(){	
 		global $wpdb;
 		$table = $wpdb->prefix . 'shk_product';	
-		$sql = "SELECT p.id , p.product_code , p.product_name , p.product_image , p.product_slug , p.product_status , p.product_price FROM {$table} p where p.product_status = 1 and p.product_best_seller = 1 order by p.product_published_date DESC " ;
+		$sql = "SELECT p.id , p.product_sku , p.product_name , p.product_image , p.product_slug , p.product_status , p.product_price FROM {$table} p where p.product_status = 1 and p.product_best_seller = 1 order by p.product_published_date DESC " ;
 		$result = $wpdb->get_results($sql,ARRAY_A);		
 		return $result;
 	}

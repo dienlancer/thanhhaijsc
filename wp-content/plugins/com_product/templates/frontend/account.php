@@ -1,65 +1,125 @@
-<?php get_header();     ?>
-    <div class="tina relative">    
-        
-        <div>
-            <script type="text/javascript" language="javascript">        
-                jQuery(document).ready(function(){
-                    jQuery(".linda").slick({
-                        dots: true,
-                        autoplay:true,
-                        arrows:false,
-                        adaptiveHeight:true,
-                        loop:true
-                    });  
-                });     
-            </script>
-            <div class="linda">
-                <div class="lumberjack">                            
-                    <img src="<?php echo site_url('wp-content/uploads/banner-top.jpg'); ?>" />                               
-                </div>
-            </div>
-        </div>       
-    </div> 
-    <div class="container margin-top-15 margin-bottom-15">
-    	<div class="row">
-    		<div class="col-lg-3 no-padding-left">    			
-    			<div class="ducati">
-    				<h3>Danh mục sản phẩm</h3>
-    				<div>
-    					<?php     
-    					$args = array( 
-    						'menu'              => '', 
-    						'container'         => '', 
-    						'container_class'   => '', 
-    						'container_id'      => '', 
-    						'menu_class'        => 'categoryproductmenu', 
-    						'menu_id'           => 'category-product-menu', 
-    						'echo'              => true, 
-    						'fallback_cb'       => 'wp_page_menu', 
-    						'before'            => '', 
-    						'after'             => '', 
-    						'link_before'       => '<i class="fa fa-star-o" aria-hidden="true"></i>', 
-    						'link_after'        => '', 
-    						'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',  
-    						'depth'             => 3, 
-    						'walker'            => '', 
-    						'theme_location'    => 'category-product-menu' 
-    					);
-    					wp_nav_menu($args);
-    					?>   
-    					<div class="clr"></div> 
-    				</div>
-    			</div>
+<?php get_header(); ?>
+<?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "top-sidebar.php"; ?>
+<?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"; ?>
+<div class="container margin-top-15">
+    <div class="row">        
+        <div class="col-lg-12">
+            <div>  
+                <?php     
+                global $zController;
+                $vHtml=new HtmlControl();    
+                $pageIDLogin = $zController->getHelper('GetPageId')->get('_wp_page_template','login.php');   
+                $permarlinkLogin = get_permalink($pageIDLogin);           
+                $ssName="vmuser";
+                $ssValue="userlogin";
+                $ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);
+                $arrUser = @$ssUser->get($ssValue)["userInfo"];
+                if(count($arrUser) == 0){
+                    wp_redirect($permarlinkLogin);
+                }
+                $id=$arrUser["id"];
+                $userModel=$zController->getModel("/frontend","UserModel"); 
+                $info=$userModel->getUserById($id);
+                $detail=$info[0];           
+                ?>
+                <form  method="post"  class="frm" name="frm">        
+                    <input type="hidden" name="id" value="<?php echo $detail["id"]; ?>" />
+                    <input type="hidden" name="action" value="change-info" />      
+                    <?php wp_nonce_field("change-info",'security_code',true);?>             
+                    <?php 
+                    if(have_posts()){
+                        while (have_posts()) {
+                            the_post();
+                            echo '<h3 class="mamboitaliano">'.get_the_title().'</h3>';
+                        }
+                        wp_reset_postdata();
+                    }                    
+                    $data=array();   
+                    $error=$zController->_data["error"];
+                    $success=$zController->_data["success"];                           
+                    if(count($zController->_data["data"]) > 0){
+                        $data=$zController->_data["data"];                  
+                    }else{
+                        $data=$detail;
+                    }
+                    if(count($error) > 0 || count($success) > 0){
+                        ?>
+                        <div class="alert">
+                            <?php                                           
+                            if(count($error) > 0){
+                                ?>
+                                <ul class="comproduct33">
+                                    <?php 
+                                    foreach ($error as $key => $value) {
+                                        ?>
+                                        <li><?php echo $value; ?></li>
+                                        <?php
+                                    }
+                                    ?>                              
+                                </ul>
+                                <?php
+                            }
+                            if(count($success) > 0){
+                                ?>
+                                <ul class="comproduct50">
+                                    <?php 
+                                    foreach ($success as $key => $value) {
+                                        ?>
+                                        <li><?php echo $value; ?></li>
+                                        <?php
+                                    }
+                                    ?>                              
+                                </ul>
+                                <?php
+                            }
+                            ?>                                              
+                        </div>              
+                        <?php
+                    }
+                    ?>
+                    <table class="com_product30" border="0" width="90%" cellpadding="0" cellspacing="0">        
+                        <tbody>        
+                            <tr>
+                                <td align="right">Tài khoản</td>
+                                <td><?php echo @$detail["username"]; ?></td>        
+                            </tr>                           
+                            <tr>
+                                <td align="right">Email</td>
+                                <td><input type="text" name="email" value="<?php echo @$data["email"]; ?>" /></td>                   
+                            </tr>                     
+                            <tr>
+                                <td align="right">Tên</td>
+                                <td><input type="text" name="fullname" value="<?php echo @$data["fullname"]; ?>" /></td>            
+                            </tr>
+                            <tr>
+                                <td align="right">Địa chỉ</td>
+                                <td><input type="text" name="address" value="<?php echo @$data["address"]; ?>" /></td>            
+                            </tr>                
+                            <tr>
+                                <td align="right">Phone</td>
+                                <td><input type="text" name="phone" value="<?php echo @$data["phone"]; ?>" /></td>            
+                            </tr>
+                            <tr>
+                                <td align="right">Mobile phone</td>
+                                <td><input type="text" name="mobilephone" value="<?php echo @$data["mobilephone"]; ?>" /></td>            
+                            </tr>
+                            <tr>
+                                <td align="right">Fax</td>
+                                <td><input type="text" name="fax" value="<?php echo @$data["fax"]; ?>" /></td>            
+                            </tr>  
+                            <tr>           
+                                <td></td>
+                                <td class="com_product31" align="right">
+                                    <input name="btnChangeInfo" type="submit" class="com_product32" value="Cập nhật" />
 
-                    <?php if(is_active_sidebar('banner-catgory-product')):?>
-                        <?php dynamic_sidebar('banner-catgory-product')?>
-                    <?php endif; ?>   
-                
-    		</div>
-    		<div class="col-lg-9 no-padding-left"><?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "loop-account.php"; ?></div>
-    	</div>
+                                </td>                      
+                            </tr>              
+                        </tbody>    
+                    </table>
+                </form>          
+            </div>
+        </div>
     </div>
-    <?php get_footer(); ?>
-    <?php wp_footer();?>
-</body>
-</html>
+</div>
+<?php get_footer(); ?>
+<?php wp_footer();?>

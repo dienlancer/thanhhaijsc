@@ -129,7 +129,7 @@ class InvoiceModel{
 		
 		foreach ($arrSS as $key => $value) {
 			$product_id=(int)$value["product_id"];
-			$product_code=$value["product_code"];
+			$product_sku=$value["product_sku"];
 			$product_name=$value["product_name"];			
 			$product_image=$value["product_image"];			
 			$product_price=(float)$value["product_price"];			
@@ -138,7 +138,7 @@ class InvoiceModel{
 			$query = "INSERT INTO {$tableInvoiceDetail} (
 				  `invoice_id`,
 				  `product_id`,
-				  `product_code`,
+				  `product_sku`,
 				  `product_name`,  
 				  `product_image`,  
 				  `product_price`,  
@@ -158,7 +158,7 @@ class InvoiceModel{
 
 				$invoice_id,
   $product_id,
-  $product_code,
+  $product_sku,
   $product_name,  
   $product_image,  
   $product_price,  

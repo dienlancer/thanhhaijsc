@@ -26,7 +26,7 @@
         wp_reset_postdata();
     }	
  	?>
- 	<table id="com_product16" class="com_product16" cellpadding="0" cellspacing="0" width="100%">
+ 	<table class="com_product16" cellpadding="0" cellspacing="0" width="100%">
 	<thead>
 	<tr>	
 		<th>Mã đơn hàng</th>
@@ -80,16 +80,5 @@
 	</tbody>	
 </table>
  </div>
-<div class="modal fade modal-invoice-report" id="modal-history-invoice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
-      </div>
-      <div class="modal-body">
-        
-      </div>      
-    </div>
-  </div>
-</div>
+
 </div>
