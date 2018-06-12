@@ -48,10 +48,11 @@ class ProductController{
 					if($product_quantity==0)
 						unset($arrCart[$key]);
 				}
-				$cart=$arrCart;
+				$cart['cart']=$arrCart;		
 				$ssCart->set($ssValue,$cart);
-				if(empty($arrCart))
+				if(count($arrCart)==0){					
 					$ssCart->reset();
+				}
 				$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');	
 				$permarlink = get_permalink($pageID);
 				wp_redirect($permarlink);
