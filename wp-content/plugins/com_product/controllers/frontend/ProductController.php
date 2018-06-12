@@ -35,7 +35,7 @@ class ProductController{
 				$ssName="vmart";
 				$ssValue="zcart";				
 				$ssCart 	= $zController->getSession('SessionHelper',$ssName,$ssValue);
-				$arrCart = @$ssCart->get($ssValue);		
+				$arrCart = @$ssCart->get($ssValue)['cart'];		
 				foreach ($arrCart as $key => $value) {		
 					$product_quantity=(int)$arrQTY[$key];
 					$product_price = (float)$arrCart[$key]["product_price"];
@@ -64,7 +64,7 @@ class ProductController{
 		$ssName="vmart";
 		$ssValue="zcart";				
 		$ssCart 	= $zController->getSession('SessionHelper',$ssName,$ssValue);
-		$arrCart = @$ssCart->get($ssValue);	
+		$arrCart = @$ssCart->get($ssValue)['cart'];	
 		unset($arrCart[$id]);				
 		$cart=$arrCart;
 		$ssCart->set($ssValue,$cart);
@@ -208,7 +208,7 @@ class ProductController{
 					$ssValue="userlogin";
 					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);		
 					$ssUser->reset();					
-					$user=array("username" => $username,"id"=>$id);
+					$user=array("user_info"=>array("username" => $username,"id"=>$id));
 					$ssUser->set($ssValue,$user);	
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');						
 					$permarlink = get_permalink($pageID);					
@@ -303,7 +303,7 @@ class ProductController{
 					$ssValue="userlogin";
 					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);		
 					$ssUser->reset();					
-					$user=array("username" => $username,"id"=>$id);
+					$user=array("user_info"=>array("username" => $username,"id"=>$id));
 					$ssUser->set($ssValue,$user);	
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');						
 					$permarlink = get_permalink($pageID);
@@ -371,7 +371,7 @@ class ProductController{
 					$ssName="vmuser";
 					$ssValue="userlogin";
 					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);			
-					$user=array("username" => $username,"id"=>$id);
+					$user=array("user_info"=>array("username" => $username,"id"=>$id));
 					$ssUser->set($ssValue,$user);	
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');		
 					$permarlink = get_permalink($pageID);							
@@ -401,7 +401,7 @@ class ProductController{
 		$ssName="vmuser";
 		$ssValue="userlogin";
 		$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);	
-		$arrUser 	= @$ssUser->get($ssValue);	
+		$arrUser 	= @$ssUser->get($ssValue)["user_info"];	
 		if(empty($arrUser)){
 			$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','login-checkout.php');	
 		}

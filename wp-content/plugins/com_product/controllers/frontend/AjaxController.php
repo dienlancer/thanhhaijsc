@@ -45,11 +45,11 @@ class AjaxController{
 				if(!empty($sale_price)){
 					$product_price=$sale_price;
 				}		
-				$product_quantity=(int)$quantity;				
+				$product_quantity=(int)@$quantity;				
 				$ssName="vmart";
 				$ssValue="zcart";				
 				$ssCart 	= $zController->getSession('SessionHelper',$ssName,$ssValue);
-				$arrCart = @$ssCart->get($ssValue);												
+				$arrCart = @$ssCart->get($ssValue)['cart'];												
 				if($product_id > 0){						
 					if(count($arrCart) == 0){
 						$arrCart[$product_id]["product_quantity"] = $product_quantity;
@@ -68,13 +68,12 @@ class AjaxController{
 					$product_quantity=(float)@$arrCart[$product_id]["product_quantity"];
 					$product_total_price=$product_price * $product_quantity;
 					$arrCart[$product_id]["product_total_price"]=($product_total_price);
-					
-					$cart=$arrCart;
+					$cart['cart']=$arrCart;					
 					$ssCart->set($ssValue,$cart);	
-					$arrCart = @$ssCart->get($ssValue);
-					if(count($arrCart)){
-						foreach($arrCart as $cart){    
-					    	$total_quantity+=(int)$cart['product_quantity'];
+					$source_cart = @$ssCart->get($ssValue)['cart'];
+					if(count($source_cart) > 0){
+						foreach($source_cart as $key => $value){    
+					    	$total_quantity+=(int)@$value['product_quantity'];
 						}	
 					}									 					
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');	

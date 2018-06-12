@@ -9,7 +9,7 @@ $permalink = get_permalink($page_id);
 $ssName="vmuser";
 $ssValue="userlogin";
 $ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);
-$arrUser = @$ssUser->get($ssValue);
+$arrUser = @$ssUser->get($ssValue)["user_info"];
 if(count(@$arrUser) > 0){
     wp_redirect(@$permalink);
 }

@@ -189,7 +189,7 @@ function showTopBar(){
 	$ssValue="userlogin";	
 	$arrUser=array();
 	$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);	
-	$arrUser = @$ssUser->get($ssValue);		
+	$arrUser = @$ssUser->get($ssValue)["user_info"];			
 	?>
 	<div class="container">
 		<div class="row">

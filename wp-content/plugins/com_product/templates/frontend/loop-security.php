@@ -14,7 +14,7 @@
     $ssValue="userlogin";
     $id=0;
     $ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);
-    $arrUser = @$ssUser->get($ssValue);
+    $arrUser = @$ssUser->get($ssValue)["user_info"];
     if(count($arrUser) == 0){
         wp_redirect($permarlinkLogin);
     }

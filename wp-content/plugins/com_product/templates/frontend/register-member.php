@@ -6,6 +6,15 @@ global $zController;
 $vHtml=new HtmlControl();
 $disabled_status='';
 $register_status='onclick="document.forms[\'frm\'].submit();"';
+$page_id = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');   
+$permalink = get_permalink($page_id);           
+$ssName="vmuser";
+$ssValue="userlogin";
+$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);
+$arrUser = @$ssUser->get($ssValue)["user_info"];
+if(count(@$arrUser) > 0){
+    wp_redirect(@$permalink);
+}
 ?>
 <div class="siman">  
     <div class="container">
