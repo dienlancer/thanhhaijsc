@@ -4,7 +4,6 @@ require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "top-sidebar
 require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"; 
 global $zController;
 $vHtml=new HtmlControl();
-$zController->getController("/frontend","ProductController");
 $disabled_status='';
 $register_status='onclick="document.forms[\'frm\'].submit();"';
 ?>

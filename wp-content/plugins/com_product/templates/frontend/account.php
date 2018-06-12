@@ -4,7 +4,6 @@ require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "top-sidebar
 require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"; 
 global $zController;
 $vHtml=new HtmlControl();  
-$zController->getController("/frontend","ProductController");
 $page_id_login = $zController->getHelper('GetPageId')->get('_wp_page_template','login.php');   
 $permalink_login = get_permalink($page_id_login);           
 $ssName="vmuser";
