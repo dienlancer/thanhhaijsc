@@ -5,6 +5,8 @@ require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"
 global $zController;
 $vHtml=new HtmlControl();
 $zController->getController("/frontend","ProductController");
+$disabled_status='';
+$register_status='onclick="document.forms[\'frm\'].submit();"';
 ?>
 <div class="siman">  
     <div class="container">
@@ -33,7 +35,9 @@ $zController->getController("/frontend","ProductController");
                     $checked=@$zController->_data["checked"];   
                     if(count(@$msg) > 0){
                         $type_msg='';                   
-                        if((int)@$checked == 1){                            
+                        if((int)@$checked == 1){     
+                            $disabled_status='disabled';
+                            $register_status='';                       
                             $type_msg='note-success';
                         }else{
                             $type_msg='note-danger';
@@ -86,8 +90,8 @@ $zController->getController("/frontend","ProductController");
                             <tr>           
                                 <td></td>
                                 <td class="com_product31" class="td-right">
-                                    <input name="btnRegisterMember" type="submit" class="com_product32" value="Đăng ký" />
-
+                                    
+<div class="btn-dang-ky"><a href="javascript:void(0);" <?php echo $register_status; ?> >Đăng ký</a></div>
                                 </td>                      
                             </tr> 
                         </tbody>    

@@ -922,6 +922,10 @@ div.bellesa-cart a {
 .td-left{
   text-align: left;
 }
+.tai-dai a{
+  font-weight: bold;
+  color: #dd0022;
+}
 @media (max-width: 768px) { 
 
 }

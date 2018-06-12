@@ -337,7 +337,7 @@ font-family: "JosefinSlab-BoldItalic";
     padding: 3px;
     width: 100%;
     }
-    .com_product32{
+    .com_product32,.btn-dang-ky a{
         background: #DD0022;
     color: #ffffff;
     border: 0;
