@@ -23,41 +23,30 @@
     $msg=$zController->_data["msg"];                               
     ?>   
     <form method="post" name="frm" class="margin-top-15">    
-        <input type="hidden" name="action" value="register-member" />                      
-        <?php wp_nonce_field("register-member",'security_code',true);?>    
+        <input type="hidden" name="action" value="register-member" />                              
         <?php 
-        if(count($error) > 0 || count($success) > 0){
+        wp_nonce_field("register-member",'security_code',true);
+        if(count(@$msg) > 0){
+            $type_msg='';                   
+            if((int)@$checked == 1){
+                $disabled_status='disabled';
+                $register_status='';
+                $type_msg='note-success';
+            }else{
+                $type_msg='note-danger';
+            }
             ?>
-            <div class="alert">
-                <?php                                           
-                if(count($error) > 0){
-                    ?>
-                    <ul class="comproduct33">
-                        <?php 
-                        foreach ($error as $key => $value) {
-                            ?>
-                            <li><?php echo $value; ?></li>
-                            <?php
-                        }
-                        ?>                              
-                    </ul>
-                    <?php
-                }
-                if(count($success) > 0){
-                    ?>
-                    <ul class="comproduct50">
-                        <?php 
-                        foreach ($success as $key => $value) {
-                            ?>
-                            <li><?php echo $value; ?></li>
-                            <?php
-                        }
-                        ?>                              
-                    </ul>
-                    <?php
-                }
-                ?>                                              
-            </div>              
+            <div class="note margin-top-15 <?php echo $type_msg; ?>" >
+                <ul>
+                    <?php 
+                    foreach (@$msg as $key => $value) {
+                        ?>
+                        <li><?php echo $value; ?></li>
+                        <?php
+                    }
+                    ?>                              
+                </ul>   
+            </div>      
             <?php
         }
         ?>                                
