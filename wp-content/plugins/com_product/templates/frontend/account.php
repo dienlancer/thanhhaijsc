@@ -91,7 +91,7 @@ $data=@$info[0];
                             <tr>           
                                 <td></td>
                                 <td class="com_product31" class="td-right">
-                                    <input name="btnChangeInfo" type="submit" class="com_product32" value="Cập nhật" />
+                                    <div class="btn-dang-ky"><a href="javascript:void(0);" onclick="document.forms['frm'].submit();" >Cập nhật</a></div>
 
                                 </td>                      
                             </tr> 
