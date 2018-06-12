@@ -194,9 +194,8 @@ class ProductController{
 						$checked=0;
 					}
 				}													
-				if((int)@$checked==1){
-					$table = $wpdb->prefix . 'shk_user';	
-					$query = "INSERT INTO {$table} (`username`, `password`,`email`, `fullname`, `address`, `phone`,`status`) VALUES
+				if((int)@$checked==1){					
+					$query = "INSERT INTO {$tbuser} (`username`, `password`,`email`, `fullname`, `address`, `phone`,`status`) VALUES
 					(%s,%s,%s,%s,%s,%s,%d)";
 					$info = $wpdb->prepare($query,
 						$username,md5($password),$email,$fullname,$address,$phone,1
@@ -293,9 +292,8 @@ class ProductController{
 						$checked=0;
 					}
 				}													
-				if((int)@$checked==1){
-					$table = $wpdb->prefix . 'shk_user';						
-					$query = "UPDATE {$table} set `email` = %s, `fullname` = %s, `address` = %s, `phone` = %s where `id` = %d ";
+				if((int)@$checked==1){									
+					$query = "UPDATE {$tbuser} set `email` = %s, `fullname` = %s, `address` = %s, `phone` = %s where `id` = %d ";
 					$info = $wpdb->prepare($query,$email,$fullname,$address,$phone,$id);			
 					$wpdb->query($info);		
 					$model = $zController->getModel("/frontend","UserModel");
@@ -318,52 +316,48 @@ class ProductController{
 		$zController->_data["checked"] = $checked;							
 	}
 	public function changePassword(){
-		global $zController;
+		global $zController,$wpdb;		
 		$checked=1;
 		$msg=array();
-		$data=array();
-		
-		if($zController->isPost()){		
-			$action = $zController->getParams('action');		
-			if(check_admin_referer($action,'security_code')){	
-				$data=$_POST;
-				$id=(int)$_POST["id"];
-				$username=$_POST["username"];
-				$password=mb_strtolower($_POST["password"],'UTF-8') ;
-                $password_confirmed=mb_strtolower($_POST["password_confirmed"],'UTF-8') ;     
-                if(mb_strlen($password) < 6){
-                  $msg["password"] = 'Mật khẩu phải từ 6 ký tự trở lên';
-                  $data["password"] = "";
-                  $data["password_confirmed"] = ""; 
-                  $checked=0;
-                }
-                if(strcmp($password, $password_confirmed)!=0){
-                  $msg["password_confirmed"] = 'Mật khẩu và mật khẩu xác nhận phải trùng khớp';
-                  $data["password_confirmed"] = "";   
-                  $checked=0;
-                }    
-                if((int)@$checked==1){
-                   	$model = $zController->getModel("/frontend","UserModel");
-					$model->update_password();        
-					$ssName="vmuser";
-					$ssValue="userlogin";
-					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);			
-					$user=array("username" => $username,"id"=>$id);
-					$ssUser->set($ssValue,$user);	
-					$checked['success']='Cập nhật thành công'; 					                                              
-                }                   
+		$data=array();							
+		if($zController->isPost()){				
+			$action = @$zController->getParams('action');					
+			if(check_admin_referer(@$action,'security_code')){	
+				$data=@$_POST;
+				$id=(int)(@$_POST["id"]);			
+				$password=@$_POST["password"] ;
+				$password_confirmed=@$_POST["password_confirmed"] ;				
+				$tbuser = $wpdb->prefix . 'shk_user';								
+				if(mb_strlen(@$password) < 10 ){
+					$msg["password"] = "Mật khẩu tối thiểu phải 10 ký tự";
+					$data['password']='';
+					$data['password_confirmed']='';
+					$checked = 0;                
+				}else{
+					if(strcmp(@$password, @$password_confirmed) !=0 ){
+						$msg["password"] = "Xác nhận mật khẩu không trùng khớp";
+						$data['password']='';
+						$data['password_confirmed']='';
+						$checked = 0;                  
+					}
+				}  															
+				if((int)@$checked==1){					
+					$query = "UPDATE {$tbuser} set `password` = %s where `id` = %d ";
+					$info = $wpdb->prepare($query,md5($password),$id);								
+					$wpdb->query($info);							
+					$msg['success']='<span>Cập nhật mật khẩu thành công</span>';
+				}
 			}
-		}			
+		}	
 		$zController->_data["data"] = $data;
 		$zController->_data["msg"] = $msg;			
-		$zController->_data["checked"] = $checked;				
+		$zController->_data["checked"] = $checked;					
 	}
 	public function login(){	
 		global $zController;					
 		$checked=1;
 		$msg=array();
-		$data=array();
-			
+		$data=array();			
 		if($zController->isPost()){	
 			$action = $zController->getParams('action');
 			if(check_admin_referer($action,'security_code')){
@@ -383,7 +377,8 @@ class ProductController{
 					$permarlink = get_permalink($pageID);							
 					wp_redirect($permarlink);					
 				}else{
-					$msg["exception_error"]='Đăng nhập không thành công'; 		
+					$msg["exception_error"]='Đăng nhập không thành công'; 	
+					$checked=0;	
 				}	
 			}					
 		}			
