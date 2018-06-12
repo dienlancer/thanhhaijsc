@@ -16,11 +16,11 @@
     $meta_key="_zendvn_sp_zaproduct_";
     $vHtml=new HtmlControl();    
     $data=array();   
-    $error=$zController->_data["error"];
-    $success=$zController->_data["success"];                           
     if(count($zController->_data["data"]) > 0){
         $data=$zController->_data["data"];                  
     }
+    $checked=$zController->_data["checked"];
+    $msg=$zController->_data["msg"];                               
     ?>   
     <form method="post" name="frm" class="margin-top-15">    
         <input type="hidden" name="action" value="register-member" />                      

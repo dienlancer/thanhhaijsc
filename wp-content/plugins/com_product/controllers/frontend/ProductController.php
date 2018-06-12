@@ -86,39 +86,38 @@ class ProductController{
 	}
 	public function registerMember(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();				
+		$checked=1;
+		$msg=array();
+		$data=array();						
 		if($zController->isPost()){		
 			$action = $zController->getParams('action');					
 			if(check_admin_referer($action,'security_code')){	
-				$arrData=$_POST;
+				$data=$_POST;
 				$email=mb_strtolower(trim($_POST["email"]),'UTF-8') ;
 				$username=mb_strtolower(trim($_POST["username"]),'UTF-8') ;
 				$password=mb_strtolower($_POST["password"],'UTF-8') ;
 				$password_confirm=mb_strtolower($_POST["password_confirm"],'UTF-8') ;
 				// kiểm tra email hợp lệ			
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$arrError["email"] = 'Email is invalid';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email is invalid';
+					$data["email"] = '';
+					$checked=0;
 				}
 				if(!preg_match("#^[a-z_][a-z0-9_\.\s]{4,31}$#", $username)){
-					$arrError["username"] = 'Username is invalid';
-					$arrData["username"] = "";	
-					$flag=0;
+					$msg["username"] = 'Username is invalid';
+					$data["username"] = "";	
+					$checked=0;
 				}
 				if(mb_strlen($password) < 6){
-					$arrError["password"] = 'Password is invalid';
-					$arrData["password"] = "";
-					$arrData["password_confirm"] = "";	
-					$flag=0;
+					$msg["password"] = 'Password is invalid';
+					$data["password"] = "";
+					$data["password_confirm"] = "";	
+					$checked=0;
 				}
 				if(strcmp($password, $password_confirm)!=0){
-					$arrError["password_confirm"] = 'PasswordConfirm is not matched Password';
-					$arrData["password_confirm"] = "";		
-					$flag=0;
+					$msg["password_confirm"] = 'PasswordConfirm is not matched Password';
+					$data["password_confirm"] = "";		
+					$checked=0;
 				}			
 				$tbuser = $wpdb->prefix . 'shk_user';			
 				$query ="SELECT u.id
@@ -128,9 +127,9 @@ class ProductController{
 					";								
 				$lst = $wpdb->get_results($query,ARRAY_A);		
 				if(!empty($lst)){
-					$arrError["email"] = 'Email đã tồn tại';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email đã tồn tại';
+					$data["email"] = '';
+					$checked=0;
 				}
 				$query =" 
 						SELECT u.id
@@ -140,11 +139,11 @@ class ProductController{
 					";					
 				$lst = $wpdb->get_results($query,ARRAY_A);		
 				if(!empty($lst)){
-					$arrError["username"] = 'Username đã tồn tại';
-					$arrData["username"] = '';
-					$flag=0;
+					$msg["username"] = 'Username đã tồn tại';
+					$data["username"] = '';
+					$checked=0;
 				}				
-				if((int)@$flag==1){
+				if((int)@$checked==1){
 					$model = $zController->getModel("/frontend","UserModel");
 					$model->save_item();					
 					$info=$model->getUserByUsername($username);					
@@ -160,26 +159,26 @@ class ProductController{
 				}
 			}
 		}	
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;			
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;			
 	}
 	public function changeInfo(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();		
+		$checked=1;
+		$msg=array();
+		$data=array();
+				
 		if($zController->isPost()){		
 			$action = $zController->getParams('action');		
 			if(check_admin_referer($action,'security_code')){	
-				$arrData=$_POST;
+				$data=$_POST;
 				$email=mb_strtolower(trim($_POST["email"]),'UTF-8') ;				
 				// kiểm tra email hợp lệ			
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$arrError["email"] = 'Email không hợp lệ';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email không hợp lệ';
+					$data["email"] = '';
+					$checked=0;
 				}								
 				$id=(int)($_POST["id"]);
 				$tbuser = $wpdb->prefix . 'shk_user';			
@@ -190,11 +189,11 @@ class ProductController{
 					";								
 				$lst = $wpdb->get_results($query,ARRAY_A);		
 				if(!empty($lst)){
-					$arrError["email"] = 'Email đã tồn tại';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email đã tồn tại';
+					$data["email"] = '';
+					$checked=0;
 				}					
-				if((int)@$flag==1){
+				if((int)@$checked==1){
 					$model = $zController->getModel("/frontend","UserModel");
 					$model->update_item();
 					$id=(int)($_POST["id"]);
@@ -205,40 +204,40 @@ class ProductController{
 					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);			
 					$user=array("username" => $username,"id"=>$id);
 					$ssUser->set($ssValue,$user);			
-					$arrSuccess['success']='Cập nhật thành công'; 	
+					$checked['success']='Cập nhật thành công'; 	
 				}	 				
 			}
 		}	
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;							
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;							
 	}
 	public function changePassword(){
 		global $zController;
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();
+		$checked=1;
+		$msg=array();
+		$data=array();
+		
 		if($zController->isPost()){		
 			$action = $zController->getParams('action');		
 			if(check_admin_referer($action,'security_code')){	
-				$arrData=$_POST;
+				$data=$_POST;
 				$id=(int)$_POST["id"];
 				$username=$_POST["username"];
 				$password=mb_strtolower($_POST["password"],'UTF-8') ;
                 $password_confirm=mb_strtolower($_POST["password_confirm"],'UTF-8') ;     
                 if(mb_strlen($password) < 6){
-                  $arrError["password"] = 'Password is invalid';
-                  $arrData["password"] = "";
-                  $arrData["password_confirm"] = ""; 
-                  $flag=0;
+                  $msg["password"] = 'Password is invalid';
+                  $data["password"] = "";
+                  $data["password_confirm"] = ""; 
+                  $checked=0;
                 }
                 if(strcmp($password, $password_confirm)!=0){
-                  $arrError["password_confirm"] = 'PasswordConfirm is not matched Password';
-                  $arrData["password_confirm"] = "";   
-                  $flag=0;
+                  $msg["password_confirm"] = 'PasswordConfirm is not matched Password';
+                  $data["password_confirm"] = "";   
+                  $checked=0;
                 }    
-                if((int)@$flag==1){
+                if((int)@$checked==1){
                    	$model = $zController->getModel("/frontend","UserModel");
 					$model->update_password();        
 					$ssName="vmuser";
@@ -246,24 +245,24 @@ class ProductController{
 					$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);			
 					$user=array("username" => $username,"id"=>$id);
 					$ssUser->set($ssValue,$user);	
-					$arrSuccess['success']='Cập nhật thành công'; 					                                              
+					$checked['success']='Cập nhật thành công'; 					                                              
                 }                   
 			}
 		}			
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;				
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;				
 	}
 	public function login(){	
 		global $zController;					
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();	
+		$checked=1;
+		$msg=array();
+		$data=array();
+			
 		if($zController->isPost()){	
 			$action = $zController->getParams('action');
 			if(check_admin_referer($action,'security_code')){
-				$arrData=$_POST;
+				$data=$_POST;
 				$username=trim($_POST["username"]);		
 				$password=md5($_POST["password"]);					
 				$model = $zController->getModel("/frontend","UserModel");		 
@@ -279,13 +278,13 @@ class ProductController{
 					$permarlink = get_permalink($pageID);							
 					wp_redirect($permarlink);					
 				}else{
-					$arrError["exception_error"]='Đăng nhập không thành công'; 		
+					$msg["exception_error"]='Đăng nhập không thành công'; 		
 				}	
 			}					
 		}			
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;					
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;					
 	}	
 	public function logout(){
 		global $zController;					
@@ -314,31 +313,31 @@ class ProductController{
 	}
 	public function confirmCheckout(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();
+		$checked=1;
+		$msg=array();
+		$data=array();
+		
 		if($zController->isPost()){
 			$action = $zController->getParams('action');
 			if(check_admin_referer($action,'security_code')){	
-				$arrData=$_POST;
+				$data=$_POST;
 				$email 					=		mb_strtolower(trim($_POST["email"]),'UTF-8') ;	
 				$payment_method			=		mb_strtolower(trim($_POST["payment_method"]),'UTF-8');	
 				if(empty($email)){
-                  $arrError["email"] 	= 		'Xin vui lòng nhập email';
-                  $arrData["email"] 	= 		"";                  
-                  $flag=0;
+                  $msg["email"] 	= 		'Xin vui lòng nhập email';
+                  $data["email"] 	= 		"";                  
+                  $checked=0;
                 }
                 if((int)$payment_method==0){
-                  $arrError["payment_method"] 	= 'Xin vui lòng nhập phương thức thanh toán';
-                  $arrData["payment_method"] 	= "";                  
-                  $flag=0;
+                  $msg["payment_method"] 	= 'Xin vui lòng nhập phương thức thanh toán';
+                  $data["payment_method"] 	= "";                  
+                  $checked=0;
                 }
 				// kiểm tra email hợp lệ			
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$arrError["email"] 	= 'Email is invalid';
-					$arrData["email"] 	= '';
-					$flag=0;
+					$msg["email"] 	= 'Email is invalid';
+					$data["email"] 	= '';
+					$checked=0;
 				}								
 				$id=(int)($_POST["user_id"]);
 				$tbuser = $wpdb->prefix . 'shk_user';			
@@ -349,11 +348,11 @@ class ProductController{
 					";								
 				$lst = $wpdb->get_results($query,ARRAY_A);		
 				if(!empty($lst)){
-					$arrError["email"] = 'Email đã tồn tại';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email đã tồn tại';
+					$data["email"] = '';
+					$checked=0;
 				}					
-				if((int)@$flag==1){
+				if((int)@$checked==1){
 					$invoiceModel = $zController->getModel("/frontend","InvoiceModel");		 
 					$invoiceModel->createBill();				
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','finished-checkout.php');	
@@ -362,44 +361,44 @@ class ProductController{
 				}						
 			}
 		}	
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;			
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;			
 	}
 	public function registerCheckout(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();	
+		$checked=1;
+		$msg=array();
+		$data=array();
+			
 		if($zController->isPost()){		
 			$action = $zController->getParams('action');		
 			if(check_admin_referer($action,'security_code')){	
-				$arrData=$_POST;
+				$data=$_POST;
 				$email=trim($_POST["email"]) ;
 				$username=trim($_POST["username"]) ;
 				$password=$_POST["password"] ;
 				$password_confirm=$_POST["password_confirm"] ;						
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",mb_strtolower($email,"UTF-8")  )){
-					$arrError["email"] = 'Email không hợp lệ';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email không hợp lệ';
+					$data["email"] = '';
+					$checked=0;
 				}
 				if(!preg_match("#^[a-z_][a-z0-9_\.\s]{4,31}$#",mb_strtolower($username,'UTF-8') )){
-					$arrError["username"] = 'Username không hợp lệ';
-					$arrData["username"] = "";	
-					$flag=0;
+					$msg["username"] = 'Username không hợp lệ';
+					$data["username"] = "";	
+					$checked=0;
 				}
 				if(mb_strlen($password) < 6){
-					$arrError["password"] = 'Mật khẩu phải từ 6 ký tự trở lên';
-					$arrData["password"] = "";
-					$arrData["password_confirm"] = "";	
-					$flag=0;
+					$msg["password"] = 'Mật khẩu phải từ 6 ký tự trở lên';
+					$data["password"] = "";
+					$data["password_confirm"] = "";	
+					$checked=0;
 				}
 				if(strcmp($password, $password_confirm)!=0){
-					$arrError["password_confirm"] = 'Mật khẩu và mật khẩu xác nhận phải trùng nhau';
-					$arrData["password_confirm"] = "";		
-					$flag=0;
+					$msg["password_confirm"] = 'Mật khẩu và mật khẩu xác nhận phải trùng nhau';
+					$data["password_confirm"] = "";		
+					$checked=0;
 				}			
 				$tbuser = $wpdb->prefix . 'shk_user';			
 				$query ="SELECT u.id
@@ -409,9 +408,9 @@ class ProductController{
 					";								
 				$lst = $wpdb->get_results($query,ARRAY_A);		
 				if(!empty($lst)){
-					$arrError["email"] = 'Email đã tồn tại';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email đã tồn tại';
+					$data["email"] = '';
+					$checked=0;
 				}
 				$query =" 
 						SELECT u.id
@@ -421,11 +420,11 @@ class ProductController{
 					";					
 				$lst = $wpdb->get_results($query,ARRAY_A);		
 				if(!empty($lst)){
-					$arrError["username"] = 'Username đã tồn tại';
-					$arrData["username"] = '';
-					$flag=0;
+					$msg["username"] = 'Username đã tồn tại';
+					$data["username"] = '';
+					$checked=0;
 				}				
-				if((int)@$flag==1){					
+				if((int)@$checked==1){					
 					$model = $zController->getModel("/frontend","UserModel");
 					$model->save_item();
 					$username=trim($_POST["username"]);	
@@ -442,20 +441,20 @@ class ProductController{
 				}
 			}
 		}
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;			
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;			
 	}
 	public function loginCheckout(){			
 		global $zController;	
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();			
+		$checked=1;
+		$msg=array();
+		$data=array();
+					
 		if($zController->isPost()){	
 			$action = $zController->getParams('action');
 			if(check_admin_referer($action,'security_code')){
-				$arrData=$_POST;
+				$data=$_POST;
 				$username=trim($_POST["username"]);		
 				$password=md5($_POST["password"]);					
 				$model = $zController->getModel("/frontend","UserModel");		 
@@ -471,24 +470,24 @@ class ProductController{
 					$permarlink = get_permalink($pageID);	
 					wp_redirect($permarlink);												
 				}else{					
-					$arrError["exception_error"]='Đăng nhập không thành công'; 			
+					$msg["exception_error"]='Đăng nhập không thành công'; 			
 				}	
 			}					
 		}		
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;					
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;					
 	}		
 	public function contact(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();	
+		$checked=1;
+		$msg=array();
+		$data=array();
+			
 		if($zController->isPost()){
 			$action = $zController->getParams('action');			
 			if(check_admin_referer($action,'security_code')){				
-				$arrData=$_POST;
+				$data=$_POST;
 				
 				$fullname 			=	trim(@$_POST["fullname"]);
 				$email 				=	trim(@$_POST['email']);		
@@ -498,31 +497,31 @@ class ProductController{
 				$content 			=	trim(@$_POST["content"]);				
 
 				if(mb_strlen($fullname) < 6){
-					$arrError["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
-					$arrData["fullname"] = "";					
-					$flag=0;
+					$msg["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
+					$data["fullname"] = "";					
+					$checked=0;
 				}
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$arrError["email"] = 'Email không hợp lệ';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email không hợp lệ';
+					$data["email"] = '';
+					$checked=0;
 				}
 				if(mb_strlen($mobile) < 10){
-					$arrError["mobile"] = 'Số điện thoại không hợp lệ';
-					$arrData["mobile"] = "";					
-					$flag=0;
+					$msg["mobile"] = 'Số điện thoại không hợp lệ';
+					$data["mobile"] = "";					
+					$checked=0;
 				}
 				if(empty($title)){
-					$arrError["title"] = 'Tiêu đề không hợp lệ';
-					$arrData["title"] = "";					
-					$flag=0;
+					$msg["title"] = 'Tiêu đề không hợp lệ';
+					$data["title"] = "";					
+					$checked=0;
 				}		
 				if(empty($address)){
-					$arrError["address"] = 'Địa chỉ không hợp lệ';
-					$arrData["address"] = "";					
-					$flag=0;
+					$msg["address"] = 'Địa chỉ không hợp lệ';
+					$data["address"] = "";					
+					$checked=0;
 				}		
-				if((int)@$flag==1){
+				if((int)@$checked==1){
 					$data=array();
 					$option_name = 'zendvn_sp_setting';
 					$data = get_option('zendvn_sp_setting',array());				
@@ -570,11 +569,11 @@ class ProductController{
 					$html_content .='</table>';												
 					$mail->msgHTML($html_content);
 					if ($mail->send()) {               	
-						$arrSuccess['success']='Gửi thông tin hoàn tất'; 
+						$checked['success']='Gửi thông tin hoàn tất'; 
 						echo '<script language="javascript" type="text/javascript">alert("Gửi thông tin hoàn tất");</script>'; 
 					}
 					else{
-						$arrError["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+						$msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
 						echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
 					}	
 				}else{
@@ -582,20 +581,20 @@ class ProductController{
 				}										
 			}
 		}			
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;			
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;			
 	}
 	public function booking(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();	
+		$checked=1;
+		$msg=array();
+		$data=array();
+			
 		if($zController->isPost()){
 			$action = $zController->getParams('action');			
 			if(check_admin_referer($action,'security_code')){				
-				$arrData=$_POST;
+				$data=$_POST;
 				
 				$fullname 			=	trim(@$_POST["fullname"]);
 				$email 				=	trim(@$_POST['email']);		
@@ -605,36 +604,36 @@ class ProductController{
 				$number_person 		=	trim(@$_POST["number_person"]);				
 
 				if(mb_strlen($fullname) < 6){
-					$arrError["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
-					$arrData["fullname"] = "";					
-					$flag=0;
+					$msg["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
+					$data["fullname"] = "";					
+					$checked=0;
 				}
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$arrError["email"] = 'Email không hợp lệ';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email không hợp lệ';
+					$data["email"] = '';
+					$checked=0;
 				}
 				if(mb_strlen($mobile) < 10){
-					$arrError["mobile"] = 'Số điện thoại không hợp lệ';
-					$arrData["mobile"] = "";					
-					$flag=0;
+					$msg["mobile"] = 'Số điện thoại không hợp lệ';
+					$data["mobile"] = "";					
+					$checked=0;
 				}
 				if(empty($datebooking)){
-					$arrError["datebooking"] = 'Ngày đặt bàn không hợp lệ';
-					$arrData["datebooking"] = "";					
-					$flag=0;
+					$msg["datebooking"] = 'Ngày đặt bàn không hợp lệ';
+					$data["datebooking"] = "";					
+					$checked=0;
 				}
 				if(empty($timebooking)){
-					$arrError["timebooking"] = 'Thời gian đặt bàn không hợp lệ';
-					$arrData["timebooking"] = "";					
-					$flag=0;
+					$msg["timebooking"] = 'Thời gian đặt bàn không hợp lệ';
+					$data["timebooking"] = "";					
+					$checked=0;
 				}
 				if((int)@$number_person == 0){
-					$arrError["number_person"] = 'Vui lòng chọn số lượng người tham dự';
-					$arrData["number_person"] = "";					
-					$flag=0;
+					$msg["number_person"] = 'Vui lòng chọn số lượng người tham dự';
+					$data["number_person"] = "";					
+					$checked=0;
 				}				
-				if((int)@$flag==1){
+				if((int)@$checked==1){
 					$data=array();
 					$option_name = 'zendvn_sp_setting';
 					$data = get_option('zendvn_sp_setting',array());				
@@ -680,11 +679,11 @@ class ProductController{
 					$html_content .='</table>';							   				
 					$mail->msgHTML($html_content);
 					if ($mail->send()) {               	
-						$arrSuccess['success']='Đặt bàn hoàn tất'; 
+						$checked['success']='Đặt bàn hoàn tất'; 
 						echo '<script language="javascript" type="text/javascript">alert("Đặt bàn hoàn tất");</script>'; 
 					}
 					else{
-						$arrError["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+						$msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
 						echo '<script language="javascript" type="text/javascript">alert("Có sự cố trong quá trình gửi dữ liệu");</script>'; 
 					}	
 				}else{
@@ -692,20 +691,20 @@ class ProductController{
 				}										
 			}
 		}			
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;			
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;			
 	}
 	public function reservation(){
 		global $zController,$wpdb;		
-		$flag=1;
-		$arrError=array();
-		$arrData=array();
-		$arrSuccess=array();	
+		$checked=1;
+		$msg=array();
+		$data=array();
+			
 		if($zController->isPost()){
 			$action = $zController->getParams('action');			
 			if(check_admin_referer($action,'security_code')){				
-				$arrData=$_POST;
+				$data=$_POST;
 				
 				$fullname 			=	trim(@$_POST["fullname"]);
 				$email 				=	trim(@$_POST['email']);		
@@ -716,36 +715,36 @@ class ProductController{
 				$message 			=	trim(@$_POST["message"]);
 
 				if(mb_strlen($fullname) < 6){
-					$arrError["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
-					$arrData["fullname"] = "";					
-					$flag=0;
+					$msg["fullname"] = 'Họ tên phải chứa từ 6 ký tự trở lên';
+					$data["fullname"] = "";					
+					$checked=0;
 				}
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$arrError["email"] = 'Email không hợp lệ';
-					$arrData["email"] = '';
-					$flag=0;
+					$msg["email"] = 'Email không hợp lệ';
+					$data["email"] = '';
+					$checked=0;
 				}
 				if(mb_strlen($mobile) < 10){
-					$arrError["mobile"] = 'Số điện thoại không hợp lệ';
-					$arrData["mobile"] = "";					
-					$flag=0;
+					$msg["mobile"] = 'Số điện thoại không hợp lệ';
+					$data["mobile"] = "";					
+					$checked=0;
 				}
 				if(empty($datebooking)){
-					$arrError["datebooking"] = 'Ngày đặt bàn không hợp lệ';
-					$arrData["datebooking"] = "";					
-					$flag=0;
+					$msg["datebooking"] = 'Ngày đặt bàn không hợp lệ';
+					$data["datebooking"] = "";					
+					$checked=0;
 				}
 				if(empty($timebooking)){
-					$arrError["timebooking"] = 'Thời gian đặt bàn không hợp lệ';
-					$arrData["timebooking"] = "";					
-					$flag=0;
+					$msg["timebooking"] = 'Thời gian đặt bàn không hợp lệ';
+					$data["timebooking"] = "";					
+					$checked=0;
 				}
 				if((int)@$number_person == 0){
-					$arrError["number_person"] = 'Vui lòng chọn số lượng người tham dự';
-					$arrData["number_person"] = "";					
-					$flag=0;
+					$msg["number_person"] = 'Vui lòng chọn số lượng người tham dự';
+					$data["number_person"] = "";					
+					$checked=0;
 				}				
-				if((int)@$flag==1){
+				if((int)@$checked==1){
 					$data=array();
 					$option_name = 'zendvn_sp_setting';
 					$data = get_option('zendvn_sp_setting',array());				
@@ -792,16 +791,16 @@ class ProductController{
 					$html_content .='</table>';							   				
 					$mail->msgHTML($html_content);
 					if ($mail->send()) {               	
-						$arrSuccess['success']='Đặt bàn hoàn tất'; 
+						$checked['success']='Đặt bàn hoàn tất'; 
 					}
 					else{
-						$arrError["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
+						$msg["exception_error"]='Quá trình gửi dữ liệu gặp sự cố'; 
 					}	
 				}										
 			}
 		}			
-		$zController->_data["data"] = $arrData;
-		$zController->_data["error"] = $arrError;			
-		$zController->_data["success"] = $arrSuccess;			
+		$zController->_data["data"] = $data;
+		$zController->_data["msg"] = $msg;			
+		$zController->_data["checked"] = $checked;			
 	}
 }
