@@ -49,7 +49,7 @@ class AjaxController{
 				$ssName="vmart";
 				$ssValue="zcart";				
 				$ssCart 	= $zController->getSession('SessionHelper',$ssName,$ssValue);
-				$arrCart = @$ssCart->get($ssValue)["cart"];												
+				$arrCart = @$ssCart->get($ssValue);												
 				if($product_id > 0){						
 					if(count($arrCart) == 0){
 						$arrCart[$product_id]["product_quantity"] = $product_quantity;
@@ -65,13 +65,13 @@ class AjaxController{
 					$arrCart[$product_id]["product_name"]=$product_name;			
 					$arrCart[$product_id]["product_image"]=$product_image;					
 					$arrCart[$product_id]["product_price"]=$product_price;											
-					$product_quantity=(float)$arrCart[$product_id]["product_quantity"];
+					$product_quantity=(float)@$arrCart[$product_id]["product_quantity"];
 					$product_total_price=$product_price * $product_quantity;
 					$arrCart[$product_id]["product_total_price"]=($product_total_price);
 					
-					$cart["cart"]=$arrCart;
+					$cart=$arrCart;
 					$ssCart->set($ssValue,$cart);	
-					$arrCart = @$ssCart->get($ssValue)["cart"];
+					$arrCart = @$ssCart->get($ssValue);
 					if(count($arrCart)){
 						foreach($arrCart as $cart){    
 					    	$total_quantity+=(int)$cart['product_quantity'];

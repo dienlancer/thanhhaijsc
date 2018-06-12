@@ -6,7 +6,7 @@ $pageIDShopping = $zController->getHelper('GetPageId')->get('_wp_page_template',
 $ssName="vmart";
 $ssValue="zcart";
 $ssCart     = $zController->getSession('SessionHelper',$ssName,$ssValue);
-$arrCart = @$ssCart->get($ssValue)["cart"]; 
+$arrCart = @$ssCart->get($ssValue); 
 
 if(count($arrCart)>0){
 	?>

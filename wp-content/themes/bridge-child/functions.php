@@ -170,10 +170,49 @@ function showNavbar(){
 /* begin topbar */
 add_shortcode('top_bar','showTopBar');
 function showTopBar(){
+	global $zController;
+	$page_id_register_member = $zController->getHelper('GetPageId')->get('_wp_page_template','register-member.php');  
+	$page_id_account = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');
+	$page_id_security = $zController->getHelper('GetPageId')->get('_wp_page_template','security.php');  
+	$page_id_history = $zController->getHelper('GetPageId')->get('_wp_page_template','history.php');  
+	$page_id_cart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');   
+	$page_id_search = $zController->getHelper('GetPageId')->get('_wp_page_template','search.php');          
+	$register_member_link = get_permalink($page_id_register_member);
+	$account_link = get_permalink($page_id_account);
+	$security_link=get_permalink($page_id_security);
+	$history_link=get_permalink($page_id_history );
+	$cart_link=get_permalink($page_id_cart );
+	$search_link = get_permalink($page_id_search); 
+
+	$ssName="vmuser";	
+	$ssValue="userlogin";	
+	$arrUser=array();
+	$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);	
+	$arrUser = @$ssUser->get($ssValue);	
 	?>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">test</div>
+			<div class="col-lg-12">
+				<div class="runoutright">
+					<ul class="top-email">
+						<?php                                                              
+						if($arrUser == null){
+							?>
+							<li><a href="<?php echo $register_member_link; ?>" ><i class="fa fa-unlock" aria-hidden="true"></i>&nbsp;Đăng ký</a></li>
+							<li><a href="<?php echo $account_link; ?>" ><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Đăng nhập</a></li>
+							<?php
+						}else{                                     
+							?>
+							<li><a  href="<?php echo $account_link; ?>"><?php echo $arrUser["username"]; ?></a></li>
+							<li><a  href="<?php echo $security_link; ?>">Đổi mật khẩu</a></li>                                
+							<li><a  href="<?php echo $history_link; ?>">Invoice</a></li>
+							<li><a  href="<?php echo site_url("index.php?action=logout") ; ?>">Logout</a></li>
+							<?php                                     
+						}
+						?>   						
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<?php

@@ -15,7 +15,7 @@
     $permarlinkZcart = get_permalink($pageIDzcart);
     $ssValueCart="zcart";    
     $ssCart        = $zController->getSession('SessionHelper',"vmart",$ssValueCart);    
-    $arrCart = $ssCart->get($ssValueCart)["cart"];     
+    $arrCart = $ssCart->get($ssValueCart);     
 
     if(count($arrCart) == 0){        
         wp_redirect($permarlinkZcart);

@@ -13,7 +13,7 @@
                 $ssName="vmuser";
                 $ssValue="userlogin";
                 $ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);
-                $arrUser = @$ssUser->get($ssValue)["userInfo"];
+                $arrUser = @$ssUser->get($ssValue);
                 if(count($arrUser) == 0){
                     wp_redirect($permarlinkLogin);
                 }

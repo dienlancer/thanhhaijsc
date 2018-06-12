@@ -8,8 +8,8 @@
     $ssValueCart="zcart";
     $ssUser       = $zController->getSession('SessionHelper',"vmuser",$ssValueUser);
     $ssCart        = $zController->getSession('SessionHelper',"vmart",$ssValueCart);    
-    $arrUser = @$ssUser->get($ssValueUser)["userInfo"]; 
-    $arrCart = $ssCart->get($ssValueCart)["cart"];     
+    $arrUser = @$ssUser->get($ssValueUser); 
+    $arrCart = $ssCart->get($ssValueCart);     
     $result=true;      
     if(count($arrUser) == 0)        {
         wp_redirect($permarlinkLoginCheckout); 

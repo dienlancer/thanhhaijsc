@@ -125,7 +125,7 @@ class InvoiceModel{
 		$ssValue="zcart";
 		$ss     = $zController->getSession('SessionHelper',$ssName,$ssValue);
 		$ssCart = $ss->get($ssValue);       		
-		$arrSS=$ssCart["cart"];
+		$arrSS=$ssCart;
 		
 		foreach ($arrSS as $key => $value) {
 			$product_id=(int)$value["product_id"];
