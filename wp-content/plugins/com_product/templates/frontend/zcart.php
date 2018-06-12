@@ -71,7 +71,7 @@ $arrCart = @$ssCart->get($ssValue)['cart'];
                                     <td colspan="3">
                                         <a href="index.php?action=delete-all" class="com_product28">Xóa giỏ hàng</a>
                                         <input type="submit" name="btn_update_cart" class="com_product25" value="Cập nhật" />                           
-                                        <a href="<?php echo $permarlinkShopping; ?>" class="com_product27">Tiếp tục mua hàng</a>
+                                        <a href="<?php echo site_url(); ?>" class="com_product27">Tiếp tục mua hàng</a>
                                         <a href="index.php?action=checkout" class="com_product29">Thanh toán</a>
 
                                     </td>
