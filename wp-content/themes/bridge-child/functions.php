@@ -167,6 +167,18 @@ function showNavbar(){
 	<?php
 }
 /* end navbar */
+/* begin topbar */
+add_shortcode('top_bar','showTopBar');
+function showTopBar(){
+	?>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">test</div>
+		</div>
+	</div>
+	<?php
+}
+/* end topbar */
 /* begin search right */
 add_shortcode('search_right','showSearchRight');
 function showSearchRight(){

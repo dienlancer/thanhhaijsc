@@ -879,6 +879,9 @@ div.bellesa-cart a {
 .modal-add-cart{
   z-index: 9999;
 }
+.header_top .right{
+  width: 100%;
+}
 @media (max-width: 768px) { 
 
 }
