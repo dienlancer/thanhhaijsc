@@ -16,7 +16,7 @@ if(count(@$arrUser) == 0){
 }
 $id=@$arrUser["id"];
 $userModel=$zController->getModel("/frontend","UserModel"); 
-$info=$userModel->getUserById($id);
+$info=$userModel->getUserById(@$id);
 $detail=@$info[0];
 $data=@$info[0];   
 ?>

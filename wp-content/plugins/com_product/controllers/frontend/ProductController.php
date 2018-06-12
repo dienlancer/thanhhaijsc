@@ -93,13 +93,13 @@ class ProductController{
 			$action = @$zController->getParams('action');					
 			if(check_admin_referer(@$action,'security_code')){	
 				$data=@$_POST;
-				$username=@$_POST["username"];
+				$username=trim(@$_POST["username"]);
 				$password=@$_POST["password"] ;
 				$password_confirmed=@$_POST["password_confirmed"] ;
-				$email=@$_POST["email"] ;		
-				$fullname=@$_POST["fullname"];	
-				$address=@$_POST["address"];
-				$phone=@$_POST["phone"];			
+				$email=trim(@$_POST["email"]) ;		
+				$fullname=trim(@$_POST["fullname"]);	
+				$address=trim(@$_POST["address"]);
+				$phone=trim(@$_POST["phone"]);			
 				$tbuser = $wpdb->prefix . 'shk_user';				
 				if(mb_strlen(@$username) < 6){
 					$msg["username"] = 'Username phải từ 6 ký tự trở lên';
@@ -232,10 +232,10 @@ class ProductController{
 			if(check_admin_referer(@$action,'security_code')){	
 				$data=@$_POST;
 				$id=(int)(@$_POST["id"]);					
-				$email=@$_POST["email"] ;		
-				$fullname=@$_POST["fullname"];	
-				$address=@$_POST["address"];
-				$phone=@$_POST["phone"];			
+				$email=trim(@$_POST["email"]) ;		
+				$fullname=trim(@$_POST["fullname"]);	
+				$address=trim(@$_POST["address"]);
+				$phone=trim(@$_POST["phone"]);			
 				$tbuser = $wpdb->prefix . 'shk_user';											
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
 					$msg["email"] = 'Email không hợp lệ';

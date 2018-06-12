@@ -171,6 +171,7 @@ function showNavbar(){
 add_shortcode('top_bar','showTopBar');
 function showTopBar(){
 	global $zController;
+	$zController->getController("/frontend","ProductController");
 	$page_id_register_member = $zController->getHelper('GetPageId')->get('_wp_page_template','register-member.php');  
 	$page_id_account = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');
 	$page_id_security = $zController->getHelper('GetPageId')->get('_wp_page_template','security.php');  
