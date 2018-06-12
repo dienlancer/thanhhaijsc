@@ -212,8 +212,7 @@ class ProductController{
 					$user=array("username" => $username,"id"=>$id);
 					$ssUser->set($ssValue,$user);	
 					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','account.php');						
-					$permarlink = get_permalink($pageID);
-					wp_redirect($permarlink);				
+					$permarlink = get_permalink($pageID);					
 					$msg['success']='<span>Đăng ký tài khoản thành công.</span><span class="margin-left-5">Vui lòng xem thông tin tài khoản </span>  <span class="tai-dai"><a href="'.$permarlink.'">tại đây</a></span>';
 				}
 			}
