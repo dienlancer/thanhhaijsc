@@ -27,7 +27,7 @@ class Frontend{
 			}			
 		}
 		if(get_query_var('za_manufacturer') != ''){
-			$file = PLUGIN_PATH  . "templates" . DS . "frontend" . DS . 'za-manufacturer.php';
+			$file = PLUGIN_PATH  . "templates" . DS . "frontend" . DS . 'za-category.php';
 			if(file_exists($file)){
 				return $file;
 			}	

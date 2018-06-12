@@ -20,7 +20,7 @@ function wp_schools_enqueue_scripts() {
 	wp_enqueue_script('bootstrap_js');
 	/* end bootstrap */
 	/* begin elevatezoom */
-	wp_register_script('elevatezoom',get_stylesheet_directory_uri() . '/js/jquery.elevatezoom-3.0.8.min.js',array('jquery'),'1.0',false);
+	wp_register_script('elevatezoom',get_stylesheet_directory_uri() . '/js/jquery.elevatezoom-3.0.8.min.js',array(),false,false);
 	wp_enqueue_script('elevatezoom');	
 	/* end elevatezoom */
 	/* begin youtube */	
@@ -325,8 +325,15 @@ function loadCategoryPage($attrs){
 	$pagination=$zController->getPagination("Pagination",$arrPagination); 
 	if($the_query->have_posts()){		
 		$k=0;
-		echo '<form  method="post"  class="frm" name="frm">';
+		echo '<form  method="post"  class="frm" name="frm">';		
 		echo '<input type="hidden" name="filter_page" value="1" />';
+		?>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1></h1>
+			</div>
+		</div>
+		<?php
 		while ($the_query->have_posts()){
 			$the_query->the_post();
 			$post_id=$the_query->post->ID;																		
@@ -518,9 +525,9 @@ function loadCategoryHome($attrs){
 											$title=get_the_title($post_id);
 											$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
 											$thumbnail=$vHtml->getSmallImage($featured_img);
-											$price=get_post_meta($post_id,"price",true);
-											$sale_price=get_post_meta($post_id,"sale_price",true);
 											$sku=get_post_meta($post_id,"sku",true);
+											$price=get_post_meta($post_id,"price",true);
+											$sale_price=get_post_meta($post_id,"sale_price",true);											
 											$html_price='';                     
 											if((int)@$sale_price > 0){              
 												$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 

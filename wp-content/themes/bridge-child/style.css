@@ -790,6 +790,15 @@ li.narrow .second .inner ul{
 	font-size: 16px;
 	color: #f86666
 }
+.detail-price-off{
+  text-decoration: line-through;
+  font-size: 20px;
+}
+
+.detail-price-on{
+  font-size: 25px;
+  color: #f86666;  
+}
 .gakake{
   display: flex;
   justify-content: flex-end;
@@ -816,6 +825,7 @@ li.narrow .second .inner ul{
 }
 .col-left{
   background: #ffffff;
+  padding: 10px;
 }
 .col-right{
   background: #ffffff;
@@ -826,6 +836,27 @@ li.narrow .second .inner ul{
 }
 .bg-slider{
   position: relative;
+}
+.category-title{
+      font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 0px 0px 10px 0px;
+    display: flex;
+    align-items: center;
+}
+.product-title{
+  font-family: "bebas-neue";
+    font-size: 20px;
+}
+.product-intro{
+  margin-top: 10px;
+  font-size: 11px;
+  color: #818181
+}
+.manufacturer-title{
+  text-transform: uppercase;
 }
 @media (max-width: 768px) { 
 

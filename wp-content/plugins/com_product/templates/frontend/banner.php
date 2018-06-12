@@ -1,3 +1,4 @@
+
 <div class="bg-slider">
     <div>
         <script type="text/javascript" language="javascript">
@@ -27,11 +28,23 @@
         </script>
         <div class="owl-carousel banner owl-theme">
             <?php 
+            $slug='banner-home';
+            if(!empty(get_query_var('za_category'))){
+                $slug=get_query_var('za_category');
+            }            
+            $source_slug=array($slug);
             $args = array(
-                'post_type' => 'banner',  
-                'orderby' => 'date',
-                'order'   => 'DESC',                                        
-            );   
+                'post_type' => 'zabanner',  
+                'orderby' => 'id',
+                'order'   => 'DESC',                                                  
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'za_banner',
+                        'field'    => 'slug',
+                        'terms'    => $source_slug,                                  
+                    ),
+                ),
+            ); 
             $the_query = new WP_Query( $args );
             if($the_query->have_posts()){
                 while ($the_query->have_posts()){
