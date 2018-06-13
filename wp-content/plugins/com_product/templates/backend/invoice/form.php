@@ -21,8 +21,8 @@
 	$inputFullname 	=$vHtml->cmsTextbox('fullname','fullname',"regular-text",sanitize_text_field(@$zController->_data['fullname']));
 	$inputAddress 	=$vHtml->cmsTextbox('address','address',"regular-text",sanitize_text_field(@$zController->_data['address']));
 	$inputPhone 	=$vHtml->cmsTextbox('phone','phone',"regular-text",sanitize_text_field(@$zController->_data['phone']));
-	$inputMobilePhone 	=$vHtml->cmsTextbox('mobilephone','mobilephone',"regular-text",sanitize_text_field(@$zController->_data['mobilephone']));
-	$inputFax 	=$vHtml->cmsTextbox('fax','fax',"regular-text",sanitize_text_field(@$zController->_data['fax']));
+	
+	
 	$lblPaymentMethodTitle=@$zController->_data["payment_method_title"];
 	$lblQuantity 	= number_format(@$zController->_data['quantity'],0,",",".")	;
 	$lblTotalPrice 	=$vHtml->fnPrice(@$zController->_data['total_price']) 	;
@@ -102,19 +102,8 @@
 						<label><i><b>Phone :</b></i></label>
 					</td>
 					<td><?php echo $inputPhone;?></td>
-				</tr>
-				<tr>
-					<td scope="row" align="right">
-						<label><i><b>Mobilephone :</b></i></label>
-					</td>
-					<td><?php echo $inputMobilePhone;?></td>
-				</tr>
-				<tr>
-					<td scope="row" align="right">
-						<label><i><b>Fax :</b></i></label>
-					</td>
-					<td><?php echo $inputFax;?></td>
-				</tr>
+				</tr>				
+				
 				<tr>
 					<td scope="row" align="right">
 						<label><i><b>Phương thức thanh toán :</b></i></label>

@@ -135,7 +135,7 @@ class AdminUserModel extends WP_List_Table{
 		if(count($whereArr)>0){
 			$sql .= " WHERE " . join(" AND ", $whereArr);				
 		}	
-		$sql .= ' ORDER BY m.sort_order';
+		$sql .= ' ORDER BY m.id desc';
 		$this->_sql  = $sql;
 		$paged 		= max(1,@$_REQUEST['paged']);
 		$offset 	= ($paged - 1) * $this->_per_page;
@@ -157,7 +157,7 @@ class AdminUserModel extends WP_List_Table{
 				'name' 				=> 'Username',
 				"email"				=> "Email",	
 				"fullname"			=> "Fullname",	
-				"sort_order"		=> "Sort",								
+				
 				'status' 			=> 'Status',
 				'id'				=> 'ID'
 		);
@@ -226,17 +226,16 @@ class AdminUserModel extends WP_List_Table{
 			$id=(int)$_POST['id'];								
 		}		
 		$flag=1;
-		$password=strtolower(trim($_POST["password"])) ;		
+		$password=$_POST["password"] ;		
 		if(empty($password)){
 			$flag=0;
 		}    
-		$fullname 		=	$_POST["fullname"];		
-		$address		=	$_POST["address"];
-		$phone			=	$_POST["phone"];
-		$mobilephone	=	$_POST["mobilephone"];
-		$fax			=	$_POST["fax"];		
+		$fullname 		=	trim($_POST["fullname"]);		
+		$address		=	trim($_POST["address"]);
+		$phone			=	trim($_POST["phone"]);
+				
 		$status 		=	(int)$_POST["status"];				
-		$sort_order 	=	(int)$_POST["sort_order"];
+		
 		$table 			=	$wpdb->prefix . 'shk_user';		
 		$info="";			
 		switch ($action) {			
@@ -247,52 +246,40 @@ class AdminUserModel extends WP_List_Table{
 				fullname 			= 	%s
 				, password			= 	%s
 				, address			=	%s					
-				, phone				=   %s
-				, mobilephone		=   %s
-				, fax				=   %s
-				, sort_order		=   %d					
+				, phone				=   %s				
+				
 				, status 			= 	%d 
 				where id 			=  	%d " ;
 				$info = $wpdb->prepare($query
 					,$fullname		
 					,$password									
 					,$address
-					,$phone
-					,$mobilephone
-					,$fax
-					,$sort_order
+					,$phone														
 					,$status
 					,$id);
 			}else{
 				$query = "update `".$table."` set 
 				fullname 			= 	%s
 				, address			=	%s	
-				, phone				=   %s
-				, mobilephone		=   %s
-				, fax				=   %s
-				, sort_order		=   %d					
+				, phone				=   %s								
+				
 				, status 			= 	%d 
 				where id 			=  	%d " ;
 				$info = $wpdb->prepare($query
 					,$fullname											
 					,$address
-					,$phone
-					,$mobilephone
-					,$fax
-					,$sort_order
+					,$phone					
+					
 					,$status
 					,$id);
 			}				
 			break;	
 			case "add":
-			$query="insert into `".$table."` (`fullname`,`address`,`phone`,`mobilephone`,`fax`,`sort_order`,`status`) values (%s,%s,%s,%s,%s,%d,%d) ";
+			$query="insert into `".$table."` (`fullname`,`address`,`phone`,`status`) values (%s,%s,%s,%s,%s,%d,%d) ";
 			$info = $wpdb->prepare($query
 				,$fullname											
 				,$address
-				,$phone
-				,$mobilephone
-				,$fax
-				,$sort_order
+				,$phone								
 				,$status
 			);
 			break;

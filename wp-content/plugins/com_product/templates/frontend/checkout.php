@@ -191,12 +191,12 @@ $totalQuantity=0;
                                     <select class="form-control" name="payment_method_id" onchange="changePaymentMethod(this.value);">
                                         <?php 
                                         foreach ($lstPaymentMethod as $key => $value) {
-                                            $id=$value["id"];
+                                            $payment_method_id=$value["id"];
                                             $title=$value["title"];
-                                            if((int)@$data["payment_method"] == (int)@$id)
-                                                echo '<option selected value="'.$id.'">'.$title.'</option>';                               
+                                            if((int)@$data["payment_method_id"] == (int)@$payment_method_id)
+                                                echo '<option selected value="'.$payment_method_id.'">'.$title.'</option>';                               
                                             else
-                                                echo '<option          value="'.$id.'">'.$title.'</option>';                               
+                                                echo '<option          value="'.$payment_method_id.'">'.$title.'</option>';                               
                                         }                            
                                         ?>                                                    
                                     </select>

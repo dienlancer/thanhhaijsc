@@ -19,9 +19,9 @@
 	$inputFullname 	='<input type="text" id="fullname" name="fullname" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fullname']).'" />';
 	$inputAddress 	='<input type="text" id="address" name="address" class="regular-text" value="'.sanitize_text_field(@$zController->_data['address']).'" />';
 	$inputPhone 	='<input type="text" id="phone" name="phone" class="regular-text" value="'.sanitize_text_field(@$zController->_data['phone']).'" />';
-	$inputMobilephone 	='<input type="text" id="mobilephone" name="mobilephone" class="regular-text" value="'.sanitize_text_field(@$zController->_data['mobilephone']).'" />';
-	$inputFax 	='<input type="text" id="fax" name="fax" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fax']).'" />';	
-	$inputSortOrder 	='<input type="text" id="sort_order" name="sort_order" class="regular-text" value="'.sanitize_text_field(@$zController->_data['sort_order']).'" />';
+	
+	
+	
 	$status                 =   (count(@$zController->_data) > 0) ? (int)@$zController->_data['status'] : 1 ;
 	$arrStatus              =   array(-1 => '- Select status -', 1 => 'Hiển thị', 0 => 'Ẩn');  
 	$ddlStatus              =   $vHtml->cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
@@ -67,19 +67,7 @@
 				<tr>
 					<td scope="row" valign="top"><b><i><label>Phone</label></i></b></td>
 					<td><?php echo $inputPhone;?></td>
-				</tr>
-				<tr>
-					<td scope="row" valign="top"><b><i><label>Mobilephone</label></i></b></td>
-					<td><?php echo $inputMobilephone;?></td>
-				</tr>
-				<tr>
-					<td scope="row" valign="top"><b><i><label>Fax</label></i></b></td>
-					<td><?php echo $inputFax;?></td>
-				</tr>			
-				<tr>
-					<td scope="row" valign="top"><b><i><label>SortOrder</label></i></b></td>
-					<td><?php echo $inputSortOrder;?></td>
-				</tr>
+				</tr>				
 				<tr>
 					<td scope="row"><b><i><label>Status</label></i></b></td>
 					<td><?php echo $ddlStatus;?></td>

@@ -103,7 +103,7 @@ class AdminInvoiceModel extends WP_List_Table{
 		if(count($whereArr)>0){
 			$sql .= " WHERE " . join(" AND ", $whereArr);				
 		}	
-		$sql .= ' ORDER BY m.' . esc_sql($orderby) . ' ' . esc_sql($order);
+		$sql .= ' ORDER BY m.id desc';
 		$this->_sql  = $sql;
 		$paged 		= max(1,@$_REQUEST['paged']);
 		$offset 	= ($paged - 1) * $this->_per_page;
@@ -128,7 +128,7 @@ class AdminInvoiceModel extends WP_List_Table{
 				"username"		=>	"Username",				
 				"fullname"		=>	"Name",				
 				"phone"			=>	"Phone",
-				"mobilephone"	=>	"Mobile phone",				
+							
 				"quantity"		=>	"Quantity",
 				"total_price"	=>	"Total price",							
 				'status' 		=> 	'Status',
@@ -209,8 +209,8 @@ class AdminInvoiceModel extends WP_List_Table{
 		$fullname 		=	$arrParam["fullname"];
 		$address		=	$arrParam["address"];
 		$phone 			=	$arrParam["phone"];
-		$mobilephone	=	$arrParam["mobilephone"];
-		$fax 			=	$arrParam["fax"];
+		
+		
 		$status 		=	$arrParam["status"];		
 		$table 			= 	$wpdb->prefix . 'shk_invoice';					
 		switch ($action) {			
@@ -220,8 +220,8 @@ class AdminInvoiceModel extends WP_List_Table{
 							,  fullname = %s 
 							, address = %s
 							, phone = %s
-							, mobilephone = %s
-							, fax = %s							
+							
+							
 							, status = %d 
 							where id =  %d " ;
 				$info 	= $wpdb->prepare($query
@@ -229,8 +229,8 @@ class AdminInvoiceModel extends WP_List_Table{
 											,$fullname
 											,$address
 											,$phone
-											,$mobilephone
-											,$fax											
+											
+											
 											,$status
 											,$id);
 				break;	
