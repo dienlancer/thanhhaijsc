@@ -969,7 +969,9 @@ div.bellesa-cart a {
   border:1px solid #3333335e !important;
 }
 @media (max-width: 768px) { 
-
+  .nav_bar{
+    display: none;
+  }
 }
 @media (max-width: 576px){
 
