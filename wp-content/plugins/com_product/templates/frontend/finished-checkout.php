@@ -6,10 +6,10 @@
         <div class="col-lg-12">
             <div>  
                 <?php   
-                $pageIDLoginCheckout = $zController->getHelper('GetPageId')->get('_wp_page_template','login-checkout.php'); 
-                $pageIDzcart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');    
-                $permarlinkLoginCheckout = get_permalink($pageIDLoginCheckout);            
-                $permarlinkZCart = get_permalink($pageIDzcart);
+                $page_login_checkout = $zController->getHelper('GetPageId')->get('_wp_page_template','login-checkout.php'); 
+                $page_id_zcart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');    
+                $permarlink_login_checkout = get_permalink($page_login_checkout);            
+                $permarlink_zcart = get_permalink($page_id_zcart);
                 $ssValueUser="userlogin";
                 $ssValueCart="zcart";
                 $ssUser       = $zController->getSession('SessionHelper',"vmuser",$ssValueUser);
@@ -18,11 +18,11 @@
                 $arrCart = $ssCart->get($ssValueCart)['cart'];     
                 $result=true;      
                 if(count($arrUser) == 0)        {
-                    wp_redirect($permarlinkLoginCheckout); 
+                    wp_redirect($permarlink_login_checkout); 
                     $result=false;
                 }           
                 if(count($arrCart) == 0){        
-                    wp_redirect($permarlinkZCart);
+                    wp_redirect($permarlink_zcart);
                     $result=false;
                 }   
                 if($result==true){
@@ -31,7 +31,7 @@
                     $ssCart->reset();   
                 }   
                 ?>
-                <div class="comproduct35">Thanh toán thành công</div>
+                <div class="note note-success">Thanh toán thành công</div>
             </div>
         </div>
     </div>

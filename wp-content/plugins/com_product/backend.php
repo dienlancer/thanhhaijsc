@@ -52,7 +52,7 @@ class Backend{
 		add_submenu_page($this->_menuSlug, 'Product ', 'Sản phẩm', 'manage_options',
 						$this->_menuSlug . '-product',array($this,'dispatch_function'));					
 						
-		add_submenu_page($this->_menuSlug, 'Invoice', 'Hóa đơn', 'manage_options',
+		add_submenu_page($this->_menuSlug, 'Invoice', 'Đơn đặt hàng', 'manage_options',
 						$this->_menuSlug . '-invoice',array($this,'dispatch_function'));
 
 		add_submenu_page($this->_menuSlug, 'Setting', 'Cấu hình', 'manage_options',

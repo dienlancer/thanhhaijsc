@@ -488,81 +488,81 @@ class ProductController{
 						$checked=0;
 					}
 				}	
-				if((int)$payment_method_id==0){
-                  $msg["payment_method_id"] 	= 'Xin vui lòng nhập phương thức thanh toán';
-                  $data["payment_method_id"] 	= "";                  
+				if((int)@$payment_method_id==0){
+                  $msg["payment_method_id"] 	= 'Xin vui lòng chọn phương thức thanh toán';
+                  $data["payment_method_id"] 	= 0;                  
                   $checked=0;
                 }												
 		        if((int)@$checked==1){									
-	                	$tableUser = $wpdb->prefix . 'shk_user';	
-	                	$tableInvoice = $wpdb->prefix . 'shk_invoice';
-	                	$tableInvoiceDetail = $wpdb->prefix . 'shk_invoice_detail';
+                	$tableUser = $wpdb->prefix . 'shk_user';	
+                	$tableInvoice = $wpdb->prefix . 'shk_invoice';
+                	$tableInvoiceDetail = $wpdb->prefix . 'shk_invoice_detail';
 
-	                	$invoice_code=$vHtml->randomString(10);	    
-	                	$created_date=date("Y-m-d H:i:s",time());
-	                	$status=0;
-	                	$userModel = $zController->getModel("/frontend","UserModel");
-	                	$info=$userModel->getUserById(@$id);
-	                	$username=@$info[0]['username'];
-	                	$query = "UPDATE {$tableUser} set `email` = %s, `fullname` = %s, `address` = %s, `phone` = %s where `id` = %d ";
-	                	$info = $wpdb->prepare($query,$email,$fullname,$address,$phone,$id
-	                	);
-	                	$wpdb->query($info);	
-	                	$query = "INSERT INTO {$tableInvoice} (
-	                	`code`,
-	                	`user_id`,
-	                	`created_date`,
-	                	`username`,  
-	                	`email`,
-	                	`fullname`,
-	                	`address`,
-	                	`phone`,			  
-	                	`payment_method_id`,
-	                	`quantity`,
-	                	`total_price`,
-	                	`status`
-	                	) VALUES
-	                	(
-	                	%s,
-	                	%d,
-	                	%s,
-	                	%s,  
-	                	%s,
-	                	%s,
-	                	%s,
-	                	%s,	
-	                	%d,
-	                	%d,
-	                	%f,
-	                	%d
-	                	)";		
-		                $info = $wpdb->prepare($query,
-		                	$invoice_code,
-		                	$id,		
-		                	$created_date,	  
-		                	$username,  
-		                	$email,
-		                	$fullname,
-		                	$address,
-		                	$phone,			  
-		                	$payment_method_id,
-		                	$totalQuantity,
-		                	$totalPrice,
-		                	$status
-		                );						
-		                $wpdb->query($info);	
+                	$invoice_code=$vHtml->randomString(10);	    
+                	$created_date=date("Y-m-d H:i:s",time());
+                	$status=0;
+                	$userModel = $zController->getModel("/frontend","UserModel");
+                	$info=$userModel->getUserById(@$id);
+                	$username=@$info[0]['username'];
+                	$query = "UPDATE {$tableUser} set `email` = %s, `fullname` = %s, `address` = %s, `phone` = %s where `id` = %d ";
+                	$info = $wpdb->prepare($query,$email,$fullname,$address,$phone,$id
+                	);
+                	$wpdb->query($info);	
+                	$query = "INSERT INTO {$tableInvoice} (
+                	`code`,
+                	`user_id`,
+                	`created_date`,
+                	`username`,  
+                	`email`,
+                	`fullname`,
+                	`address`,
+                	`phone`,			  
+                	`payment_method_id`,
+                	`quantity`,
+                	`total_price`,
+                	`status`
+                	) VALUES
+                	(
+                	%s,
+                	%d,
+                	%s,
+                	%s,  
+                	%s,
+                	%s,
+                	%s,
+                	%s,	
+                	%d,
+                	%d,
+                	%f,
+                	%d
+                	)";		
+	                $info = $wpdb->prepare($query,
+	                	$invoice_code,
+	                	$id,		
+	                	$created_date,	  
+	                	$username,  
+	                	$email,
+	                	$fullname,
+	                	$address,
+	                	$phone,			  
+	                	$payment_method_id,
+	                	$totalQuantity,
+	                	$totalPrice,
+	                	$status
+	                );						
+	                $wpdb->query($info);	
 
-		                $sql = "SELECT max(p.id)  as invoice_id  FROM {$tableInvoice} p" ;
-		                $result = $wpdb->get_results($sql,ARRAY_A);	
-		                $invoice_id=(int)$result[0]["invoice_id"];
+	                $sql = "SELECT max(p.id)  as invoice_id  FROM {$tableInvoice} p" ;
+	                $result = $wpdb->get_results($sql,ARRAY_A);	
+	                $invoice_id=(int)@$result[0]["invoice_id"];
 
-		                $ssName="vmart";
-		                $ssValue="zcart";
-		                $ss     = $zController->getSession('SessionHelper',$ssName,$ssValue);
-		                $ssCart = $ss->get($ssValue);       		
-		                $arrSS=$ssCart['cart'];
+	                $ssName="vmart";
+	                $ssValue="zcart";
+	                $ss     = $zController->getSession('SessionHelper',$ssName,$ssValue);
+	                $ssCart = $ss->get($ssValue);       		
+	                $arrSS=$ssCart['cart'];
 
-		                foreach ($arrSS as $key => $value) {
+	                foreach ($arrSS as $key => $value) {
 						$product_id=(int)$value["product_id"];
 						$product_sku=$value["product_sku"];
 						$product_name=$value["product_name"];			
@@ -590,7 +590,6 @@ class ProductController{
 							  %f
 						)";
 						$info = $wpdb->prepare($query,
-
 								$invoice_id,
 							  $product_id,
 							  $product_sku,
@@ -599,14 +598,12 @@ class ProductController{
 							  $product_price,  
 							  $product_quantity,  
 							  $product_total_price
-
 							);
 						$wpdb->query($info);
 					}
-
-		                $pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','finished-checkout.php');	
-		                $permarlink = get_permalink($pageID);										
-		                wp_redirect($permarlink);	
+	                $pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','finished-checkout.php');	
+	                $permarlink = get_permalink($pageID);										
+	                wp_redirect($permarlink);	
 		        }
 		    }
 		}	
