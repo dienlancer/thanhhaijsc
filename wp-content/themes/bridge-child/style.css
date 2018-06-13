@@ -965,6 +965,9 @@ div.bellesa-cart a {
   
   font-weight: bold;
 }
+.wpcf7-form-control-wrap input,.wpcf7-form-control-wrap textarea{
+  border:1px solid #3333335e !important;
+}
 @media (max-width: 768px) { 
 
 }
