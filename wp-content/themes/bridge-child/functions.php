@@ -91,80 +91,11 @@ function script_fanpage(){
 	echo $strScript;
 }
 /* end fanpage */
-/* begin category product menu */
-add_shortcode('category_product_sc','showCategoryProductMenu');
-function showCategoryProductMenu(){	
-	$args = array( 
-		'menu'              => '', 
-		'container'         => '', 
-		'container_class'   => '', 
-		'container_id'      => '', 
-		'menu_class'        => 'category-product-menu', 
-		'menu_id'           => '', 
-		'echo'              => true, 
-		'fallback_cb'       => 'wp_page_menu', 
-		'before'            => '', 
-		'after'             => '', 
-		'link_before'       => '', 
-		'link_after'        => '', 
-		'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',  
-		'depth'             => 3, 
-		'walker'            => '', 
-		'theme_location'    => 'category-product-menu' 
-	);
-	?>
-	<div class="categoryproductmnsc">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<?php wp_nav_menu($args); ?>		
-				</div>
-				<div class="col-lg-9"></div>
-			</div>
-		</div>		
-	</div>
-	<?php	
-}
-/* end category product menu */
+
 /* begin navbar */
 add_shortcode('nav_bar','showNavbar');
 function showNavbar(){
-	?>
-	<div class="nav_bar">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3">
-					<div class="canon">
-						<div class="fata">
-							<i><span></span><span></span><span></span></i>
-						</div>
-						<div class="margin-left-15"><b>Danh mục sản phẩm</b></div>						
-					</div>
-				</div>
-				<div class="col-lg-9">
-					<div class="rafaen">
-						<div class="riu">
-							<div><img src="<?php echo site_url('wp-content/uploads/ball.gif'); ?>"></div>
-							<div class="sale-hot"><b>Mua Online Ưu Đãi Hơn Đến 2 Triệu</b></div>
-						</div>	
-						<div class="kaki">
-							<div class="phiba">&nbsp;</div>
-							<div class="sale-hot"><b>Khuyến Mãi HOT</b></div>
-						</div>	
-						<div class="himlam">
-							<div class="dola">&nbsp;</div>
-							<div class="sale-hot"><b>Trả Góp 0%</b></div>
-						</div>																
-						<div class="goc-cong-nghe">
-							<div class="icon-goc-cong-nghe"></div>
-							<div class="margin-left-10 limiavia"><a href="javascript:void(0);"><b>Góc Công Nghệ</b></a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php
+	require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "top-sidebar.php";	
 }
 /* end navbar */
 /* begin topbar */
@@ -206,7 +137,7 @@ function showTopBar(){
 							?>
 							<li><a  href="<?php echo $account_link; ?>"><?php echo $arrUser["username"]; ?></a></li>
 							<li><a  href="<?php echo $security_link; ?>">Đổi mật khẩu</a></li>                                
-							<li><a  href="<?php echo $history_link; ?>">Lịch sử giao dịch</a></li>
+							<!--<li><a  href="<?php echo $history_link; ?>">Lịch sử giao dịch</a></li>-->
 							<li><a  href="<?php echo site_url('index.php?action=logout') ?>">Logout</a></li>
 							<?php                                     
 						}
@@ -276,66 +207,8 @@ function showSearchRight(){
 /* end search right */
 /* begin banner */
 add_shortcode('banner','loadBanner');
-function loadBanner($attrs){
-	$term_slug=$attrs['item'];	
-	$term = get_term_by('slug', $term_slug, 'za_banner');	
-	$source_term_id=array($term->term_id);		
-	?>
-	<div>
-        <script type="text/javascript" language="javascript">
-            jQuery(document).ready(function(){
-                jQuery(".top-banner").owlCarousel({
-                    autoplay:true,                    
-                    loop:true,
-                    margin:0,                        
-                    nav:false,            
-                    mouseDrag: true,
-                    touchDrag: true,                                
-                    responsiveClass:true,
-                    responsive:{
-                        0:{
-                            items:1
-                        },
-                        600:{
-                            items:1
-                        },
-                        1000:{
-                            items:1
-                        }
-                    }
-                });
-
-            });                
-        </script>
-        <div class="owl-carousel top-banner owl-theme">
-            <?php 
-            $args = array(
-            	'post_type' => 'zabanner',  
-            	'orderby' => 'id',
-            	'order'   => 'DESC',  		      							
-            	'tax_query' => array(
-            		array(
-            			'taxonomy' => 'za_banner',
-            			'field'    => 'term_id',
-            			'terms'    => $source_term_id,									
-            		),
-            	),
-            ); 
-            $the_query = new WP_Query( $args );
-            if($the_query->have_posts()){
-                while ($the_query->have_posts()){
-                    $the_query->the_post();
-                    $post_id=$the_query->post->ID;  
-                    $featured_img=get_the_post_thumbnail_url($post_id, 'full'); 
-                    ?>
-                    <div><img src="<?php echo $featured_img; ?>"></div>
-                    <?php
-                }
-            }
-            ?>
-        </div>
-    </div>
-	<?php
+function loadBanner(){
+	require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"; 
 }
 /* end banner */
 /* begin category page */
@@ -657,3 +530,82 @@ function loadManufacturerPage($attrs){
 	}			
 }
 /* end manufacturer_page */
+/* begin tin tuc */
+add_shortcode('news','loadNews');
+function loadNews(){
+	global $zController,$zendvn_sp_settings;    
+	$vHtml=new HtmlControl();
+	$productModel=$zController->getModel("/frontend","ProductModel"); 
+	$args = array(
+		'post_type' => 'post',  
+		'orderby' => 'id',
+		'order'   => 'DESC'     										
+	);  
+	$the_query = new WP_Query( $args );
+	$totalItemsPerPage=0;
+	$pageRange=10;
+	$currentPage=1; 
+	$totalItemsPerPage=9;
+	if(!empty(@$_POST["filter_page"]))          {
+		$currentPage=@$_POST["filter_page"];  
+	}
+	if(!empty(@$zendvn_sp_settings["article_number"])){
+    	$totalItemsPerPage=(int)@$zendvn_sp_settings["article_number"];        
+	}
+	$productModel->setWpQuery($the_query);   
+	$productModel->setPerpage($totalItemsPerPage);        
+	$productModel->prepare_items();               
+	$totalItems= $productModel->getTotalItems();               
+	$arrPagination=array(
+		"totalItems"=>$totalItems,
+		"totalItemsPerPage"=>$totalItemsPerPage,
+		"pageRange"=>$pageRange,
+		"currentPage"=>$currentPage   
+	);    
+	$pagination=$zController->getPagination("Pagination",$arrPagination); 
+	if($the_query->have_posts()){		
+		$k=0;
+		echo '<form  method="post"  class="frm tilan" name="frm">';		
+		echo '<input type="hidden" name="filter_page" value="1" />';
+		?>
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="single-title">TIN TỨC</h1>
+			</div>
+		</div>
+		<?php
+		while ($the_query->have_posts()){
+			$the_query->the_post();     
+			$post_id=$the_query->post->ID;                          
+			$permalink=get_the_permalink($post_id);
+			$title=get_the_title($post_id);
+			$excerpt=get_post_meta($post_id,"intro",true);
+			$excerpt=substr($excerpt, 0,300).'...';         
+			$content=get_the_content($post_id);
+			$thumbnail=get_the_post_thumbnail_url($post_id, 'thumbnail');   
+			?>
+			<div class="margin-top-15">
+				<div class="row">
+					<div class="col-lg-2"><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" /></a></div>
+					<div class="col-lg-10">
+						<h2 class="box-featured-article-title"><a href="<?php echo $permalink; ?>"><?php echo $title; ?></a></h2>
+						<div class="margin-top-15"><?php echo $excerpt; ?></div>
+						<div class="box-featured-article-readmore">
+							<a href="<?php echo $permalink; ?>">
+								<div class="lialo">
+									<div><i class="fas fa-arrow-circle-right"></i></div>
+									<div class="margin-left-5">Xem thêm</div>
+								</div>									
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>			
+			<?php 		
+		}
+		wp_reset_postdata();  	
+		echo $pagination->showPagination();
+		echo '</form>';		
+	}		
+}
+/* end tin tuc */

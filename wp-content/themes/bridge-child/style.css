@@ -938,6 +938,33 @@ div.bellesa-cart a {
   background: #ffffff;
   padding: 10px;
 }
+.content-align{
+  text-align: justify;
+}
+.box-featured-article-title a {
+    color: #333;
+    font-size: 13px;
+    font-weight: bold;
+}
+.box-featured-article-title{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.box-featured-article-readmore {
+    text-align: right;
+}
+.box-featured-article-readmore a {
+    display: inline-block;
+    font-size: 13px;
+}
+.lialo {
+    display: flex;
+    align-items: center;
+}
+.intro{
+  
+  font-weight: bold;
+}
 @media (max-width: 768px) { 
 
 }

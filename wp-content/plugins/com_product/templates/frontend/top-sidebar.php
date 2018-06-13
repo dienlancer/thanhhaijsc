@@ -25,7 +25,7 @@
                     </div>                                                              
                     <div class="goc-cong-nghe">
                         <div class="icon-goc-cong-nghe"></div>
-                        <div class="margin-left-10 limiavia"><a href="javascript:void(0);"><b>Góc Công Nghệ</b></a></div>
+                        <div class="margin-left-10 limiavia"><a href="<?php echo site_url('tin-tuc'); ?>"><b>Góc Công Nghệ</b></a></div>
                     </div>
                 </div>
             </div>
