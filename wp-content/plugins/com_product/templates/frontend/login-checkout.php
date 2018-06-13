@@ -6,10 +6,12 @@ global $zController;
 $vHtml=new HtmlControl();  
 $page_id_login_checkout = $zController->getHelper('GetPageId')->get('_wp_page_template','login-checkout.php'); 
 $page_id_zcart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');    
-$page_id_register_member = $zController->getHelper('GetPageId')->get('_wp_page_template','register-member.php');  
+$page_id_register_member = $zController->getHelper('GetPageId')->get('_wp_page_template','register-member.php'); 
+$page_id_checkout = $zController->getHelper('GetPageId')->get('_wp_page_template','checkout.php');  
 $register_member_link = get_permalink($page_id_register_member);
 $permarlink_login_checkout = get_permalink($page_id_login_checkout);            
 $permarlink_zcart = get_permalink($page_id_zcart);
+$permarlink_checkout = get_permalink($page_id_checkout);
 $ssValueUser="userlogin";
 $ssValueCart="zcart";
 $ssUser       = $zController->getSession('SessionHelper',"vmuser",$ssValueUser);
@@ -18,6 +20,9 @@ $arrUser = @$ssUser->get($ssValueUser)['user_info'];
 $arrCart = $ssCart->get($ssValueCart)['cart'];      
 if(count(@$arrCart) == 0){        
     wp_redirect($permarlink_zcart);
+}
+if(count(@$arrUser) > 0){
+    wp_redirect($permarlink_checkout);
 } 
 ?>
 <div class="siman">  
