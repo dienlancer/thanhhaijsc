@@ -73,7 +73,7 @@ if(count(@$arrUser) > 0){
                             <tr>           
                                 <td></td>
                                 <td class="com_product31" class="td-right">
-                                    <div class="btn-dang-ky"><a href="javascript:void(0);" onclick="document.forms['frm'].submit();" >Cập nhật</a></div>
+                                    <div class="btn-dang-ky"><a href="javascript:void(0);" onclick="document.forms['frm'].submit();" >Đăng nhập</a></div>
 
                                 </td>                      
                             </tr> 
