@@ -157,7 +157,7 @@ class ProductController{
 					}
 				}								
 				if(mb_strlen($fullname) < 15){
-					$msg["fullname"] = 'Tên công ty phải từ 15 ký tự trở lên';    
+					$msg["fullname"] = 'Họ tên phải từ 15 ký tự trở lên';    
 					$data['fullname']='';        
 					$checked = 0;
 				}else{
@@ -255,7 +255,7 @@ class ProductController{
 					}
 				}								
 				if(mb_strlen(@$fullname) < 15){
-					$msg["fullname"] = 'Tên công ty phải từ 15 ký tự trở lên';    
+					$msg["fullname"] = 'Họ tên phải từ 15 ký tự trở lên';    
 					$data['fullname']='';        
 					$checked = 0;
 				}else{
@@ -414,58 +414,201 @@ class ProductController{
 		wp_redirect($permarlink);				
 	}
 	public function confirmCheckout(){
-		global $zController,$wpdb;		
+		global $zController,$wpdb;	
+		$vHtml=new HtmlControl(); 	
 		$checked=1;
 		$msg=array();
-		$data=array();
-		
-		if($zController->isPost()){
-			$action = $zController->getParams('action');
-			if(check_admin_referer($action,'security_code')){	
-				$data=$_POST;
-				$email 					=		mb_strtolower(trim($_POST["email"]),'UTF-8') ;	
-				$payment_method			=		mb_strtolower(trim($_POST["payment_method"]),'UTF-8');	
-				if(empty($email)){
-                  $msg["email"] 	= 		'Xin vui lòng nhập email';
-                  $data["email"] 	= 		"";                  
-                  $checked=0;
-                }
-                if((int)$payment_method==0){
-                  $msg["payment_method"] 	= 'Xin vui lòng nhập phương thức thanh toán';
-                  $data["payment_method"] 	= "";                  
-                  $checked=0;
-                }
-				// kiểm tra email hợp lệ			
-				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",$email )){
-					$msg["email"] 	= 'Email không hợp lệ';
-					$data["email"] 	= '';
-					$checked=0;
-				}								
-				$id=(int)($_POST["user_id"]);
-				$tbuser = $wpdb->prefix . 'shk_user';			
-				$query ="SELECT u.id
-						FROM 
-						`".$tbuser."` u
-						WHERE lower(trim(u.email)) = '".$email."' and u.id != '".$id."'
-					";								
-				$lst = $wpdb->get_results($query,ARRAY_A);		
-				if(count($lst) > 0){
-					$msg["email"] = 'Email đã tồn tại';
+		$data=array();							
+		if($zController->isPost()){				
+			$action = @$zController->getParams('action');					
+			if(check_admin_referer(@$action,'security_code')){	
+				$data=@$_POST;				
+				$id=@$_POST['id'];
+				$email 					=		trim(@$_POST["email"]) ;	
+				$payment_method_id			=		trim(@$_POST["payment_method_id"]);		
+				$totalQuantity=(int)$_POST["total_quantity"];
+				$totalPrice=(float)$_POST["total_price"];								
+				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
+					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
 					$checked=0;
-				}					
-				if((int)@$checked==1){
-					$invoiceModel = $zController->getModel("/frontend","InvoiceModel");		 
-					$invoiceModel->createBill();				
-					$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','finished-checkout.php');	
-					$permarlink = get_permalink($pageID);										
-					wp_redirect($permarlink);	
-				}						
-			}
-		}	
+				}else{						
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.email)) = '".mb_strtolower(trim(@$email),'UTF-8')."' and u.id != '".$id."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["email"] = 'Email đã tồn tại';
+						$data["email"] = '';
+						$checked=0;
+					}
+				}								
+				if(mb_strlen(@$fullname) < 15){
+					$msg["fullname"] = 'Họ tên phải từ 15 ký tự trở lên';    
+					$data['fullname']='';        
+					$checked = 0;
+				}else{
+								
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.fullname)) = '".mb_strtolower(trim(@$fullname),'UTF-8')."' and u.id != '".$id."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["fullname"] = 'Họ tên đã tồn tại';
+						$data["fullname"] = '';
+						$checked=0;
+					}
+				}				
+				if(mb_strlen(@$address) < 15){
+					$msg["address"] = 'Địa chỉ phải từ 15 ký tự trở lên';      
+					$data['address']='';      
+					$checked = 0;
+				}   
+				if(mb_strlen(@$phone) < 10){
+					$msg["phone"] = 'Điện thoại công ty phải từ 10 ký tự trở lên';   
+					$data['phone']='';         
+					$checked = 0;
+				}else{							
+					$query ="SELECT u.id
+					FROM 
+					`".$tbuser."` u
+					WHERE lower(trim(u.phone)) = '".mb_strtolower(trim(@$phone),'UTF-8')."' and u.id != '".$id."'
+					";								
+					$lst = $wpdb->get_results($query,ARRAY_A);		
+					if(count($lst) > 0){
+						$msg["phone"] = 'Số điện thoại đã tồn tại';
+						$data["phone"] = '';
+						$checked=0;
+					}
+				}	
+				if((int)$payment_method_id==0){
+                  $msg["payment_method_id"] 	= 'Xin vui lòng nhập phương thức thanh toán';
+                  $data["payment_method_id"] 	= "";                  
+                  $checked=0;
+                }												
+				if((int)@$checked==1){									
+					
+					$tableUser = $wpdb->prefix . 'shk_user';	
+					$tableInvoice = $wpdb->prefix . 'shk_invoice';
+					$tableInvoiceDetail = $wpdb->prefix . 'shk_invoice_detail';
+														    				    
+				    $invoice_code=$vHtml->randomString(10);	    
+				    $created_date=date("Y-m-d H:i:s",time());
+				    $status=0;
+					$query = "UPDATE {$tableUser} set `email` = %s, `fullname` = %s, `address` = %s, `phone` = %s where `id` = %d ";
+					$info = $wpdb->prepare($query,$email,$fullname,$address,$phone,$id
+						);
+					$wpdb->query($info);	
+
+					$query = "INSERT INTO {$tableInvoice} (
+						`code`,
+						  `user_id`,
+						  `created_date`,
+						  `username`,  
+						  `email`,
+						  `fullname`,
+						  `address`,
+						  `phone`,			  
+						  `payment_method_id`,
+						  `quantity`,
+						  `total_price`,
+						  `status`
+					) VALUES
+			(
+						  %s,
+						  %d,
+						  %s,
+						  %s,  
+						  %s,
+						  %s,
+						  %s,
+						  %s,	
+						  %d,
+						  %d,
+						  %f,
+						  %d
+					)";		
+					$info = $wpdb->prepare($query,
+						  $invoice_code,
+						  $user_id,		
+						  $created_date,	  
+						  $username,  
+						  $email,
+						  $fullname,
+						  $address,
+						  $phone,			  
+						  $payment_method_id,
+						  $totalQuantity,
+						  $totalPrice,
+						  $status
+						);						
+					$wpdb->query($info);	
+						
+					$sql = "SELECT max(p.id)  as invoice_id  FROM {$tableInvoice} p" ;
+					$result = $wpdb->get_results($sql,ARRAY_A);	
+					$invoice_id=(int)$result[0]["invoice_id"];
+					
+					$ssName="vmart";
+					$ssValue="zcart";
+					$ss     = $zController->getSession('SessionHelper',$ssName,$ssValue);
+					$ssCart = $ss->get($ssValue);       		
+					$arrSS=$ssCart;
+					
+					foreach ($arrSS as $key => $value) {
+						$product_id=(int)$value["product_id"];
+						$product_sku=$value["product_sku"];
+						$product_name=$value["product_name"];			
+						$product_image=$value["product_image"];			
+						$product_price=(float)$value["product_price"];			
+						$product_quantity=(int)$value["product_quantity"];			
+						$product_total_price=(float)$value["product_total_price"];			
+						$query = "INSERT INTO {$tableInvoiceDetail} (
+							  `invoice_id`,
+							  `product_id`,
+							  `product_sku`,
+							  `product_name`,  
+							  `product_image`,  
+							  `product_price`,  
+							  `product_quantity`,  
+							  `product_total_price`
+						)  VALUES (
+								%d,
+							  %d,
+							  %s,
+							  %s,  
+							  %s,  
+							  %f,  
+							  %d,  
+							  %f
+						)";
+						$info = $wpdb->prepare($query,
+
+							$invoice_id,
+			  $product_id,
+			  $product_sku,
+			  $product_name,  
+			  $product_image,  
+			  $product_price,  
+			  $product_quantity,  
+			  $product_total_price
+
+							);
+						$wpdb->query($info);
+					}
+
+								$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','finished-checkout.php');	
+								$permarlink = get_permalink($pageID);										
+								wp_redirect($permarlink);	
+							}
+						}
+					}	
 		$zController->_data["data"] = $data;
 		$zController->_data["msg"] = $msg;			
-		$zController->_data["checked"] = $checked;			
+		$zController->_data["checked"] = $checked;		
 	}
 	public function registerCheckout(){
 		global $zController,$wpdb;		
@@ -538,7 +681,7 @@ class ProductController{
 					}
 				}								
 				if(mb_strlen($fullname) < 15){
-					$msg["fullname"] = 'Tên công ty phải từ 15 ký tự trở lên';    
+					$msg["fullname"] = 'Họ tên phải từ 15 ký tự trở lên';    
 					$data['fullname']='';        
 					$checked = 0;
 				}else{

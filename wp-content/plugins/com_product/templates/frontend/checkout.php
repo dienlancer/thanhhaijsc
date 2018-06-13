@@ -146,8 +146,7 @@ $totalQuantity=0;
             </div>                
         </div>
         <form method="post" name="frm">
-            <input type="hidden" name="user_id" value="<?php echo @$detail["id"]; ?>" />
-            <input type="hidden" name="hiddenUsername" value="<?php echo @$detail["username"]; ?>" />
+            <input type="hidden" name="id" value="<?php echo @$detail["id"]; ?>" />            
             <input type="hidden" name="total_price" value="<?php echo @$totalPrice; ?>" />
             <input type="hidden" name="total_quantity" value="<?php echo @$totalQuantity; ?>" />
             <input type="hidden" name="action" value="confirm-checkout" />                    
@@ -189,7 +188,7 @@ $totalQuantity=0;
                             </tr>                                               
                             <tr>
                                 <td>
-                                    <select class="form-control" name="payment_method" onchange="changePaymentMethod(this.value);">
+                                    <select class="form-control" name="payment_method_id" onchange="changePaymentMethod(this.value);">
                                         <?php 
                                         foreach ($lstPaymentMethod as $key => $value) {
                                             $id=$value["id"];
