@@ -130,7 +130,7 @@ class AdminInvoiceModel extends WP_List_Table{
 				"phone"			=>	"Phone",
 							
 				"quantity"		=>	"Quantity",
-				"total_price"	=>	"Total price",							
+				"total_price_text"	=>	"Total price",							
 				'status' 		=> 	'Status',
 				'id'			=> 	'ID'
 		);
@@ -205,10 +205,10 @@ class AdminInvoiceModel extends WP_List_Table{
 		$arrParam  		= 	$zController->getParams();		
 		$action 		= 	$arrParam['action'];				
 		$id 			=	(int)$arrParam['id'];								
-		$email			=	$arrParam["email"];
-		$fullname 		=	$arrParam["fullname"];
-		$address		=	$arrParam["address"];
-		$phone 			=	$arrParam["phone"];
+		$email			=	trim($arrParam["email"]);
+		$fullname 		=	trim($arrParam["fullname"]) ;
+		$address		=	trim($arrParam["address"]) ;
+		$phone 			=	trim($arrParam["phone"]) ;
 		
 		
 		$status 		=	$arrParam["status"];		

@@ -87,7 +87,7 @@
 				</tr>
 				<tr>
 					<td scope="row" align="right">
-						<label><i></i><b>Họ tên :</b></label>
+						<label><i><b>Họ tên :</b></i></label>
 					</td>
 					<td><?php echo $inputFullname;?></td>
 				</tr>
@@ -126,11 +126,11 @@
 					<td scope="row" align="right">
 						<label><i><b>Thành tiền :</b></i></label>
 					</td>
-					<td><?php echo $lblTotalPrice;?></td>
+					<td><?php echo $lblTotalPrice . ' đ';?></td>
 				</tr>											
 				<tr>
 					<td scope="row" align="right">
-						<label><i><b>Trạng thái :</b></i></label>
+						<label><i><b>Trạng thái giao hàng :</b></i></label>
 					</td>
 					<td><?php echo $ddlStatus;?></td>
 				</tr>							
