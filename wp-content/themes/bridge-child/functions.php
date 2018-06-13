@@ -108,13 +108,13 @@ function showTopBar(){
 	$page_id_security = $zController->getHelper('GetPageId')->get('_wp_page_template','security.php');  
 	$page_id_history = $zController->getHelper('GetPageId')->get('_wp_page_template','history.php');  
 	$page_id_cart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');   
-	$page_id_search = $zController->getHelper('GetPageId')->get('_wp_page_template','search.php');          
+	         
 	$register_member_link = get_permalink($page_id_register_member);
 	$account_link = get_permalink($page_id_account);
 	$security_link=get_permalink($page_id_security);
 	$history_link=get_permalink($page_id_history );
 	$cart_link=get_permalink($page_id_cart );
-	$search_link = get_permalink($page_id_search); 
+	
 
 	$ssName="vmuser";	
 	$ssValue="userlogin";	
@@ -163,23 +163,37 @@ function showSearchRight(){
 	foreach ($terms as $key => $value) {
 		$source_category[]=array('id'=>$value->term_id,'name'=>$value->name);
 	}
-	$page_id_cart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');  
-	$cart_link=get_permalink($page_id_cart );			
+	$page_id_cart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php'); 
+	$page_id_search = $zController->getHelper('GetPageId')->get('_wp_page_template','search.php');  
+	$cart_link=get_permalink($page_id_cart );		
+	$search_link = get_permalink($page_id_search); 
+	$q='';
+	$za_category_id=0;
+	if(isset($_POST['q'])){
+		$q=trim($_POST['q']);
+	}    
+	if(isset($_POST['za_category_id'])){
+		$za_category_id=(int)@$_POST['za_category_id'];
+	}	
 	?>	
 	<div class="row">
 		<div class="col-lg-6">
-			<form name="frm-search" method="POST" class="ritae" action="/tim-kiem-du-an">
+			<form name="frm-search" method="POST" class="ritae" action="<?php echo $search_link; ?>">
 				<div>
-					<select name="category_product" class="xima">
+					<select name="za_category_id" class="xima">
 						<?php 
-						foreach ($source_category as $key => $value) {						
-							echo '<option value="'.$value['id'].'">'.$value['name'].'</option>';
+						foreach ($source_category as $key => $value) {		
+							if((int)@$value['id'] == (int)@$za_category_id){
+								echo '<option selected value="'.$value['id'].'">'.$value['name'].'</option>';
+							}else{
+								echo '<option value="'.$value['id'].'">'.$value['name'].'</option>';
+							}											
 						}
 						?>
 					</select>
 				</div>
 				<div>
-					<input type="text" name="q" class="lina" placeholder="Bạn cần gì hôm nay ?">
+					<input type="text" name="q" class="lina" value="<?php echo $q; ?>" placeholder="Bạn cần gì hôm nay ?">
 				</div>
 				<div class="oppo">
 					<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
