@@ -153,8 +153,10 @@ class AdminInvoiceModel extends WP_List_Table{
 		}
 		else{
 			$arrID[]=$arrData["id"];
-		}		
+		}				
 		$ids = implode(",",$arrID);			
+		
+		
 		$sql_invoice 		= "DELETE FROM ".$tbl_invoice." 		WHERE id 			IN (".$ids.")";
 		$sql_invoice_detail = "DELETE FROM ".$tbl_invoice_detail." 	WHERE invoice_id 	IN (".$ids.")";		
 		$wpdb->query($sql_invoice);				
@@ -181,7 +183,9 @@ class AdminInvoiceModel extends WP_List_Table{
 		else{
 			$arrID[]=$arrData["id"];
 		}
-		$ids = implode(",",$arrID);			
+		$ids = implode(",",$arrID);		
+		
+			
 		$sql_invoice 		= "UPDATE ".$tbl_invoice." 	 set status = ".$status."		WHERE id 			IN (".$ids.")";		
 		$wpdb->query($sql_invoice);						
 	}	
