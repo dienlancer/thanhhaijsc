@@ -108,10 +108,10 @@ header.sticky .header_top{
 
 
 	.footer_top_holder,	footer #lang_sel > ul > li > a,	footer #lang_sel_click > ul > li > a{
-		background-color: #0f75bc;
+		background-color: #1d1d1d;
 	}
 	footer #lang_sel ul ul a,footer #lang_sel_click ul ul a,footer #lang_sel ul ul a:visited,footer #lang_sel_click ul ul a:visited{
-		background-color: #0f75bc !important;
+		background-color: #1d1d1d !important;
 	}
 
 
@@ -133,7 +133,7 @@ header.sticky .header_top{
 
 
 	.footer_bottom_holder, #lang_sel_footer{
-		background-color:#0f75bcd6;
+		background-color:#353535;
 	}
 
 

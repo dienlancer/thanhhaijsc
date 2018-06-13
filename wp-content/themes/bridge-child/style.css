@@ -972,6 +972,15 @@ div.bellesa-cart a {
   .nav_bar{
     display: none;
   }
+  .categoryproductmnsc{
+    position: relative;
+  }
+  .header_bottom{
+    background-color: #d02 !important
+  }
+  .gakake{
+    display: block;
+  }
 }
 @media (max-width: 576px){
 
