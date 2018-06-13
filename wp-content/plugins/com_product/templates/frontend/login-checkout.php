@@ -10,10 +10,13 @@ $page_id_register_member = $zController->getHelper('GetPageId')->get('_wp_page_t
 $register_member_link = get_permalink($page_id_register_member);
 $permarlink_login_checkout = get_permalink($page_id_login_checkout);            
 $permarlink_zcart = get_permalink($page_id_zcart);
-$ssValueCart='zcart';
-$ssCart        = $zController->getSession('SessionHelper',"vmart",$ssValueCart);    
-$arrCart = $ssCart->get($ssValueCart)['cart'];     
-if(count($arrCart) == 0){        
+$ssValueUser="userlogin";
+$ssValueCart="zcart";
+$ssUser       = $zController->getSession('SessionHelper',"vmuser",$ssValueUser);
+$ssCart        = $zController->getSession('SessionHelper',"vmart",$ssValueCart);
+$arrUser = @$ssUser->get($ssValueUser)['user_info']; 
+$arrCart = $ssCart->get($ssValueCart)['cart'];      
+if(count(@$arrCart) == 0){        
     wp_redirect($permarlink_zcart);
 } 
 ?>
