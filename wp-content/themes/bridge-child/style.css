@@ -926,6 +926,18 @@ div.bellesa-cart a {
   font-weight: bold;
   color: #dd0022;
 }
+.single-title {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 0px 0px 10px 0px;
+    
+}
+.tilan{
+  background: #ffffff;
+  padding: 10px;
+}
 @media (max-width: 768px) { 
 
 }

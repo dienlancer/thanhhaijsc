@@ -225,7 +225,7 @@ function showSearchRight(){
 	global $zController, $zendvn_sp_settings;	
 	$telephone=$zendvn_sp_settings['telephone'];
 	$terms = get_terms( array(
-		'taxonomy' => 'category_product',
+		'taxonomy' => 'za_category',
 		'hide_empty' => false,  ) );	
 	$source_category=array();
 	$source_category[]=array('id'=>0,'name'=>'Tất cả danh mục');
