@@ -41,6 +41,7 @@ foreach ($payment as $key => $value) {
 }
 $total_price=0;
 $total_quantity=0;
+$data=array();
 ?>
 <div class="siman">  
     <div class="container">

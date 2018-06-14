@@ -617,7 +617,7 @@ class ProductController{
 					$html_content .='<tr><td>Thành tiền</td><td>'.$vHtml->fnPrice($total_price).' đ</td></tr>';          
 					$html_content .='</tbody>';
 					$html_content .='</table>';  
-					$html_content .='<div style="margin-top:20px"><center><b>DANH SÁCH MẶT HÀNG</b></center</div>';   
+					$html_content .='<div style="margin-top:20px"><center><h2>DANH SÁCH MẶT HÀNG</h2></center</div>';   
 					$html_content .='<table border="1" cellspacing="5" style="margin-top:5px" cellpadding="5" width="100%">';
 					$html_content .='<thead>';
 					$html_content .='<tr>';
