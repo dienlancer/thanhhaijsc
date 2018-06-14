@@ -601,7 +601,7 @@ class ProductController{
 					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
 					$html_content .='<thead>';
 					$html_content .='<tr>';
-					$html_content .='<th colspan="2"><h3>Thông tin khách hàng</h3></th>';
+					$html_content .='<th colspan="2"><h2>THÔNG TIN KHÁCH HÀNG</h2></th>';
 					$html_content .='</tr>';
 					$html_content .='</thead>';
 					$html_content .='<tbody>';
