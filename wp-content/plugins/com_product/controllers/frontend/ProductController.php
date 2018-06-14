@@ -600,7 +600,7 @@ class ProductController{
 					
 					$html_content='';     
 					$html_content .='<div><center><h2>THÔNG TIN KHÁCH HÀNG</h2></center</div>';   
-					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';					
+					$html_content .='<table border="1"  cellspacing="5" cellpadding="5" width="100%">';					
 					$html_content .='<tbody>';
 					$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
 					$html_content .='<tr><td>Ngày đặt hàng</td><td>'.$ordered_date.'</td></tr>';
@@ -616,7 +616,7 @@ class ProductController{
 					$html_content .='</tbody>';
 					$html_content .='</table>';  
 					$html_content .='<div style="margin-top:20px"><center><h2>DANH SÁCH MẶT HÀNG</h2></center</div>';   
-					$html_content .='<table border="1" cellspacing="5" style="margin-top:5px" cellpadding="5" width="100%">';
+					$html_content .='<table border="1" cellspacing="5"  cellpadding="5" width="100%">';
 					$html_content .='<thead>';
 					$html_content .='<tr>';
 					$html_content .='<th>Mã sản phẩm</th>';
