@@ -136,8 +136,8 @@ $totalQuantity=0;
         <form method="post" name="frm">             
             <input type="hidden" name="total_price" value="<?php echo @$totalPrice; ?>" />
             <input type="hidden" name="total_quantity" value="<?php echo @$totalQuantity; ?>" />
-            <input type="hidden" name="action" value="confirm-checkout" />                    
-            <?php wp_nonce_field("confirm-checkout",'security_code',true);?>                 
+            <input type="hidden" name="action" value="confirmed-checkout" />                    
+            <?php wp_nonce_field("confirmed-checkout",'security_code',true);?>                 
             <div class="row">
                 <div class="col-lg-6">
                     <table class="com_product30" border="0" width="90%" cellpadding="0" cellspacing="0"> 
