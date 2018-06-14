@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2018 at 10:22 AM
+-- Generation Time: Jun 14, 2018 at 11:03 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -224,7 +224,7 @@ INSERT INTO `xzv_options` (`option_id`, `option_name`, `option_value`, `autoload
 (106, 'widget_tag_cloud', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
 (107, 'widget_nav_menu', 'a:1:{s:12:\"_multiwidget\";i:1;}', 'yes'),
 (108, 'widget_custom_html', 'a:3:{i:2;a:2:{s:5:\"title\";s:0:\"\";s:7:\"content\";s:498:\"<div class=\"fb-page margin-top-15\" data-href=\"https://www.facebook.com/milihome007/\" data-tabs=\"timeline\" data-height=\"200\" data-small-header=\"true\" data-adapt-container-width=\"true\" data-hide-cover=\"false\" data-show-facepile=\"true\"><blockquote cite=\"https://www.facebook.com/Trung-T&#xe2;m-Ti&#x1ebf;p-L&#x1eed;a-1922029917839211\" class=\"fb-xfbml-parse-ignore\"><a href=\"https://www.facebook.com/Trung-T&#xe2;m-Ti&#x1ebf;p-L&#x1eed;a-1922029917839211\">Trung Tâm Tiếp Lửa</a></blockquote></div>\";}i:3;a:2:{s:5:\"title\";s:0:\"\";s:7:\"content\";s:134:\"<i class=\"far fa-copyright\"></i>&nbsp;Copyright 2018 - Thiết kế web bởi <a href=\"https://vidoco.vn/\" target=\"_blank\">VIDOCO</a> \";}s:12:\"_multiwidget\";i:1;}', 'yes'),
-(109, 'cron', 'a:7:{i:1528966673;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1528984344;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1529027562;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1529028690;a:1:{s:19:\"wpseo-reindex-links\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1529034315;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1529460689;a:1:{s:18:\"wpseo_onpage_fetch\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'yes'),
+(109, 'cron', 'a:7:{i:1528970273;a:1:{s:34:\"wp_privacy_delete_old_export_files\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"hourly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:3600;}}}i:1528984344;a:3:{s:16:\"wp_version_check\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:17:\"wp_update_plugins\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}s:16:\"wp_update_themes\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:10:\"twicedaily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:43200;}}}i:1529027562;a:2:{s:19:\"wp_scheduled_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}s:25:\"delete_expired_transients\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1529028690;a:1:{s:19:\"wpseo-reindex-links\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1529034315;a:1:{s:30:\"wp_scheduled_auto_draft_delete\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:5:\"daily\";s:4:\"args\";a:0:{}s:8:\"interval\";i:86400;}}}i:1529460689;a:1:{s:18:\"wpseo_onpage_fetch\";a:1:{s:32:\"40cd750bba9870f18aada2478b24840a\";a:3:{s:8:\"schedule\";s:6:\"weekly\";s:4:\"args\";a:0:{}s:8:\"interval\";i:604800;}}}s:7:\"version\";i:2;}', 'yes'),
 (110, 'theme_mods_twentyseventeen', 'a:2:{s:18:\"custom_css_post_id\";i:-1;s:16:\"sidebars_widgets\";a:2:{s:4:\"time\";i:1521597749;s:4:\"data\";a:4:{s:19:\"wp_inactive_widgets\";a:0:{}s:9:\"sidebar-1\";a:6:{i:0;s:8:\"search-2\";i:1;s:14:\"recent-posts-2\";i:2;s:17:\"recent-comments-2\";i:3;s:10:\"archives-2\";i:4;s:12:\"categories-2\";i:5;s:6:\"meta-2\";}s:9:\"sidebar-2\";a:0:{}s:9:\"sidebar-3\";a:0:{}}}}', 'yes'),
 (123, 'can_compress_scripts', '1', 'no'),
 (138, 'recently_activated', 'a:0:{}', 'yes'),
@@ -2663,7 +2663,13 @@ INSERT INTO `xzv_shk_invoice` (`id`, `code`, `created_date`, `email`, `fullname`
 (8, '990111173', '2018-06-14 07:47:37', 'toanphat@dienkim.com', 'Công ty TNHH TOÀN PHÁT', '589 & 591 Lê Hồng Phong - Phường Phước Long - Thành phố Nha Trang - Khánh Hòa', '0979123456', 'Công ty TNHH TOÀN PHÁT đặt hàng', 1102, 7, '6960000.00', 0),
 (9, '635009402', '2018-06-14 07:57:23', 'aiavnco@dienkim.com', 'Công ty TNHH Bảo hiểm nhân thọ AIA Việt Nam', 'Toà nhà Royal 235 Nguyễn Văn Cừ , p.Nguyễn Cư Trinh, Quận 1', '0987321123', 'Công ty TNHH Bảo hiểm nhân thọ AIA Việt Nam  đặt hàng', 1102, 12, '9220000.00', 0),
 (10, '601430289', '2018-06-14 08:12:02', 'asuzacacm@dienkim.com', 'Công ty TNHH ASUZAC', 'Số 1 Đường Số 8 Kcn Viet Nam - Singapore, Thuận An', '0966123123', 'Công ty TNHH ASUZAC đặt hàng', 1102, 2, '19800000.00', 0),
-(11, '342333153', '2018-06-14 08:19:39', 'auvietkt@dienkim.com', 'Công ty CP xuất nhập khẩu kỹ thuật Âu Việt', 'P905 Lô B, khu chung cư Bàn Cát khu B, P 10, quận Tân Bình, Hồ Chí Minh', '0987938123', 'Công ty CP xuất nhập khẩu kỹ thuật Âu Việt đặt hàng', 1102, 3, '68370000.00', 0);
+(11, '342333153', '2018-06-14 08:19:39', 'auvietkt@dienkim.com', 'Công ty CP xuất nhập khẩu kỹ thuật Âu Việt', 'P905 Lô B, khu chung cư Bàn Cát khu B, P 10, quận Tân Bình, Hồ Chí Minh', '0987938123', 'Công ty CP xuất nhập khẩu kỹ thuật Âu Việt đặt hàng', 1102, 3, '68370000.00', 0),
+(12, '170049009', '2018-06-14 08:26:51', 'pafdv@dienkim.com', 'CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ PAF', '89 Đường số 6, Ấp Tiền Lân, Xã Bà Điểm, Huyện Hóc Môn, TP. Hồ Chí Minh', '0922111222', 'CÔNG TY TNHH THƯƠNG MẠI VÀ DỊCH VỤ PAF đặt hàng', 1102, 1, '13500000.00', 0),
+(13, '158049487', '2018-06-14 08:31:18', 'datxanhvn@dienkim.com', 'CÔNG TY CỔ PHẦN ĐẤT XANH ĐÀ NẴNG', '386 Điện Biên Phủ, quận Thanh Khê, Đà Nẵng', '0977123881', 'CÔNG TY CỔ PHẦN ĐẤT XANH ĐÀ NẴNG đặt hàng', 1102, 6, '99999999.99', 0),
+(14, '785267308', '2018-06-14 08:39:40', 'nhantamnk@dienkim.com', 'Công Ty TNHH Nha Khoa Nhân Tâm', '807 đường 3/2 , Phường 7, Quận 10, TP. HCM', '0954123321', 'Công Ty TNHH Nha Khoa Nhân Tâm đặt hàng', 1102, 2, '1720000.00', 0),
+(15, '593215394', '2018-06-14 08:45:16', 'yonglong@dienkim.com', 'Công ty TNHH Yong Long', 'Một phần Lô CN18, đường số 4, KCN Sóng Thần 3, P. Phú Tân, Tp. Thủ Dầu Một, Bình Dương', '0931123321', 'Công ty TNHH Yong Long đặt hàng', 1102, 1, '13500000.00', 0),
+(16, '287618798', '2018-06-14 08:52:21', 'lamaothun@dienkim.com', 'CT TNHH BLUE MORNING', '319B5 Lý Thường Kiệt, Phường 15, Quận 11, TP HCM', '0945123123', 'CT TNHH BLUE MORNING đặt hàng', 1102, 1, '12690000.00', 0),
+(17, '347446928', '2018-06-14 08:56:37', 'cgvland@dienkim.com', 'CÔNG TY CỔ PHẦN BẤT ĐỘNG SẢN CGV', '21 Đường số 17, Phường Linh Tây, Quận Thủ Đức, TP.Hồ Chí Minh', '0956123123', 'CÔNG TY CỔ PHẦN BẤT ĐỘNG SẢN CGV đặt hàng', 1102, 1, '850000.00', 0);
 
 -- --------------------------------------------------------
 
@@ -2704,7 +2710,13 @@ INSERT INTO `xzv_shk_invoice_detail` (`id`, `invoice_id`, `product_id`, `product
 (13, 9, 861, 'XZ341892', 'Ổ cắm điện 4D32N', 'thiet-bi-3.png', '130000.00', 4, '520000.00'),
 (14, 9, 867, 'GS891345', 'Máy khoan GSB 13 RE SE', 'thiet-bi-6.png', '1590000.00', 5, '7950000.00'),
 (15, 10, 820, 'HU612981', 'Inverter &#8211; 1HP V10ENW', 'dien-lanh-3.png', '9900000.00', 2, '19800000.00'),
-(16, 11, 802, 'VK392186', 'Iphone 6S Plus 32GB &#8211; 5.5', 'smartphone-2.png', '22790000.00', 3, '68370000.00');
+(16, 11, 802, 'VK392186', 'Iphone 6S Plus 32GB &#8211; 5.5', 'smartphone-2.png', '22790000.00', 3, '68370000.00'),
+(17, 12, 783, 'XV321878', 'Smart Tivi &#8211; LED &#8211; 32&#8221;', 'tivi-2.png', '13500000.00', 1, '13500000.00'),
+(18, 13, 799, 'KN382197', 'Iphone 6 32GB &#8211; 4.7&#8221;', 'smartphone-1.png', '28790000.00', 6, '99999999.99'),
+(19, 14, 835, 'MN748392', 'Bình thủy điện NC-EG2200CSY', 'diengiadung-2.png', '860000.00', 2, '1720000.00'),
+(20, 15, 783, 'XV321878', 'Smart Tivi &#8211; LED &#8211; 32&#8221;', 'tivi-2.png', '13500000.00', 1, '13500000.00'),
+(21, 16, 818, 'NM721981', 'Máy lạnh FTN25MV19', 'dien-lanh-2.png', '12690000.00', 1, '12690000.00'),
+(22, 17, 837, 'IK849467', 'Bình thủy điện NC-EG4000CSY', 'diengiadung-3.png', '850000.00', 1, '850000.00');
 
 -- --------------------------------------------------------
 
@@ -4190,7 +4202,7 @@ ALTER TABLE `xzv_links`
 -- AUTO_INCREMENT for table `xzv_options`
 --
 ALTER TABLE `xzv_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3674;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3675;
 
 --
 -- AUTO_INCREMENT for table `xzv_postmeta`
@@ -4244,13 +4256,13 @@ ALTER TABLE `xzv_revslider_static_slides`
 -- AUTO_INCREMENT for table `xzv_shk_invoice`
 --
 ALTER TABLE `xzv_shk_invoice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `xzv_shk_invoice_detail`
 --
 ALTER TABLE `xzv_shk_invoice_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `xzv_termmeta`
