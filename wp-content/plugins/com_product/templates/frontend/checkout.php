@@ -159,7 +159,7 @@ $totalQuantity=0;
                             </tr>
                             <tr>
                                 <td class="td-right">Ghi chú</td>
-                                <td><textarea name="note"><?php echo @$data["note"]; ?></textarea></td>            
+                                <td><textarea name="note" cols="50" rows="5"><?php echo @$data["note"]; ?></textarea></td>            
                             </tr>                                                                                    
                         </tbody>    
                     </table>
