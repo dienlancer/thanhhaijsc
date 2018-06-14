@@ -120,7 +120,7 @@
                         echo '<div class="row">';
                     }
                     ?>
-                    <div class="col-lg-3">
+                    <div class="col-sm-3">
                         <div class="box-product">
                             <div class="box-product-img">
                                 <center><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></center>
