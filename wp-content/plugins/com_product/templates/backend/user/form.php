@@ -16,15 +16,14 @@
 	$lblUsername 	=sanitize_text_field(@$zController->_data['username']);	
 	$inputPassword 	='<input type="password" id="password" name="password" class="regular-text" value="" />';	
 	$lblEmail 	=sanitize_text_field(@$zController->_data['email']);	
-	$inputFullname 	='<input type="text" id="fullname" name="fullname" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fullname']).'" />';
-	$inputAddress 	='<input type="text" id="address" name="address" class="regular-text" value="'.sanitize_text_field(@$zController->_data['address']).'" />';
-	$inputPhone 	='<input type="text" id="phone" name="phone" class="regular-text" value="'.sanitize_text_field(@$zController->_data['phone']).'" />';
+	$inputFullname 	='<input type="text"  name="fullname" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fullname']).'" />';
+	$inputAddress 	='<input type="text"  name="address" class="regular-text" value="'.sanitize_text_field(@$zController->_data['address']).'" />';
+	$inputPhone 	='<input type="text"  name="phone" class="regular-text" value="'.sanitize_text_field(@$zController->_data['phone']).'" />';
 	
 	
-	
-	$status                 =   (count(@$zController->_data) > 0) ? (int)@$zController->_data['status'] : 1 ;
+		
 	$arrStatus              =   array(-1 => '- Select status -', 1 => 'Hiển thị', 0 => 'Ẩn');  
-	$ddlStatus              =   $vHtml->cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
+	$ddlStatus              =   $vHtml->cmsSelectbox("status","status","form-control",$arrStatus,(int)@$zController->_data['status'],"");
 
 	$id='';
 	if(count($zController->_data) > 0){

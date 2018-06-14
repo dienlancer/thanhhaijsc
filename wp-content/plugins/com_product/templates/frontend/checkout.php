@@ -4,27 +4,15 @@ require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "top-sidebar
 require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "banner.php"; 
 global $zController;
 $vHtml=new HtmlControl();  
-$page_id_login_checkout = $zController->getHelper('GetPageId')->get('_wp_page_template','login-checkout.php'); 
-$page_id_zcart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');    
-$permar_link_login_checkout = get_permalink(@$page_id_login_checkout);            
+
+$page_id_zcart = $zController->getHelper('GetPageId')->get('_wp_page_template','zcart.php');          
 $permarlink_zcart = get_permalink(@$page_id_zcart);
-$ssValueUser="userlogin";
 $ssValueCart="zcart";
-$ssUser       = $zController->getSession('SessionHelper',"vmuser",$ssValueUser);
 $ssCart        = $zController->getSession('SessionHelper',"vmart",$ssValueCart);    
-$arrUser = @$ssUser->get($ssValueUser)['user_info']; 
 $arrCart = @$ssCart->get($ssValueCart)['cart'];   
-if(count(@$arrUser) == 0){    
-    wp_redirect($permar_link_login_checkout);    
-}
 if(count(@$arrCart) == 0){
     wp_redirect($permarlink_zcart);
 } 
-$id=@$arrUser["id"];
-$userModel=$zController->getModel("/frontend","UserModel"); 
-$info=$userModel->getUserById(@$id);
-$detail=@$info[0];
-$data=@$info[0];   
 $payment=array(
     "thanh-toan-qua-ngan-hang",
     "thanh-toan-bang-tien-mat"
@@ -145,8 +133,7 @@ $totalQuantity=0;
                 ?>
             </div>                
         </div>
-        <form method="post" name="frm">
-            <input type="hidden" name="id" value="<?php echo @$detail["id"]; ?>" />            
+        <form method="post" name="frm">             
             <input type="hidden" name="total_price" value="<?php echo @$totalPrice; ?>" />
             <input type="hidden" name="total_quantity" value="<?php echo @$totalQuantity; ?>" />
             <input type="hidden" name="action" value="confirm-checkout" />                    
@@ -155,11 +142,7 @@ $totalQuantity=0;
                 <div class="col-lg-6">
                     <table class="com_product30" border="0" width="90%" cellpadding="0" cellspacing="0"> 
                         <thead><tr><th>Thông tin khách hàng</th></tr></thead>                   
-                        <tbody>        
-                            <tr>
-                                <td class="td-right">Tài khoản</td>
-                                <td class="td-left"><?php echo @$detail["username"]; ?></td>           
-                            </tr>                                   
+                        <tbody>                                                        
                             <tr>
                                 <td class="td-right">Email</td>
                                 <td><input type="text" name="email" value="<?php echo @$data["email"]; ?>" /></td>                   

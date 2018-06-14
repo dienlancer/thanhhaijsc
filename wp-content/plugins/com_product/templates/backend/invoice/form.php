@@ -17,18 +17,17 @@
 	$lblCode 	= 	@$zController->_data['code'];
 	$lblCreatedDate 	=$zController->getHelper('DateTimeConverter')->datetimeConverterVn(@$zController->_data['created_date']) 	;
 	$lblUsername 	= 	@$zController->_data['username'];
-	$inputEmail 	= $vHtml->cmsTextbox('email','email',"regular-text",sanitize_text_field(@$zController->_data['email']))	;
-	$inputFullname 	=$vHtml->cmsTextbox('fullname','fullname',"regular-text",sanitize_text_field(@$zController->_data['fullname']));
-	$inputAddress 	=$vHtml->cmsTextbox('address','address',"regular-text",sanitize_text_field(@$zController->_data['address']));
-	$inputPhone 	=$vHtml->cmsTextbox('phone','phone',"regular-text",sanitize_text_field(@$zController->_data['phone']));
+	$inputEmail 	= '<input type="text"  name="email" class="regular-text" value="'.sanitize_text_field(@$zController->_data['email']).'" />';
+	$inputFullname 	='<input type="text"  name="fullname" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fullname']).'" />';
+	$inputAddress 	='<input type="text"  name="address" class="regular-text" value="'.sanitize_text_field(@$zController->_data['address']).'" />';
+	$inputPhone 	='<input type="text"  name="phone" class="regular-text" value="'.sanitize_text_field(@$zController->_data['phone']).'" />';
 	
 	
 	$lblPaymentMethodTitle=@$zController->_data["payment_method_title"];
 	$lblQuantity 	= number_format(@$zController->_data['quantity'],0,",",".")	;
-	$lblTotalPrice 	=$vHtml->fnPrice(@$zController->_data['total_price']) 	;
-	$status                 =   (count(@$zController->_data) > 0) ? (int)@$zController->_data['status'] : 1 ;
+	$lblTotalPrice 	=$vHtml->fnPrice(@$zController->_data['total_price']) 	;	
 	$arrStatus              =   array(-1 => '- Select status -', 1 => 'Hiển thị', 0 => 'Ẩn');  
-	$ddlStatus              =   $vHtml->cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
+	$ddlStatus              =   $vHtml->cmsSelectbox("status","status","form-control",$arrStatus,(int)@$zController->_data['status'],"");
 	// lấy danh sách chi tiết đơn hàng
 	$invoiceDetailModel=$zController->getModel("/backend","AdminInvoiceModel");
 	$arrInvoiceDetail=$invoiceDetailModel->getInvoiceDetail();		

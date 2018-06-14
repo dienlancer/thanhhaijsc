@@ -32,7 +32,7 @@ var logo_width = 280; // proya logo width
 	logo_height = 116;
 	logo_width = 175;
 	
-			header_top_height = 33;
+	header_top_height = 0;
 var loading_text;
 loading_text = 'Loading new posts...';
 var finished_text;

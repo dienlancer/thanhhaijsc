@@ -400,17 +400,8 @@ class ProductController{
 		global $zController;	
 		$permarlink="";
 		$pageID=0;				
-		$ssName="vmuser";
-		$ssValue="userlogin";
-		$ssUser     = $zController->getSession('SessionHelper',$ssName,$ssValue);	
-		$arrUser 	= @$ssUser->get($ssValue)["user_info"];	
-		if(count($arrUser) == 0){
-			$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','login-checkout.php');	
-		}
-		else{
-			$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','checkout.php');	
-		}
-		$permarlink = get_permalink($pageID);			
+		$pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','checkout.php');
+		$permarlink = get_permalink($pageID);					
 		wp_redirect($permarlink);				
 	}
 	public function confirmCheckout(){
