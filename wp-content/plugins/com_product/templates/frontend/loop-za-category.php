@@ -130,8 +130,8 @@
                             <div class="margin-top-10"><?php echo $sku; ?></div>                            
                             <?php echo $html_price; ?>
                             <div class="thia margin-top-10">
-                                <a href="javascript:void(0);" onclick="noSaveOffice();" >
-                                    <img src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,1);" >
+                                    <img width="120" src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
                                 </a>
                             </div>
                         </div>
