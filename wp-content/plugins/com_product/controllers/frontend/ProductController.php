@@ -598,14 +598,14 @@ class ProductController{
 					$mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
 					
 					$html_content='';     
-					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="50%">';
+					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="90%">';
 					$html_content .='<thead>';
 					$html_content .='<tr>';
 					$html_content .='<th colspan="2"><h3>Thông tin khách hàng</h3></th>';
 					$html_content .='</tr>';
 					$html_content .='</thead>';
 					$html_content .='<tbody>';
-					$html_content .='<tr><td width="40%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
+					$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="60%">'.$invoice_code.'</td></tr>';
 					$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
 					$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
 					$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';      
@@ -616,8 +616,9 @@ class ProductController{
 					$html_content .='<tr><td>Số lượng</td><td>'.$total_quantity.'</td></tr>';   
 					$html_content .='<tr><td>Thành tiền</td><td>'.$vHtml->fnPrice($total_price).' đ</td></tr>';          
 					$html_content .='</tbody>';
-					$html_content .='</table>';   
-					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
+					$html_content .='</table>';  
+					$html_content .='<div style="margin-top:20px"><center><b>DANH SÁCH MẶT HÀNG</b></center</div>';   
+					$html_content .='<table border="1" cellspacing="5" style="margin-top:5px" cellpadding="5" width="100%">';
 					$html_content .='<thead>';
 					$html_content .='<tr>';
 					$html_content .='<th>Mã sản phẩm</th>';
