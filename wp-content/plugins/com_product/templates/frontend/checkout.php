@@ -158,8 +158,8 @@ $totalQuantity=0;
                                 <td><input type="text" name="phone" value="<?php echo @$data["phone"]; ?>" /></td>            
                             </tr>
                             <tr>
-                                <td class="td-right">Ghi chú</td>
-                                <td><textarea name="note" cols="50" rows="5"><?php echo @$data["note"]; ?></textarea></td>            
+                                <td class="td-right vep">Ghi chú</td>
+                                <td class="td-left"><textarea name="note" cols="55" rows="5"><?php echo @$data["note"]; ?></textarea></td>            
                             </tr>                                                                                    
                         </tbody>    
                     </table>
