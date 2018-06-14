@@ -595,7 +595,7 @@ class ProductController{
 					$mail->setFrom('dienit02@gmail.com', get_bloginfo( 'name' ));
 					$mail->addAddress($email_to, $contacted_name);
 					$mail->addAddress($email, $fullname);   
-					$mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
+					$mail->Subject = 'Thông tin đặt hàng từ '.$fullname.' - '.$phone ;   
 					
 					$html_content='';     
 					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
@@ -606,6 +606,7 @@ class ProductController{
 					$html_content .='</thead>';
 					$html_content .='<tbody>';
 					$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
+					$html_content .='<tr><td>Ngày đặt hàng</td><td>'.$created_date.'</td></tr>';
 					$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
 					$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
 					$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';      
