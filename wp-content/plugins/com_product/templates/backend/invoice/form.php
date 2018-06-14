@@ -16,7 +16,7 @@
 	$lbl 	= 'Invoice';			
 	$lblCode 	= 	@$zController->_data['code'];
 	$lblCreatedDate 	=$zController->getHelper('DateTimeConverter')->datetimeConverterVn(@$zController->_data['created_date']) 	;
-	$lblUsername 	= 	@$zController->_data['username'];
+	
 	$inputEmail 	= '<input type="text"  name="email" class="regular-text" value="'.sanitize_text_field(@$zController->_data['email']).'" />';
 	$inputFullname 	='<input type="text"  name="fullname" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fullname']).'" />';
 	$inputAddress 	='<input type="text"  name="address" class="regular-text" value="'.sanitize_text_field(@$zController->_data['address']).'" />';
@@ -68,16 +68,10 @@
 				</tr>	
 				<tr>
 					<td scope="row" align="right">
-						<label><i><b>Ngày tạo :</b></i></label>
+						<label><i><b>Ngày đặt hàng :</b></i></label>
 					</td>
 					<td><?php echo $lblCreatedDate;?></td>
-				</tr>	
-				<tr>
-					<td scope="row" align="right">
-						<label><i><b>Username :</b></i></label>
-					</td>
-					<td><?php echo $lblUsername;?></td>
-				</tr>
+				</tr>					
 				<tr>
 					<td scope="row" align="right">
 						<label><i><b>Email :</b></i></label>
@@ -119,7 +113,7 @@
 					<td scope="row" align="right">
 						<label><i><b>Số lượng :</b></i></label>
 					</td>
-					<td><?php echo $lblQuantity;?></td>
+					<td><b><?php echo $lblQuantity;?></b>&nbsp;sản phẩm</td>
 				</tr>	
 				<tr>
 					<td scope="row" align="right">

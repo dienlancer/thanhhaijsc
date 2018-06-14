@@ -57,9 +57,7 @@ class Backend{
 
 		add_submenu_page($this->_menuSlug, 'Setting', 'Cấu hình', 'manage_options',
 						$this->_menuSlug . '-setting',array($this,'dispatch_function'));		
-
-		add_submenu_page($this->_menuSlug, 'User', 'Người dùng', 'manage_options',
-						$this->_menuSlug . '-user',array($this,'dispatch_function'));	
+		
 	}	
 	public function dispatch_function(){		
 		global $zController;
@@ -70,10 +68,7 @@ class Backend{
 			break;		
 			case 'zendvn-sp-manager-invoice':
 			$zController->getController('/backend','AdminInvoiceController');
-			break;						
-			case 'zendvn-sp-manager-user':
-			$zController->getController('/backend','AdminUserController');
-			break;
+			break;									
 			default:				
 			break;
 		}		

@@ -124,8 +124,7 @@ class AdminInvoiceModel extends WP_List_Table{
 		$arr = array(
 				'cb'			=> 	'<input type="checkbox" />',
 				'name' 			=> 	'Code',					
-				"created_date"	=>	"Created date",
-				"username"		=>	"Username",				
+				"created_date"	=>	"Created date",							
 				"fullname"		=>	"Name",				
 				"phone"			=>	"Phone",
 							
@@ -208,11 +207,11 @@ class AdminInvoiceModel extends WP_List_Table{
 		global $zController, $wpdb;
 		$arrParam  		= 	$zController->getParams();		
 		$action 		= 	$arrParam['action'];				
-		$id 			=	(int)$arrParam['id'];								
-		$email			=	trim($arrParam["email"]);
-		$fullname 		=	trim($arrParam["fullname"]) ;
-		$address		=	trim($arrParam["address"]) ;
-		$phone 			=	trim($arrParam["phone"]) ;
+		$id 			=	(int)@$arrParam['id'];								
+		$email			=	trim(@$arrParam["email"]);
+		$fullname 		=	trim(@$arrParam["fullname"]) ;
+		$address		=	trim(@$arrParam["address"]) ;
+		$phone 			=	trim(@$arrParam["phone"]) ;
 		
 		
 		$status 		=	$arrParam["status"];		
