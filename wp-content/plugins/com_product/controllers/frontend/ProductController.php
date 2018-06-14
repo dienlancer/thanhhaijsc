@@ -418,9 +418,9 @@ class ProductController{
 				$fullname 				=	trim(@$_POST['fullname']);
 				$address 				=	trim(@$_POST['address']);
 				$phone 					=	trim(@$_POST['phone']);
+				$note					=	trim(@$_POST['note']);
 				$payment_method_id		=	trim(@$_POST["payment_method_id"]);		
-				$totalQuantity  		=	(int)@$_POST["total_quantity"];
-				$totalPrice 			=	(float)@$_POST["total_price"];								
+							
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
 					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
@@ -498,7 +498,9 @@ class ProductController{
 	                $ssValue="zcart";
 	                $ss     = $zController->getSession('SessionHelper',$ssName,$ssValue);
 	                $arrCart = $ss->get($ssValue)['cart'];       			                
-
+					$tr_cart='';	 
+					$total_price=0;
+					$total_quantity=0;               
 	                foreach ($arrCart as $key => $value) {
 						$product_id=(int)@$value["product_id"];
 						$product_sku=@$value["product_sku"];
@@ -506,7 +508,16 @@ class ProductController{
 						$product_image=@$value["product_image"];			
 						$product_price=(float)@$value["product_price"];			
 						$product_quantity=(int)@$value["product_quantity"];			
-						$product_total_price=(float)@$value["product_total_price"];			
+						$product_total_price=(float)@$value["product_total_price"];	
+						$total_price+=(float)$product_total_price;
+                        $total_quantity+=(float)$product_quantity;
+						$tr_cart .='<tr>';
+							$tr_cart .='<td>'.$product_sku.'</td>';
+							$tr_cart .='<td>'.$product_name.'</td>';                          
+							$tr_cart .='<td align="right">'.$vHtml->fnPrice($product_price).' đ</td>';
+							$tr_cart .='<td align="right">'.$product_quantity.'</td>';
+							$tr_cart .='<td align="right">'.$vHtml->fnPrice($product_total_price).' đ</td>';
+							$tr_cart .='</tr>';  		
 						$query = "INSERT INTO {$tableInvoiceDetail} (
 							  `invoice_id`,
 							  `product_id`,
@@ -538,6 +549,66 @@ class ProductController{
 							);
 						$wpdb->query($info);
 					}
+					$file_php_mailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
+					require_once $file_php_mailer;
+					$data=array();
+					$option_name = 'zendvn_sp_setting';
+					$data = get_option('zendvn_sp_setting',array());				
+					$smtp_host		= 	@$data['smtp_host'];
+					$smtp_port		=	@$data['smtp_port'];
+					$smtp_auth		=	@$data['smtp_auth'];
+					$encription		=	@$data['encription'];
+					$smtp_username	=	@$data['smtp_username'];
+					$smtp_password	=	@$data['smtp_password'];		
+					$email_to		=	@$data['email_to'];					
+					$mail = new PHPMailer(true);
+					$mail->SMTPDebug = 0;                           
+					$mail->isSMTP();     
+					$mail->CharSet = "UTF-8";          
+					$mail->Host = $smtp_host; 
+					$mail->SMTPAuth = $smtp_auth;                         
+					$mail->Username = $smtp_username;             
+					$mail->Password = $smtp_password;             
+					$mail->SMTPSecure = $encription;                       
+					$mail->Port = $smtp_port;                            
+					$mail->setFrom($email, $fullname);
+					$mail->addAddress($email_to, get_bloginfo( 'name' ));   
+					$mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
+					
+					$html_content='';     
+					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="50%">';
+					$html_content .='<thead>';
+					$html_content .='<tr>';
+					$html_content .='<th colspan="2"><h3>Thông tin từ khách hàng</h3></th>';
+					$html_content .='</tr>';
+					$html_content .='</thead>';
+					$html_content .='<tbody>';
+					$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
+					$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
+					$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
+					$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';              
+					$html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
+					$html_content .='<tr><td>Nội dung</td><td>'.$note.'</td></tr>';   
+					$html_content .='<tr><td>Số lượng</td><td>'.$total_quantity.'</td></tr>';   
+					$html_content .='<tr><td>Thành tiền</td><td>'.$vHtml->fnPrice($total_price).' đ</td></tr>';          
+					$html_content .='</tbody>';
+					$html_content .='</table>';   
+					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="100%">';
+					$html_content .='<thead>';
+					$html_content .='<tr>';
+					$html_content .='<th>Mã sản phẩm</th>';
+					$html_content .='<th>Tên sản phẩm</th>';              
+					$html_content .='<th>Đơn giá</th>';
+					$html_content .='<th>Số lượng đặt mua</th>';
+					$html_content .='<th>Tổng giá</th>';
+					$html_content .='</tr>';
+					$html_content .='</thead>';
+					$html_content .='<tbody>';
+					$html_content .=$tr_cart;
+					$html_content .='</tbody>';
+					$html_content .='</table>';                                 
+					$mail->msgHTML($html_content);
+					$mail->Send();                     					
 	                $pageID = $zController->getHelper('GetPageId')->get('_wp_page_template','finished-checkout.php');	
 	                $permarlink = get_permalink($pageID);										
 	                wp_redirect($permarlink);	
@@ -772,8 +843,8 @@ class ProductController{
 					$smtp_password	=	@$data['smtp_password'];		
 					$email_to		=	@$data['email_to'];
 					$contacted_name	=	@$data['contacted_name'];	
-					$filePhpMailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
-					require_once $filePhpMailer;		        
+					$file_php_mailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
+					require_once $file_php_mailer;		        
 					$mail = new PHPMailer;      
 					$mail->CharSet = "UTF-8";   
 					$mail->isSMTP();             
@@ -884,8 +955,8 @@ class ProductController{
 					$smtp_password	=	@$data['smtp_password'];		
 					$email_to		=	@$data['email_to'];
 					$contacted_name	=	@$data['contacted_name'];	
-					$filePhpMailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
-					require_once $filePhpMailer;		        
+					$file_php_mailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
+					require_once $file_php_mailer;		        
 					$mail = new PHPMailer;      
 					$mail->CharSet = "UTF-8";   
 					$mail->isSMTP();             
@@ -995,8 +1066,8 @@ class ProductController{
 					$smtp_password	=	@$data['smtp_password'];		
 					$email_to		=	@$data['email_to'];
 					$contacted_name	=	@$data['contacted_name'];	
-					$filePhpMailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
-					require_once $filePhpMailer;		        
+					$file_php_mailer=PLUGIN_PATH . "scripts" . DS . "phpmailer" . DS . "PHPMailerAutoload.php"	;
+					require_once $file_php_mailer;		        
 					$mail = new PHPMailer;      
 					$mail->CharSet = "UTF-8";   
 					$mail->isSMTP();             

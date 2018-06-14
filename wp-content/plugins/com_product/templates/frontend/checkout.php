@@ -133,9 +133,7 @@ $totalQuantity=0;
                 ?>
             </div>                
         </div>
-        <form method="post" name="frm">             
-            <input type="hidden" name="total_price" value="<?php echo @$totalPrice; ?>" />
-            <input type="hidden" name="total_quantity" value="<?php echo @$totalQuantity; ?>" />
+        <form method="post" name="frm">                         
             <input type="hidden" name="action" value="confirmed-checkout" />                    
             <?php wp_nonce_field("confirmed-checkout",'security_code',true);?>                 
             <div class="row">
@@ -158,6 +156,10 @@ $totalQuantity=0;
                             <tr>
                                 <td class="td-right">Phone</td>
                                 <td><input type="text" name="phone" value="<?php echo @$data["phone"]; ?>" /></td>            
+                            </tr>
+                            <tr>
+                                <td class="td-right">Ghi chú</td>
+                                <td><textarea name="note"><?php echo @$data["note"]; ?></textarea></td>            
                             </tr>                                                                                    
                         </tbody>    
                     </table>
