@@ -129,6 +129,11 @@
                             <div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
                             <div class="margin-top-10"><?php echo $sku; ?></div>                            
                             <?php echo $html_price; ?>
+                            <div class="thia margin-top-10">
+                                <a href="javascript:void(0);" onclick="noSaveOffice();" >
+                                    <img src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                                </a>
+                            </div>
                         </div>
                     </div>          
                     <?php

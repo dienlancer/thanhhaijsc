@@ -971,6 +971,31 @@ div.bellesa-cart a {
 .vep{
   vertical-align: top;
 }
+.vihamus-2 a{
+    display: block;
+    background: #f20025;
+    padding:5px 0px;
+    
+    font-weight: bold;
+   
+    border: 1px solid #e50023;
+    color: #ffffff;
+}
+.vihamus-2 a:hover{
+    background:#ff3d5b;
+    
+    
+}
+.thia a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.laocai{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 @media (max-width: 768px) { 
   .nav_bar{
     display: none;

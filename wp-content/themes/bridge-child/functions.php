@@ -448,6 +448,14 @@ function loadCategoryHome($attrs){
 												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
 												<div class="margin-top-10"><?php echo $sku; ?></div>												
 												<?php echo $html_price; ?>
+												<div class="vihamus-2 margin-top-10">
+                                <a href="javascript:void(0);" onclick="noSaveOffice();" >
+                                    <div class="laocai">                                                            
+                                        <div>MUA NGAY</div>
+                                        <div class="margin-left-15"><i class="fas fa-cart-arrow-down"></i></div>
+                                    </div>                              
+                                </a>
+                            </div>
 											</div>
 											<?php
 										}
