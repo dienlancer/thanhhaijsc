@@ -9,7 +9,7 @@
             </div>          
         </div>
         <div class="col-lg-9">
-            <?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "loop-za-category.php"; ?>
+            <?php get_template_part("loop","za-category"); ?>
         </div>
     </div>
 </div>
