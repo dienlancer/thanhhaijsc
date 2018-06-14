@@ -90,8 +90,8 @@ $total_quantity=0;
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2">
-                                Tổng cộng
+                            <td colspan="2" class="td-left">
+                                <b>Tổng cộng</b>
                             </td>
                             <td align="center"><?php echo ($total_quantity) ; ?></td>
                             <td align="right"><?php echo $vHtml->fnPrice($total_price) . ' đ' ; ?></td>
