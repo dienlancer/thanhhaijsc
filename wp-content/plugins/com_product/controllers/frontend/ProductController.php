@@ -409,7 +409,9 @@ class ProductController{
 		$vHtml=new HtmlControl(); 	
 		$checked=1;
 		$msg=array();
-		$data=array();							
+		$data=array();			
+		$total_price=0;
+		$total_quantity=0;				
 		if($zController->isPost()){				
 			$action = @$zController->getParams('action');					
 			if(check_admin_referer(@$action,'security_code')){	
@@ -420,7 +422,8 @@ class ProductController{
 				$phone 					=	trim(@$_POST['phone']);
 				$note					=	trim(@$_POST['note']);
 				$payment_method_id		=	trim(@$_POST["payment_method_id"]);		
-							
+				$total_price 			=	(float)@$_POST['total_price'];
+				$total_quantity 			=	(float)@$_POST['total_quantity'];			
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
 					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
@@ -487,8 +490,8 @@ class ProductController{
 	                	$phone,			 
 	                	$note, 
 	                	$payment_method_id,
-	                	$totalQuantity,
-	                	$totalPrice,
+	                	$total_quantity,
+	                	$total_price,
 	                	$status
 	                );						
 	                $wpdb->query($info);	
@@ -501,9 +504,7 @@ class ProductController{
 	                $ssValue="zcart";
 	                $ss     = $zController->getSession('SessionHelper',$ssName,$ssValue);
 	                $arrCart = $ss->get($ssValue)['cart'];       			                
-					$tr_cart='';	 
-					$total_price=0;
-					$total_quantity=0;               
+					$tr_cart='';	 					      
 	                foreach ($arrCart as $key => $value) {
 						$product_id=(int)@$value["product_id"];
 						$product_sku=@$value["product_sku"];
@@ -511,9 +512,7 @@ class ProductController{
 						$product_image=@$value["product_image"];			
 						$product_price=(float)@$value["product_price"];			
 						$product_quantity=(int)@$value["product_quantity"];			
-						$product_total_price=(float)@$value["product_total_price"];	
-						$total_price+=(float)$product_total_price;
-                        $total_quantity+=(float)$product_quantity;
+						$product_total_price=(float)@$value["product_total_price"];							
 						$tr_cart .='<tr>';
 							$tr_cart .='<td>'.$product_sku.'</td>';
 							$tr_cart .='<td>'.$product_name.'</td>';                          
@@ -563,7 +562,8 @@ class ProductController{
 					$encription		=	@$data['encription'];
 					$smtp_username	=	@$data['smtp_username'];
 					$smtp_password	=	@$data['smtp_password'];		
-					$email_to		=	@$data['email_to'];					
+					$email_to		=	@$data['email_to'];		
+					$contacted_name = 	@$data['contacted_name'];			
 					$mail = new PHPMailer(true);
 					$mail->SMTPDebug = 0;                           
 					$mail->isSMTP();     
@@ -574,15 +574,16 @@ class ProductController{
 					$mail->Password = $smtp_password;             
 					$mail->SMTPSecure = $encription;                       
 					$mail->Port = $smtp_port;                            
-					$mail->setFrom($email, $fullname);
-					$mail->addAddress($email_to, get_bloginfo( 'name' ));   
+					$mail->setFrom('dienit02@gmail.com', get_bloginfo( 'name' ));
+					$mail->addAddress($email_to, $contacted_name);
+					$mail->addAddress($email, $fullname);   
 					$mail->Subject = 'Thông tin đặt hàng từ khách hàng '.$fullname.' - '.$phone ;   
 					
 					$html_content='';     
 					$html_content .='<table border="1" cellspacing="5" cellpadding="5" width="50%">';
 					$html_content .='<thead>';
 					$html_content .='<tr>';
-					$html_content .='<th colspan="2"><h3>Thông tin từ khách hàng</h3></th>';
+					$html_content .='<th colspan="2"><h3>Thông tin khách hàng</h3></th>';
 					$html_content .='</tr>';
 					$html_content .='</thead>';
 					$html_content .='<tbody>';

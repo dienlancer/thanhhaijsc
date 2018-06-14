@@ -39,8 +39,8 @@ foreach ($payment as $key => $value) {
         }
     }
 }
-$totalPrice=0;
-$totalQuantity=0;
+$total_price=0;
+$total_quantity=0;
 ?>
 <div class="siman">  
     <div class="container">
@@ -75,8 +75,8 @@ $totalQuantity=0;
                             $product_quantity=$value["product_quantity"];
                             $product_price=$value["product_price"];
                             $product_total_price=$value["product_total_price"];
-                            $totalPrice+=(float)$product_total_price;
-                            $totalQuantity+=(float)$product_quantity;
+                            $total_price+=(float)$product_total_price;
+                            $total_quantity+=(float)$product_quantity;
                             ?>
                             <tr>
                                 <td class="com_product20 td-left"><a href="<?php echo $product_link ?>"><?php echo $product_name; ?></a></td>
@@ -93,8 +93,8 @@ $totalQuantity=0;
                             <td colspan="2">
                                 Tổng cộng
                             </td>
-                            <td align="center"><?php echo ($totalQuantity) ; ?></td>
-                            <td align="right"><?php echo $vHtml->fnPrice($totalPrice) . ' đ' ; ?></td>
+                            <td align="center"><?php echo ($total_quantity) ; ?></td>
+                            <td align="right"><?php echo $vHtml->fnPrice($total_price) . ' đ' ; ?></td>
 
                         </tr>
                     </tfoot>
@@ -134,12 +134,14 @@ $totalQuantity=0;
             </div>                
         </div>
         <form method="post" name="frm">                         
-            <input type="hidden" name="action" value="confirmed-checkout" />                    
+            <input type="hidden" name="action" value="confirmed-checkout" />
+            <input type="hidden" name="total_price" value="<?php echo @$total_price; ?>" />
+            <input type="hidden" name="total_quantity" value="<?php echo @$total_quantity; ?>" />                    
             <?php wp_nonce_field("confirmed-checkout",'security_code',true);?>                 
             <div class="row">
                 <div class="col-lg-6">
                     <table class="com_product30" border="0" width="90%" cellpadding="0" cellspacing="0"> 
-                        <thead><tr><th>Thông tin khách hàng</th></tr></thead>                   
+                        <thead><tr><th colspan="2" class="td-left">Thông tin khách hàng</th></tr></thead>                   
                         <tbody>                                                        
                             <tr>
                                 <td class="td-right">Email</td>
@@ -159,7 +161,7 @@ $totalQuantity=0;
                             </tr>
                             <tr>
                                 <td class="td-right vep">Ghi chú</td>
-                                <td class="td-left"><textarea name="note" cols="55" rows="5"><?php echo @$data["note"]; ?></textarea></td>            
+                                <td class="td-left"><textarea name="note" cols="65" rows="5"><?php echo @$data["note"]; ?></textarea></td>            
                             </tr>                                                                                    
                         </tbody>    
                     </table>
