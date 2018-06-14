@@ -991,6 +991,9 @@ div.bellesa-cart a {
   align-items: center;
   justify-content: center;
 }
+.thia a img {
+  width: 120px !important;
+}
 .laocai{
   display: flex;
   align-items: center;
