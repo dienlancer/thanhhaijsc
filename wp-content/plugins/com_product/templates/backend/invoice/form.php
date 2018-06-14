@@ -21,7 +21,7 @@
 	$inputFullname 	='<input type="text"  name="fullname" class="regular-text" value="'.sanitize_text_field(@$zController->_data['fullname']).'" />';
 	$inputAddress 	='<input type="text"  name="address" class="regular-text" value="'.sanitize_text_field(@$zController->_data['address']).'" />';
 	$inputPhone 	='<input type="text"  name="phone" class="regular-text" value="'.sanitize_text_field(@$zController->_data['phone']).'" />';
-	$inputNote 	='<textarea type="text"  name="note" class="regular-text"  >'.sanitize_text_field(@$zController->_data['note']).'</textarea';
+	$inputNote 	='<textarea type="text"  name="note" class="regular-text" rows="10" >'.sanitize_text_field(@$zController->_data['note']).'</textarea>';
 	
 	$lblPaymentMethodTitle=@$zController->_data["payment_method_title"];
 	$lblQuantity 	= number_format(@$zController->_data['quantity'],0,",",".")	;
@@ -98,7 +98,7 @@
 					<td><?php echo $inputPhone;?></td>
 				</tr>				
 				<tr>
-					<td scope="row" align="right">
+					<td scope="row" align="right" style="vertical-align: top;">
 						<label><i><b>Ghi chú :</b></i></label>
 					</td>
 					<td><?php echo $inputNote;?></td>

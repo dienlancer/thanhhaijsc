@@ -605,7 +605,7 @@ class ProductController{
 					$html_content .='</tr>';
 					$html_content .='</thead>';
 					$html_content .='<tbody>';
-					$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
+					$html_content .='<tr><td width="40%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
 					$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
 					$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
 					$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';      
