@@ -423,7 +423,7 @@ class ProductController{
 				$note					=	trim(@$_POST['note']);
 				$payment_method_id		=	trim(@$_POST["payment_method_id"]);		
 				$total_price 			=	(float)@$_POST['total_price'];
-				$total_quantity 			=	(float)@$_POST['total_quantity'];			
+				$total_quantity 			=	(float)@$_POST['total_quantity'];									
 				if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#",  mb_strtolower(trim(@$email),'UTF-8')  )){
 					$msg["email"] = 'Email không hợp lệ';
 					$data["email"] = '';
@@ -563,7 +563,25 @@ class ProductController{
 					$smtp_username	=	@$data['smtp_username'];
 					$smtp_password	=	@$data['smtp_password'];		
 					$email_to		=	@$data['email_to'];		
-					$contacted_name = 	@$data['contacted_name'];			
+					$contacted_name = 	@$data['contacted_name'];	
+					/* begin phương thức thanh toán */
+					$payment_method_name='';
+					$payment_method_content='';
+					$args=array(
+						"p"=>$payment_method_id,
+						"post_type"=>"payment_method"
+					);
+					$the_query = new WP_Query( $args );
+					if($the_query->have_posts()){
+						while ($the_query->have_posts()) {
+							$the_query->the_post();
+							$payment_method_id=$the_query->post->ID;
+							$payment_method_name=get_the_title($payment_method_id);
+							$payment_method_content=get_the_content($payment_method_id);	            												
+						}
+						wp_reset_postdata();    
+					}		
+					/* end phương thức thanh toán */		
 					$mail = new PHPMailer(true);
 					$mail->SMTPDebug = 0;                           
 					$mail->isSMTP();     
@@ -590,7 +608,9 @@ class ProductController{
 					$html_content .='<tr><td width="20%">Mã số đơn hàng</td><td width="80%">'.$invoice_code.'</td></tr>';
 					$html_content .='<tr><td>Họ và tên</td><td>'.$fullname.'</td></tr>';
 					$html_content .='<tr><td>Email</td><td>'.$email.'</td></tr>';
-					$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';              
+					$html_content .='<tr><td>Điện thoại</td><td>'.$phone.'</td></tr>';      
+					$html_content .='<tr><td>Phương thức thanh toán</td><td>'.$payment_method_name.'</td></tr>';      
+					$html_content .='<tr><td>Nội dung thanh toán</td><td>'.$payment_method_content.'</td></tr>';              
 					$html_content .='<tr><td>Địa chỉ</td><td>'.$address.'</td></tr>';
 					$html_content .='<tr><td>Nội dung</td><td>'.$note.'</td></tr>';   
 					$html_content .='<tr><td>Số lượng</td><td>'.$total_quantity.'</td></tr>';   

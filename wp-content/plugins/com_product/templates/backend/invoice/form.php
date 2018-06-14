@@ -49,6 +49,7 @@
 	            $payment_method_data["title"]=$title;
 	            $payment_method_data["content"]=$content;	            
 	        }
+	        wp_reset_postdata();    
 	    }
 
 ?>
