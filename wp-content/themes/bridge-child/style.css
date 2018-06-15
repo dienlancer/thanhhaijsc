@@ -135,7 +135,7 @@ nav.main_menu>ul>li.active>a{
 	background: #ffffff;	   	
 }
 .drop_down .second .inner ul li a:hover{
-	background: #0F75BC;
+	background:#DD0022;
 }
 li.narrow .second .inner ul{
 	padding: 0;
@@ -657,9 +657,9 @@ li.narrow .second .inner ul{
 	width: 18px;
 	height: 18px;	
 }
-.sale-hot{
+.sale-hot a{
 	margin-left: 10px;
-	color: #6c6c6c
+	color: #6c6c6c;
 }
 .himlam{
 	display: flex;
@@ -765,7 +765,7 @@ li.narrow .second .inner ul{
 .category-home-box{
   width: 100%;
     background: #ffffff;
-    padding: 10px 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
 }
 .category-home-title{
   margin-top: 0;
@@ -1006,6 +1006,12 @@ div.bellesa-cart a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.kep{
+  height: 3px;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 180px;
 }
 @media (max-width: 768px) { 
   .nav_bar{

@@ -148,7 +148,7 @@ function showSearchRight(){
 				<div class="oppo">
 					<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>	
-			</form>
+			</form> 
 		</div>
 		<div class="col-lg-2">
 			<a class="kitae" href="<?php echo $cart_link; ?>">
@@ -268,7 +268,7 @@ function loadCategoryPage($attrs){
 					<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
 					<div class="margin-top-10"><?php echo $sku; ?></div>
 					<div class="box-product-intro margin-top-10">
-						<?php echo $intro; ?>
+						<?php echo $intro; ?> 
 					</div>
 					<?php echo $html_price; ?>
 				</div>
@@ -296,13 +296,17 @@ function loadCategoryHome($attrs){
 	$alias_ads='category-home-ads-'.$term_slug;
 	$source_manufacturer_slug=explode(',', $attrs['manufacturer']);	
 	$source_ads=explode(',', $attrs['ads']);	
-	$vHtml=new HtmlControl();
+	$vHtml=new HtmlControl();	
 	?>
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-12"> 
 				<div class="category-home-box">
 					<div class="row">
+						<div class="col-lg-3"><div class="kep" style="background-color: <?php echo @$attrs['color_bar']; ?>" ></div></div>
+						<div class="col-lg-9"></div>
+					</div>
+					<div class="row margin-top-10">
 						<div class="col-lg-3"><h2 class="category-home-title"><a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a></h2></div>
 						<div class="col-lg-9">							
 							<div class="gakake">
