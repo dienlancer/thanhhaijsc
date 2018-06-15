@@ -441,15 +441,22 @@ function loadCategoryHome($attrs){
 											}
 											?>
 											<div class="box-product">
-												<div class="box-product-img">
-													<center><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" alt="<?php echo $title; ?>"></a></center>
+												<div class="box-product-img bg-slider">
+													<center><a href="<?php echo @$permalink; ?>"><img src="<?php echo @$thumbnail; ?>" alt="<?php echo @$title; ?>"></a></center>
+													<?php 
+													if((int)@$sale_price > 0){
+														?>
+														<div class="sale"><img src="<?php echo site_url('wp-content/uploads/sale.png'); ?>"></div>
+														<?php
+													}
+													?>                                
 												</div>
-												<div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link; ?>"><?php echo $manufacturer_name; ?></a></div>
-												<div class="box-product-title margin-top-10"><a href="<?php echo $permalink; ?>" title="<?php echo $title; ?>" ><b><?php echo $title; ?></b></a></div>
-												<div class="margin-top-10"><?php echo $sku; ?></div>												
-												<?php echo $html_price; ?>
+												<div class="manufacturer-name margin-top-10"><a href="<?php echo @$manufacturer_link; ?>"><?php echo @$manufacturer_name; ?></a></div>
+												<div class="box-product-title margin-top-10"><a href="<?php echo @$permalink; ?>" title="<?php echo @$title; ?>" ><b><?php echo @$title; ?></b></a></div>
+												<div class="margin-top-10"><?php echo @$sku; ?></div>                            
+												<?php echo @$html_price; ?>
 												<div class="thia margin-top-10">
-													<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,1);" >
+													<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id; ?>,1);" >
 														<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
 													</a>
 												</div>

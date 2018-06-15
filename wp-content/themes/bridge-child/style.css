@@ -782,8 +782,10 @@ li.narrow .second .inner ul{
   margin-top: 0px;
 }
 .box-product-title a{
-      font-size: 15px;
-      color: #333;      
+     font-size: 15px;
+    color: #333;
+    display: block;
+    height: 50px;
 }
 .manufacturer-name a{
   
@@ -851,6 +853,12 @@ li.narrow .second .inner ul{
 }
 .bg-slider{
   position: relative;
+}
+.sale{
+      position: absolute;
+    width: 60px;
+    top: 0;
+    right: 0;
 }
 .category-title{
       font-size: 15px;
