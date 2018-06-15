@@ -89,6 +89,43 @@ function script_fanpage(){
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, \'script\', \'facebook-jssdk\'));</script>';
 	echo $strScript;
+	$modal='<div class="modal fade modal-add-cart" id="modal-alert-add-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header relative">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
+      </div>
+      <div class="modal-body">
+
+      </div>      
+    </div>
+  </div>
+</div>  
+<div class="modal fade modal-invoice-report" id="modal-history-invoice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
+      </div>
+      <div class="modal-body">
+        
+      </div>      
+    </div>
+  </div>
+</div>';
+	echo $modal;
+	$tawk_to='<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src=\'https://embed.tawk.to/5b23257f61a2e64e5fb57e1f/default\';
+s1.charset=\'UTF-8\';
+s1.setAttribute(\'crossorigin\',\'*\');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>';
+	echo $tawk_to;
 }
 /* end fanpage */
 
