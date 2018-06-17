@@ -100,14 +100,18 @@
                     $price=get_post_meta($post_id,"price",true);
                     $sale_price=get_post_meta($post_id,"sale_price",true);
                     $sku=get_post_meta($post_id,"sku",true);
-                    $html_price='';                     
-                    if((int)@$sale_price > 0){              
-                        $price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
-                        $price_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price).' đ</div>';                                       
-                        $html_price=$price_off_html . $price_on_html ;              
+                    $html_price='';               
+                    if((int)@$price > 0){
+                    	if((int)@$sale_price > 0){              
+                    		$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
+                    		$price_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price).' đ</div>';                                       
+                    		$html_price=$price_off_html . $price_on_html ;              
+                    	}else{
+                    		$html_price='<div class="price-on">'.$vHtml->fnPrice($price).' đ</div>' ;                  
+                    	}
                     }else{
-                        $html_price='<div class="price-on">'.$vHtml->fnPrice($price).' đ</div>' ;                  
-                    }       
+                    	$html_price='<div class="price-on">LIÊN HỆ</div>' ;                  
+                    }                                
                     $intro=get_post_meta($post_id,"intro",true);
                     $source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );                      
                     $manufacturer_name='';
@@ -140,9 +144,21 @@
                             </div>
                             <?php echo @$html_price; ?>                            
                             <div class="thia margin-top-10">
-                                <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id; ?>,1);" >
-                                    <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
-                                </a>
+                            	<?php 
+                            	if((int)@$price > 0){
+                            		?>
+                            		<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id; ?>,1);" >
+                            			<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                            		</a>
+                            		<?php
+                            	}else{
+                            		?>
+                            		<a href="<?php echo site_url('lien-he'); ?>" >
+                            			<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                            		</a>
+                            		<?php
+                            	}
+                            	?>                                
                             </div>
                         </div>
                     </div>          
