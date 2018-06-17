@@ -1012,6 +1012,23 @@ div.bellesa-cart a {
     margin-bottom: 0;
     width: 180px;
 }
+.lita{
+        display: flex;
+    align-items: center;
+    background: #e4e0e0;
+    margin-top: 10px;
+    padding-bottom: 15px;
+}
+.niu{
+  margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.niu a{
+      color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 @media (max-width: 768px) { 
   .nav_bar{
     display: none;
