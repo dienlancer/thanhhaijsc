@@ -54,19 +54,40 @@
                 }
             }
             $price='';
+            $source_price=array();
             if(isset($_POST['list_price'])){
             	$price=@$_POST['list_price'];
-            	echo "<pre>".print_r($price,true)."</pre>";
-            }            
-            if(count($args) > 0){
-                $the_query = new WP_Query( $args );
-            }            
+            }
+            if(!empty(@$price)){            	
+            	$source_price=explode('-', @$price);
+            	$args = array(
+            		'post_type'  => 'zaproduct',
+            		'meta_key'   => 'price',
+            		'orderby' => 'id',
+                    'order'   => 'DESC',   
+            		'meta_query' => array(
+            			array(
+            				'key'     => 'price',
+            				'value'   => $source_price,
+            				'compare' => 'IN',
+            			),
+            		),
+            	);
+            }                      
+            if(count($args)==0){
+            	$args=array(
+            		'post_type' => 'zaproduct',
+            		'orderby'=>'id',
+            		'order'=>'DESC'
+            	);
+            }
+            $the_query = new WP_Query( $args );                       
             if(!empty(@$_POST["filter_page"]))          {
                 $currentPage=@$_POST["filter_page"];  
             }            
             if(!empty(@$zendvn_sp_settings["product_number"])){
                 $totalItemsPerPage=(int)@$zendvn_sp_settings["product_number"];        
-            }
+            }            
             $productModel->setWpQuery($the_query);   
             $productModel->setPerpage($totalItemsPerPage);        
             $productModel->prepare_items();               
@@ -77,7 +98,7 @@
                 "pageRange"=>$pageRange,
                 "currentPage"=>$currentPage   
             );    
-            $pagination=$zController->getPagination("Pagination",$arrPagination); 
+            $pagination=$zController->getPagination("Pagination",$arrPagination);             
             if($the_query->have_posts()){       
                 $k=0;
                 echo '<form  method="post"  class="frm" name="frm">';
