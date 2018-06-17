@@ -1029,6 +1029,20 @@ div.bellesa-cart a {
     font-weight: bold;
     text-transform: uppercase;
 }
+.filter-by-price{
+        font-size: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f2f2f2;
+    padding: 0px 0px 10px 0px;
+    color: #DD0022;
+    font-weight: bold;
+}
+select[name="ddlPrice"]{
+  border: 1px solid #dddddd;
+  width: 100%;
+  padding: 5px;
+}
 @media (max-width: 768px) { 
   .nav_bar{
     display: none;
