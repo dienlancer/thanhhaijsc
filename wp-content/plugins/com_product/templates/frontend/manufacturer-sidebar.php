@@ -25,8 +25,13 @@
 <div class="col-left margin-top-15">
     <div class="filter-by-price">LỌC SẢN PHẨM THEO GIÁ</div>
     <div class="margin-top-15">
-        <form name="frm-filter-price" method="POST">
-            <select name="ddlPrice">
+        <?php 
+        $page_id_search = $zController->getHelper('GetPageId')->get('_wp_page_template','search.php');      
+        $search_link = get_permalink($page_id_search); 
+        ?>
+        <form name="frm-filter-price" method="POST" action="<?php echo $search_link; ?>">
+            <select name="list_price">
+                <option value="">--Chọn giá--</option>
                 <option value="20000000-30000000">Từ 20.000.000 đến 30.000.000</option>
                 <option value="10000000-20000000">Từ 10.000.000 đến 20.000.000</option>
                 <option value="5000000-10000000">Từ 5.000.000 đến 10.000.000</option>

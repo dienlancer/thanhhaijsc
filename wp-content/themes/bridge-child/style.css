@@ -1038,7 +1038,7 @@ div.bellesa-cart a {
     color: #DD0022;
     font-weight: bold;
 }
-select[name="ddlPrice"]{
+select[name="list_price"]{
   border: 1px solid #dddddd;
   width: 100%;
   padding: 5px;

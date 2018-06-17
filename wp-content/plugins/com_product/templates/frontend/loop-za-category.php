@@ -53,6 +53,11 @@
                     );
                 }
             }
+            $price='';
+            if(isset($_POST['list_price'])){
+            	$price=@$_POST['list_price'];
+            	echo "<pre>".print_r($price,true)."</pre>";
+            }            
             if(count($args) > 0){
                 $the_query = new WP_Query( $args );
             }            
