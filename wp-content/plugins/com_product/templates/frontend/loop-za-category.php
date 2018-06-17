@@ -60,19 +60,10 @@
             }
             if(!empty(@$price)){            	
             	$source_price=explode('-', @$price);
-            	$args = array(
-            		'post_type'  => 'zaproduct',
-            		'meta_key'   => 'price',
-            		'orderby' => 'id',
-                    'order'   => 'DESC',   
-            		'meta_query' => array(
-            			array(
-            				'key'     => 'price',
-            				'value'   => $source_price,
-            				'compare' => 'IN',
-            			),
-            		),
-            	);
+            	$meta_query = new WP_Meta_Query();
+            	$meta_query->parse_query_vars( array(
+					'meta_key' => 'price',	
+				) );
             }                      
             if(count($args)==0){
             	$args=array(
