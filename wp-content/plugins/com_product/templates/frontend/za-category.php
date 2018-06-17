@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-lg-3">
 			
-				<?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "manufacturer-sidebar.php"; ?>
+			<?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "manufacturer-sidebar.php"; ?>
 			
 		</div>
 		<div class="col-lg-9">

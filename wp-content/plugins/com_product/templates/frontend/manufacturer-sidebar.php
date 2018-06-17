@@ -33,7 +33,7 @@
                 <option value="1000000-5000000">Từ 1000.0000 đến 5.000.000</option>
                 <option value="1000000">Dưới 1 triệu</option>
             </select>
-            <div class="filter">
+            <div class="filter margin-top-15">
                 <a href="javascript:void(0);" onclick="document.forms['frm-filter-price'].submit();">TÌM KIẾM</a>
             </div>
         </form>        
