@@ -31,14 +31,18 @@ $term_id=0;
                 $sku=get_post_meta($post_id,"sku",true);
                 $price=get_post_meta($post_id,"price",true);
                 $sale_price=get_post_meta($post_id,"sale_price",true);        
-                $html_price='';                     
-                if((int)@$sale_price > 0){              
-                    $price_off_html='<div class="riu"><div>Giá niêm yết : </div><div class="detail-price-off">'.$vHtml->fnPrice($price).' đ</div></div>' ;                 
-                    $price_on_html ='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($sale_price).' đ</div></div>';                                       
-                    $html_price=$price_off_html . $price_on_html ;              
+                $html_price='';   
+                if((int)@$price > 0){
+                    if((int)@$sale_price > 0){              
+                        $price_off_html='<div class="riu"><div>Giá niêm yết : </div><div class="detail-price-off">'.$vHtml->fnPrice($price).' đ</div></div>' ;                 
+                        $price_on_html ='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($sale_price).' đ</div></div>';                                       
+                        $html_price=$price_off_html . $price_on_html ;              
+                    }else{
+                        $html_price='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($price).' đ</div></div>' ;                  
+                    }
                 }else{
-                    $html_price='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($price).' đ</div></div>' ;                  
-                }   
+                    $html_price='<div class="riu"><div>Giá : </div><div class="detail-price-on">LIÊN HỆ</div></div>' ;
+                }                                  
                 $intro=get_post_meta($post_id,"intro",true);
                 $technical=get_post_meta($post_id,"technical",true);
                 $video_id=get_post_meta($post_id,"video_id",true);
@@ -70,7 +74,19 @@ $term_id=0;
                             <div class="product-title margin-top-10"><span class="manufacturer-title">HÃNG SẢN XUẤT : </span><?php echo $manufacturer_name; ?></div>
                             <div class="riu margin-top-15">
                                 <div><input type="text" name="quantity" value="1" class="quantity" onkeypress="return isNumberKey(event);" /></div>
-                                <div class="bellesa-cart margin-left-5"><a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,document.getElementsByName('quantity')[0].value);" >THÊM VÀO GIỎ HÀNG</a></div>                                
+                                <div class="bellesa-cart margin-left-5">
+                                    <?php 
+                                    if((int)@$price > 0){
+                                        ?>
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,document.getElementsByName('quantity')[0].value);" >THÊM VÀO GIỎ HÀNG</a>
+                                        <?php
+                                    }else{
+                                        ?>
+                                        <a href="<?php echo site_url('lien-he'); ?>" >LIÊN HỆ</a>
+                                        <?php
+                                    }
+                                    ?>                                    
+                                </div>                                
                             </div>
                         </form>
                     </div>                    
