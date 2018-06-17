@@ -25,12 +25,17 @@
 <div class="col-left margin-top-15">
     <div class="filter-by-price">LỌC SẢN PHẨM THEO GIÁ</div>
     <div class="margin-top-15">
-        <select name="ddlPrice">
-            <option value="20000000-30000000">Từ 20.000.000 đến 30.000.000</option>
-            <option value="10000000-20000000">Từ 10.000.000 đến 20.000.000</option>
-            <option value="5000000-10000000">Từ 5.000.000 đến 10.000.000</option>
-            <option value="1000000-5000000">Từ 1000.0000 đến 5.000.000</option>
-            <option value="1000000">Dưới 1 triệu</option>
-        </select>
+        <form name="frm-filter-price" method="POST">
+            <select name="ddlPrice">
+                <option value="20000000-30000000">Từ 20.000.000 đến 30.000.000</option>
+                <option value="10000000-20000000">Từ 10.000.000 đến 20.000.000</option>
+                <option value="5000000-10000000">Từ 5.000.000 đến 10.000.000</option>
+                <option value="1000000-5000000">Từ 1000.0000 đến 5.000.000</option>
+                <option value="1000000">Dưới 1 triệu</option>
+            </select>
+            <div class="filter">
+                <a href="javascript:void(0);" onclick="document.forms['frm-filter-price'].submit();">TÌM KIẾM</a>
+            </div>
+        </form>        
     </div>
 </div>                
