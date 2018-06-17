@@ -139,10 +139,16 @@
                             <div class="manufacturer-name margin-top-10"><a href="<?php echo @$manufacturer_link; ?>"><?php echo @$manufacturer_name; ?></a></div>
                             <div class="box-product-title margin-top-10"><a href="<?php echo @$permalink; ?>" title="<?php echo @$title; ?>" ><b><?php echo @$title; ?></b></a></div>
                             <div class="margin-top-10"><?php echo @$sku; ?></div>                            
-                            <div class="box-product-intro margin-top-10">
-                                <?php echo $intro; ?>
-                            </div>
-                            <?php echo @$html_price; ?>                            
+                            <?php 
+                            if(!empty(@$intro)){
+                            	?>
+                            	<div class="box-product-intro margin-top-10">
+                            		<?php echo $intro; ?>
+                            	</div>                       
+                            	<?php
+                            }												
+                            echo @$html_price; 
+                            ?>                 
                             <div class="thia margin-top-10">
                             	<?php 
                             	if((int)@$price > 0){
