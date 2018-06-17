@@ -72,22 +72,26 @@ $term_id=0;
                             <div class="product-title margin-top-10"><?php echo $title; ?></div>
                             <?php echo $html_price; ?>
                             <div class="product-title margin-top-10"><span class="manufacturer-title">HÃNG SẢN XUẤT : </span><?php echo $manufacturer_name; ?></div>
-                            <div class="riu margin-top-15">
-                                <div><input type="text" name="quantity" value="1" class="quantity" onkeypress="return isNumberKey(event);" /></div>
-                                <div class="bellesa-cart margin-left-5">
-                                    <?php 
-                                    if((int)@$price > 0){
-                                        ?>
-                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,document.getElementsByName('quantity')[0].value);" >THÊM VÀO GIỎ HÀNG</a>
-                                        <?php
-                                    }else{
-                                        ?>
-                                        <a href="<?php echo site_url('lien-he'); ?>" >LIÊN HỆ</a>
-                                        <?php
-                                    }
-                                    ?>                                    
-                                </div>                                
-                            </div>
+                            <?php 
+                            if((int)@$price > 0){
+                                ?>
+                                <div class="riu margin-top-15">
+                                    <div><input type="text" name="quantity" value="1" class="quantity" onkeypress="return isNumberKey(event);" /></div>
+                                    <div class="bellesa-cart margin-left-5">
+                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,document.getElementsByName('quantity')[0].value);" >THÊM VÀO GIỎ HÀNG</a>                            
+                                    </div>                                
+                                </div>
+                                <?php
+                            }else{
+                                ?>
+                                <div class="riu margin-top-15">                                   
+                                    <div class="bellesa-cart">
+                                        <a href="<?php echo site_url('lien-he'); ?>">LIÊN HỆ</a>                            
+                                    </div>                                
+                                </div>
+                                <?php
+                            }
+                            ?>                            
                         </form>
                     </div>                    
                 </div>
@@ -202,13 +206,17 @@ $term_id=0;
                                 $price2=get_post_meta($post_id2,"price",true);
                                 $sale_price2=get_post_meta($post_id2,"sale_price",true);                                            
                                 $html_price2='';                     
-                                if((int)@$sale_price2 > 0){              
-                                    $price2_off_html='<div class="price-off">'.$vHtml->fnPrice($price2).' đ</div>' ;                 
-                                    $price2_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price2).' đ</div>';                                     
-                                    $html_price2=$price2_off_html . $price2_on_html ;              
+                                if((int)@$price2 > 0){
+                                    if((int)@$sale_price2 > 0){              
+                                        $price2_off_html='<div class="price-off">'.$vHtml->fnPrice($price2).' đ</div>' ;                 
+                                        $price2_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price2).' đ</div>';                                     
+                                        $html_price2=$price2_off_html . $price2_on_html ;              
+                                    }else{
+                                        $html_price2='<div class="price-on">'.$vHtml->fnPrice($price2).' đ</div>' ;                  
+                                    }
                                 }else{
-                                    $html_price2='<div class="price-on">'.$vHtml->fnPrice($price2).' đ</div>' ;                  
-                                }       
+                                    $html_price2='<div class="price-on">LIÊN HỆ</div>' ;                  
+                                }                                    
                                 $intro2=get_post_meta($post_id2,"intro",true);
                                 $source_manufacturer2 = wp_get_object_terms($post_id2,  'za_manufacturer' );                        
                                 $manufacturer_name2='';
@@ -229,6 +237,23 @@ $term_id=0;
                                         <?php echo $intro2; ?>
                                     </div>
                                     <?php echo $html_price2; ?>
+                                    <div class="thia margin-top-10">
+                                        <?php 
+                                        if((int)@$price2 > 0){
+                                            ?>
+                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id2; ?>,1);" >
+                                                <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                                            </a>
+                                            <?php
+                                        }else{
+                                            ?>
+                                            <a href="<?php echo site_url('lien-he'); ?>" >
+                                                <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                                            </a>
+                                            <?php
+                                        }
+                                        ?>                                
+                                    </div>
                                 </div>
                                 <?php
                             }
