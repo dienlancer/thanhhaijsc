@@ -9,7 +9,7 @@
 			</div>			
 		</div>
 		<div class="col-lg-9">
-			<div class="col-right">				
+			<div class="col-right">
 				<div class="row">
 					<div class="col-lg-12">                     
 						<h1 class="category-title">
@@ -19,18 +19,6 @@
 						</h1>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<?php 						
-						$term_id = get_queried_object_id();
-						$source_termchildren = get_term_children( $term_id,'za_category');						
-						foreach ($source_termchildren as $key => $value) {
-							$term = get_term_by( 'id', $term_id, 'za_category');							
-							
-						}
-						?>	
-					</div>
-				</div>			
 				<?php require_once PLUGIN_PATH . DS . "templates" . DS . "frontend". DS . "loop-za-category.php"; ?>
 			</div>			
 		</div>

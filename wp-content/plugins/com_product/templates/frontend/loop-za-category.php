@@ -75,21 +75,10 @@
             $pagination=$zController->getPagination("Pagination",$arrPagination); 
             if($the_query->have_posts()){       
                 $k=0;
-                echo '<form  method="post"  class="frm col-right" name="frm">';
+                echo '<form  method="post"  class="frm" name="frm">';
                 echo '<input type="hidden" name="filter_page" value="1" />';
                 echo '<input type="hidden" name="za_category_id" value="'.@$za_category_id.'" />';
-                echo '<input type="hidden" name="q" value="'.@$q.'" />';
-                ?>
-                <div class="row">
-                    <div class="col-lg-12">                     
-                        <h1 class="category-title">
-                            <div>Trang chủ</div>
-                            <div class="margin-left-5"><i class="fas fa-angle-right"></i></div>
-                            <div class="margin-left-5"><?php single_cat_title(); ?></div>
-                        </h1>
-                    </div>
-                </div>
-                <?php
+                echo '<input type="hidden" name="q" value="'.@$q.'" />';                
                 while ($the_query->have_posts()){
                     $the_query->the_post();
                     $post_id=$the_query->post->ID;                                                                      
