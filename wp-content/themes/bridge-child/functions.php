@@ -188,7 +188,7 @@ function showSearchRight(){
 			</form> 
 		</div>
 		<div class="col-lg-2">
-			<a class="kitae" href="<?php echo $cart_link; ?>">
+			<a class="kitae margin-left-15" href="<?php echo $cart_link; ?>">
 				<div class="icon-header"><i class="fas fa-cart-arrow-down"></i></div>
 				<div class="gian-ho"><font color="#ffffff">Giỏ hàng</font></div>
 			</a>
