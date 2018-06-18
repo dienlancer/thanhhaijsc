@@ -13,9 +13,37 @@
             }    
             if(isset($_POST['za_category_id'])){
                 $za_category_id=(int)@$_POST['za_category_id'];
-            }
-            $the_query=$wp_query;
-            $args = array();
+            }                                        
+            $args=array();
+            echo "<pre>".print_r(get_query_var('za_category'),true)."</pre>";
+            if(!empty(get_query_var('za_category'))){
+                $args = array(
+                    'post_type' => 'zaproduct',  
+                    'orderby' => 'id',
+                    'order'   => 'DESC',                                                  
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'za_category',
+                            'field'    => 'slug',
+                            'terms'    => array(get_query_var('za_category')),                                  
+                        ),
+                    ),
+                ); 
+            }  
+            if(!empty(get_query_var('za_manufacturer'))){
+                $args = array(
+                    'post_type' => 'zaproduct',  
+                    'orderby' => 'id',
+                    'order'   => 'DESC',                                                  
+                    'tax_query' => array(
+                        array(
+                            'taxonomy' => 'za_manufacturer',
+                            'field'    => 'slug',
+                            'terms'    => array(get_query_var('za_manufacturer')),                                  
+                        ),
+                    ),
+                ); 
+            }               
             if(!empty(@$q) && $za_category_id > 0){
                 $args = array(
                     'post_type' => 'zaproduct',  
@@ -84,7 +112,7 @@
             		'orderby'=>'id',
             		'order'=>'DESC'
             	);
-            }                          
+            }                  
             $the_query = new WP_Query( $args );                       
             if(!empty(@$_POST["filter_page"]))          {
                 $currentPage=@$_POST["filter_page"];  
