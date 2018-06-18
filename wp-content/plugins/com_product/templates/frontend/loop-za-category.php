@@ -62,7 +62,7 @@
             	$source_price=explode('-', @$price);
             	$source_price2=$source_price;
             	if(count(@$source_price)== 1){
-            		$source_price2=array(0,@$source_price[0]);
+            		$source_price2=array(1,@$source_price[0]);
             	}
             	$args = array(
             		'post_type' => 'zaproduct',            		
