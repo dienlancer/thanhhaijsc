@@ -60,28 +60,31 @@
             }
             if(!empty(@$price)){            	
             	$source_price=explode('-', @$price);
+            	$source_price2=$source_price;
+            	if(count(@$source_price)== 1){
+            		$source_price2=array(0,@$source_price[0]);
+            	}
             	$args = array(
-            		'post_type' => 'zaproduct',
-            		'meta_key'   => 'price',
+            		'post_type' => 'zaproduct',            		
             		'orderby'=>'id',
             		'order'=>'DESC',
             		'meta_query' => array(
             			array(
             				'key'     => 'price',
-            				'value'   => $source_price,
+            				'value'   => $source_price2,
             				'type' => 'numeric',
             				'compare' => 'BETWEEN'
             			),
             		),
             	);
-            }                      
+            }               
             if(count($args)==0){
             	$args=array(
             		'post_type' => 'zaproduct',
             		'orderby'=>'id',
             		'order'=>'DESC'
             	);
-            }
+            }                          
             $the_query = new WP_Query( $args );                       
             if(!empty(@$_POST["filter_page"]))          {
                 $currentPage=@$_POST["filter_page"];  
