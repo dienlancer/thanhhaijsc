@@ -108,8 +108,7 @@
             			),
             		),
             	);
-            }      
-            echo "<pre>".print_r($args,true)."</pre>";                                 
+            }                                             
             $the_query = new WP_Query( $args );                       
             if(!empty(@$_POST["filter_page"]))          {
                 $currentPage=@$_POST["filter_page"];  
