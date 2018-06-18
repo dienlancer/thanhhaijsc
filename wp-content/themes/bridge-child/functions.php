@@ -144,7 +144,8 @@ function showSearchRight(){
 	$telephone=$zendvn_sp_settings['telephone'];
 	$terms = get_terms( array(
 		'taxonomy' => 'za_category',
-		'hide_empty' => false,  ) );	
+		'hide_empty' => false, 
+		'parent' => 0 ) );	
 	$source_category=array();
 	$source_category[]=array('id'=>0,'name'=>'Tất cả danh mục');
 	foreach ($terms as $key => $value) {
