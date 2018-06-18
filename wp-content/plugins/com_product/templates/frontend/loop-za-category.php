@@ -5,17 +5,12 @@
             
             $totalItemsPerPage=4;
             $pageRange=10;
-            $currentPage=1;  
-            $q='';
-            $za_category_id=0;
-            if(isset($_POST['q'])){
-                $q=trim($_POST['q']);
-            }    
-            if(isset($_POST['za_category_id'])){
-                $za_category_id=(int)@$_POST['za_category_id'];
-            }                                        
-            $args=array();
-            echo "<pre>".print_r(get_query_var('za_category'),true)."</pre>";
+            $currentPage=1;                                           
+            $args=array(
+                'post_type' => 'zaproduct',
+                'orderby'=>'id',
+                'order'=>'DESC'
+            );                    
             if(!empty(get_query_var('za_category'))){
                 $args = array(
                     'post_type' => 'zaproduct',  
@@ -43,8 +38,16 @@
                         ),
                     ),
                 ); 
+            }           
+            $q='';
+            $za_category_id=0;
+            if(isset($_POST['q'])){
+                $q=trim($_POST['q']);
+            }    
+            if(isset($_POST['za_category_id'])){
+                $za_category_id=(int)@$_POST['za_category_id'];
             }               
-            if(!empty(@$q) && $za_category_id > 0){
+            if(!empty(@$q) && (int)@$za_category_id > 0){
                 $args = array(
                     'post_type' => 'zaproduct',  
                     'orderby' => 'id',
@@ -66,7 +69,7 @@
                         'order'   => 'DESC',  
                         's' => $q                        
                     );
-                }elseif($za_category_id > 0){
+                }elseif((int)@$za_category_id > 0){
                     $args = array(
                         'post_type' => 'zaproduct',  
                         'orderby' => 'id',
@@ -105,14 +108,8 @@
             			),
             		),
             	);
-            }               
-            if(count($args)==0){
-            	$args=array(
-            		'post_type' => 'zaproduct',
-            		'orderby'=>'id',
-            		'order'=>'DESC'
-            	);
-            }                  
+            }      
+            echo "<pre>".print_r($args,true)."</pre>";                                 
             $the_query = new WP_Query( $args );                       
             if(!empty(@$_POST["filter_page"]))          {
                 $currentPage=@$_POST["filter_page"];  
