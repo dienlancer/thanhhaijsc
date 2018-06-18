@@ -22,7 +22,7 @@
                 }
                 ?>
 </div>
-<!--<div class="col-left margin-top-15">
+<div class="col-left margin-top-15">
     <div class="filter-by-price">LỌC SẢN PHẨM THEO GIÁ</div>
     <div class="margin-top-15">
         <?php 
@@ -62,4 +62,4 @@
             </div>
         </form>        
     </div>
-</div>-->                
+</div>               

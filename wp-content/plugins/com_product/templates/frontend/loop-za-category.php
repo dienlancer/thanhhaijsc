@@ -60,10 +60,20 @@
             }
             if(!empty(@$price)){            	
             	$source_price=explode('-', @$price);
-            	$meta_query = new WP_Meta_Query();
-            	$meta_query->parse_query_vars( array(
-					'meta_key' => 'price',	
-				) );
+            	$args = array(
+            		'post_type' => 'zaproduct',
+            		'meta_key'   => 'price',
+            		'orderby'=>'id',
+            		'order'=>'DESC',
+            		'meta_query' => array(
+            			array(
+            				'key'     => 'price',
+            				'value'   => $source_price,
+            				'type' => 'numeric',
+            				'compare' => 'BETWEEN'
+            			),
+            		),
+            	);
             }                      
             if(count($args)==0){
             	$args=array(
@@ -95,7 +105,8 @@
                 echo '<form  method="post"  class="frm" name="frm">';
                 echo '<input type="hidden" name="filter_page" value="1" />';
                 echo '<input type="hidden" name="za_category_id" value="'.@$za_category_id.'" />';
-                echo '<input type="hidden" name="q" value="'.@$q.'" />';                
+                echo '<input type="hidden" name="q" value="'.@$q.'" />';  
+                echo '<input type="hidden" name="list_price" value="'.@$price.'" />';                
                 while ($the_query->have_posts()){
                     $the_query->the_post();
                     $post_id=$the_query->post->ID;                                                                      
