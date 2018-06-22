@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2018 at 01:24 PM
+-- Generation Time: Jun 22, 2018 at 01:25 PM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -6499,7 +6499,7 @@ ALTER TABLE `xzv_links`
 -- AUTO_INCREMENT for table `xzv_options`
 --
 ALTER TABLE `xzv_options`
-  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4565;
+  MODIFY `option_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4567;
 
 --
 -- AUTO_INCREMENT for table `xzv_postmeta`
