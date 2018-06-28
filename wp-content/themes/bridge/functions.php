@@ -553,7 +553,7 @@ if(!function_exists('qode_theme_setup')) {
         //add theme support for post thumbnails
         add_theme_support( 'post-thumbnails' );
 
-        add_image_size( 'portfolio-square', 570, 570, true );
+        /*add_image_size( 'portfolio-square', 570, 570, true );
         add_image_size( 'portfolio-portrait', 600, 800, true );
         add_image_size( 'portfolio-landscape', 800, 600, true );
         add_image_size( 'menu-featured-post', 345, 198, true );
@@ -564,7 +564,7 @@ if(!function_exists('qode_theme_setup')) {
         add_image_size( 'portfolio_masonry_tall', 500, 1000, true );
         add_image_size( 'portfolio_masonry_large', 1000, 1000, true );
         add_image_size( 'portfolio_masonry_with_space', 700);
-        add_image_size( 'latest_post_boxes', 539, 303, true );
+        add_image_size( 'latest_post_boxes', 539, 303, true );*/
 
         //enable rendering shortcodes in widgets
         add_filter('widget_text', 'do_shortcode');
