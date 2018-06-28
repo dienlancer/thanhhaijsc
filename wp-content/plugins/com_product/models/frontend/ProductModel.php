@@ -98,6 +98,8 @@ class ProductModel{
         $args["posts_per_page"]=$this->getPerpage();
         $args["offset"]=$offset;
         $args["paged"]=$currentPage;
+        $args['orderby']='id';
+        $args['order']='DESC';        
 		$wpQuery->query($args);				
 		return $wpQuery;
 	}
