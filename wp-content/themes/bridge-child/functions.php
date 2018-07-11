@@ -153,9 +153,10 @@ function showSearchRight(){
 		$za_category_id=(int)@$_POST['za_category_id'];
 	}	
 	?>	
-	<div class="row">
-		<div class="col-lg-6">
-			<form name="frm-search" method="POST" class="ritae" action="<?php echo $search_link; ?>">
+	<div class="section_inner_margin clearfix">
+		<div class="wpb_column vc_column_container vc_col-sm-6">
+			<div class="vc_column-inner">
+				<form name="frm-search" method="POST" class="ritae" action="<?php echo $search_link; ?>">
 				<div>
 					<select name="za_category_id" class="xima">
 						<?php 
@@ -176,21 +177,26 @@ function showSearchRight(){
 					<a href="javascript:void(0);" onclick="document.forms['frm-search'].submit();"><i class="fa fa-search" aria-hidden="true"></i></a>
 				</div>	
 			</form> 
+			</div>			
 		</div>
-		<div class="col-lg-2">
-			<a class="kitae margin-left-15" href="<?php echo $cart_link; ?>">
+		<div class="wpb_column vc_column_container vc_col-sm-2">
+			<div class="vc_column-inner">
+				<a class="kitae margin-left-15" href="<?php echo $cart_link; ?>">
 				<div class="icon-header"><i class="fas fa-cart-arrow-down"></i></div>
 				<div class="gian-ho"><font color="#ffffff">Giỏ hàng</font></div>
 			</a>
+			</div>			
 		</div>
-		<div class="col-lg-4">
-			<div class="lexa">
+		<div class="wpb_column vc_column_container vc_col-sm-4">
+			<div class="vc_column-inner">
+				<div class="lexa">
 				<div class="icon-header"><i class="fas fa-phone"></i></div>
 				<div>
 					<div><font color="#ffffff"><?php echo $telephone; ?></font></div>
 					<div><font color="#ffffff">Hotline mua hàng</font></div>
 				</div>
 			</div>	
+			</div>			
 		</div>
 	</div>	
 	<?php
@@ -215,47 +221,111 @@ function loadCategoryHome($attrs){
 	$source_ads=explode(',', $attrs['ads']);	
 	$vHtml=new HtmlControl();	
 	?>
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12"> 
-				<div class="category-home-box">
-					<div class="row">
-						<div class="col-lg-3"><div class="kep" style="background-color: <?php echo @$attrs['color_bar']; ?>" ></div></div>
-						<div class="col-lg-9"></div>
-					</div>
-					<div class="row margin-top-10">
-						<div class="col-lg-3"><h2 class="category-home-title"><a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a></h2></div>
-						<div class="col-lg-9">							
-							<div class="gakake">
-								<?php 
-								foreach ($source_manufacturer_slug as $key => $value) {
-									$row_term = get_term_by('slug', $value, 'za_manufacturer');	
-									$row_term_link= get_term_link($row_term,'za_manufacturer');		
-									?>
-									<div class="row-manufacturer"><a href="<?php echo $row_term_link; ?>"><?php echo $row_term->name; ?></a></div>
-									<?php
-								}
+	<div class="category-home-box">
+		<div class="section_inner_margin clearfix">
+			<div class="wpb_column vc_column_container vc_col-sm-3">
+				<div class="vc_column-inner">
+					<div class="kep" style="background-color: <?php echo @$attrs['color_bar']; ?>" ></div>
+				</div>				
+			</div>
+			<div class="wpb_column vc_column_container vc_col-sm-9"><div class="vc_column-inner"></div></div>
+		</div>
+		<div class="margin-top-10">
+			<div class="section_inner_margin clearfix">
+				<div class="wpb_column vc_column_container vc_col-sm-3">
+					<div class="vc_column-inner"><h2 class="category-home-title"><a href="<?php echo $term_link; ?>"><?php echo $term->name; ?></a></h2></div>
+				</div>
+				<div class="wpb_column vc_column_container vc_col-sm-9">	
+					<div class="vc_column-inner">
+						<div class="gakake">
+							<?php 
+							foreach ($source_manufacturer_slug as $key => $value) {
+								$row_term = get_term_by('slug', $value, 'za_manufacturer');	
+								$row_term_link= get_term_link($row_term,'za_manufacturer');		
 								?>
-								<div class="view-all-category">
-									<a href="<?php echo $term_link; ?>">
-										<div class="labalaba">
-											<div>Xem tất cả các sản phẩm</div>
-											<div class="margin-left-5"><i class="fas fa-angle-right"></i></div>
-										</div>										
-									</a>
-								</div>
+								<div class="row-manufacturer"><a href="<?php echo $row_term_link; ?>"><?php echo $row_term->name; ?></a></div>
+								<?php
+							}
+							?>
+							<div class="view-all-category">
+								<a href="<?php echo $term_link; ?>">
+									<div class="labalaba">
+										<div>Xem tất cả các sản phẩm</div>
+										<div class="margin-left-5"><i class="fas fa-angle-right"></i></div>
+									</div>										
+								</a>
 							</div>
 						</div>
-					</div>					
-					<div class="row margin-top-10">
-						<div class="col-lg-3">
+					</div>						
+					
+				</div>
+			</div>			
+		</div>					
+		<div class="margin-top-10">
+			<div class="section_inner_margin clearfix">
+				<div class="wpb_column vc_column_container vc_col-sm-3">
+					<div class="vc_column-inner">
+						<script type="text/javascript" language="javascript">
+							jQuery(document).ready(function(){
+								jQuery(".<?php echo $alias_ads; ?>").owlCarousel({
+									autoplay:true,                    
+									loop:true,
+									margin:0,                        
+									nav:false,            
+									mouseDrag: true,
+									touchDrag: true,                                
+									responsiveClass:true,
+									responsive:{
+										0:{
+											items:1
+										},
+										600:{
+											items:1
+										},
+										1000:{
+											items:1
+										}
+									}
+								});											
+							});                
+						</script>
+						<div class="owl-carousel <?php echo $alias_ads; ?> owl-theme">
+							<?php 
+							foreach ($source_ads as $key => $value) {
+								?>
+								<div><img src="<?php echo site_url('wp-content/uploads/'.$value); ?>"></div>
+								<?php
+							}
+							?>
+						</div>
+					</div>
+				</div>
+				<div class="wpb_column vc_column_container vc_col-sm-9">
+					<div class="vc_column-inner">
+						<?php 
+						$args = array(
+							'post_type' => 'zaproduct',  
+							'orderby' => 'id',
+							'order'   => 'DESC',  
+							'posts_per_page' => 8,        								
+							'tax_query' => array(
+								array(
+									'taxonomy' => 'za_category',
+									'field'    => 'term_id',
+									'terms'    => $source_term_id,									
+								),
+							),
+						); 
+						$the_query=new WP_Query($args);								
+						if($the_query->have_posts()){
+							?>
 							<div>
 								<script type="text/javascript" language="javascript">
 									jQuery(document).ready(function(){
-										jQuery(".<?php echo $alias_ads; ?>").owlCarousel({
+										jQuery(".<?php echo $alias; ?>").owlCarousel({
 											autoplay:true,                    
 											loop:true,
-											margin:0,                        
+											margin:10,                        
 											nav:false,            
 											mouseDrag: true,
 											touchDrag: true,                                
@@ -265,173 +335,118 @@ function loadCategoryHome($attrs){
 													items:1
 												},
 												600:{
-													items:1
+													items:4
 												},
 												1000:{
-													items:1
+													items:4
 												}
 											}
-										});											
+										});
+										var chevron_left='<i class="fa fa-chevron-left"></i>';
+										var chevron_right='<i class="fa fa-chevron-right"></i>';
+										jQuery("div.<?php echo $alias; ?> div.owl-prev").html(chevron_left);
+										jQuery("div.<?php echo $alias; ?> div.owl-next").html(chevron_right);
 									});                
 								</script>
-								<div class="owl-carousel <?php echo $alias_ads; ?> owl-theme">
+								<div class="owl-carousel <?php echo $alias; ?> owl-theme">
 									<?php 
-									foreach ($source_ads as $key => $value) {
+									while ($the_query->have_posts()){
+										$the_query->the_post();
+										$post_id=$the_query->post->ID;																		
+										$permalink=get_the_permalink($post_id);
+										$title=get_the_title($post_id);
+										$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
+										$thumbnail=$vHtml->getSmallImage($featured_img);
+										$sku=get_post_meta($post_id,"sku",true);
+										$price=get_post_meta($post_id,"price",true);
+										$sale_price=get_post_meta($post_id,"sale_price",true);											
+										$html_price='';                     
+										if((int)@$price > 0){
+											if((int)@$sale_price > 0){              
+												$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
+												$price_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price).' đ</div>';                                       
+												$html_price=$price_off_html . $price_on_html ;              
+											}else{
+												$html_price='<div class="price-on">'.$vHtml->fnPrice($price).' đ</div>' ;                  
+											}
+										}else{
+											$html_price='<div class="price-on">LIÊN HỆ</div>' ;                  
+										}        	
+										$intro=get_post_meta($post_id,"intro",true);
+										$source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );     					
+										$manufacturer_name='';
+										$manufacturer_link='';
+										if(count($source_manufacturer) > 0){
+											$manufacturer_name=$source_manufacturer[0]->name;
+											$manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');							
+										}
 										?>
-										<div><img src="<?php echo site_url('wp-content/uploads/'.$value); ?>"></div>
+										<div class="box-product">
+											<div class="box-product-img bg-slider">
+												<center><a href="<?php echo @$permalink; ?>"><img src="<?php echo @$thumbnail; ?>" alt="<?php echo @$title; ?>"></a></center>
+												<?php 
+												if((int)@$sale_price > 0){
+													?>
+													<div class="sale"><img src="<?php echo site_url('wp-content/uploads/sale.png'); ?>"></div>
+													<?php
+												}
+												?>                                
+											</div>
+											<?php 
+											if(!empty(@$manufacturer_link) && !empty(@$manufacturer_name)){
+												?>
+												<div class="manufacturer-name margin-top-10"><a href="<?php echo @$manufacturer_link; ?>"><?php echo @$manufacturer_name; ?></a></div>
+												<?php
+											}
+											?>       
+											<div class="box-product-title margin-top-10"><a href="<?php echo @$permalink; ?>" title="<?php echo @$title; ?>" ><b><?php echo @$title; ?></b></a></div>
+											<?php 
+											if(!empty(@$sku)){
+												?>
+												<div class="margin-top-10"><?php echo @$sku; ?></div>   
+												<?php
+											}                            
+											if(!empty(@$intro)){
+												?>
+												<div class="box-product-intro margin-top-10">
+													<?php echo $intro; ?>
+												</div>                       
+												<?php
+											}												
+											echo @$html_price; 
+											?>            
+											<div class="thia margin-top-10">
+												<?php 
+												if((int)@$price > 0){
+													?>
+													<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id; ?>,1);" >
+														<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+													</a>
+													<?php
+												}else{
+													?>
+													<a href="<?php echo site_url('lien-he'); ?>" >
+														<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+													</a>
+													<?php
+												}
+												?>                                
+											</div>
+										</div>
 										<?php
 									}
-									?>
+									wp_reset_postdata();  
+									?>	
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-9">
-							<?php 
-							$args = array(
-								'post_type' => 'zaproduct',  
-								'orderby' => 'id',
-								'order'   => 'DESC',  
-								'posts_per_page' => 8,        								
-								'tax_query' => array(
-									array(
-										'taxonomy' => 'za_category',
-										'field'    => 'term_id',
-										'terms'    => $source_term_id,									
-									),
-								),
-							); 
-							$the_query=new WP_Query($args);								
-							if($the_query->have_posts()){
-								?>
-								<div>
-									<script type="text/javascript" language="javascript">
-										jQuery(document).ready(function(){
-											jQuery(".<?php echo $alias; ?>").owlCarousel({
-												autoplay:true,                    
-												loop:true,
-												margin:10,                        
-												nav:false,            
-												mouseDrag: true,
-												touchDrag: true,                                
-												responsiveClass:true,
-												responsive:{
-													0:{
-														items:1
-													},
-													600:{
-														items:4
-													},
-													1000:{
-														items:4
-													}
-												}
-											});
-											var chevron_left='<i class="fa fa-chevron-left"></i>';
-											var chevron_right='<i class="fa fa-chevron-right"></i>';
-											jQuery("div.<?php echo $alias; ?> div.owl-prev").html(chevron_left);
-											jQuery("div.<?php echo $alias; ?> div.owl-next").html(chevron_right);
-										});                
-									</script>
-									<div class="owl-carousel <?php echo $alias; ?> owl-theme">
-										<?php 
-										while ($the_query->have_posts()){
-											$the_query->the_post();
-											$post_id=$the_query->post->ID;																		
-											$permalink=get_the_permalink($post_id);
-											$title=get_the_title($post_id);
-											$featured_img=get_the_post_thumbnail_url($post_id, 'full');	
-											$thumbnail=$vHtml->getSmallImage($featured_img);
-											$sku=get_post_meta($post_id,"sku",true);
-											$price=get_post_meta($post_id,"price",true);
-											$sale_price=get_post_meta($post_id,"sale_price",true);											
-											$html_price='';                     
-											if((int)@$price > 0){
-												if((int)@$sale_price > 0){              
-													$price_off_html='<div class="price-off">'.$vHtml->fnPrice($price).' đ</div>' ;                 
-													$price_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price).' đ</div>';                                       
-													$html_price=$price_off_html . $price_on_html ;              
-												}else{
-													$html_price='<div class="price-on">'.$vHtml->fnPrice($price).' đ</div>' ;                  
-												}
-											}else{
-												$html_price='<div class="price-on">LIÊN HỆ</div>' ;                  
-											}        	
-											$intro=get_post_meta($post_id,"intro",true);
-											$source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );     					
-											$manufacturer_name='';
-											$manufacturer_link='';
-											if(count($source_manufacturer) > 0){
-												$manufacturer_name=$source_manufacturer[0]->name;
-												$manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');							
-											}
-											?>
-											<div class="box-product">
-												<div class="box-product-img bg-slider">
-													<center><a href="<?php echo @$permalink; ?>"><img src="<?php echo @$thumbnail; ?>" alt="<?php echo @$title; ?>"></a></center>
-													<?php 
-													if((int)@$sale_price > 0){
-														?>
-														<div class="sale"><img src="<?php echo site_url('wp-content/uploads/sale.png'); ?>"></div>
-														<?php
-													}
-													?>                                
-												</div>
-												<?php 
-												if(!empty(@$manufacturer_link) && !empty(@$manufacturer_name)){
-													?>
-													<div class="manufacturer-name margin-top-10"><a href="<?php echo @$manufacturer_link; ?>"><?php echo @$manufacturer_name; ?></a></div>
-													<?php
-												}
-												?>       
-												<div class="box-product-title margin-top-10"><a href="<?php echo @$permalink; ?>" title="<?php echo @$title; ?>" ><b><?php echo @$title; ?></b></a></div>
-												<?php 
-												if(!empty(@$sku)){
-													?>
-													<div class="margin-top-10"><?php echo @$sku; ?></div>   
-													<?php
-												}                            
-												if(!empty(@$intro)){
-													?>
-													<div class="box-product-intro margin-top-10">
-														<?php echo $intro; ?>
-													</div>                       
-													<?php
-												}												
-												echo @$html_price; 
-												?>            
-												<div class="thia margin-top-10">
-													<?php 
-													if((int)@$price > 0){
-														?>
-														<a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id; ?>,1);" >
-															<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
-														</a>
-														<?php
-													}else{
-														?>
-														<a href="<?php echo site_url('lien-he'); ?>" >
-															<img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
-														</a>
-														<?php
-													}
-													?>                                
-												</div>
-											</div>
-											<?php
-										}
-										wp_reset_postdata();  
-										?>	
-									</div>
-								</div>
-								<?php								
-							}
-							?>
-						</div>
-					</div>
+							<?php								
+						}
+						?>
+					</div>					
 				</div>
-			</div>
+			</div>			
 		</div>
-	</div>	
+	</div>
 	<?php 
 }
 /* end category homepage */
@@ -447,10 +462,13 @@ function loadManufacturerPage($attrs){
 		$source_image= get_field( 'image','za_manufacturer_'. $term->term_id )	;		
 		$image=$source_image['sizes']['large'];
 		if($k%3==0){
-			echo '<div class="row">';
+			echo '<div class="section_inner_margin clearfix">';
 		}
 		?>
-		<div class="col-lg-4"><div class="margin-top-15"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div></div>
+		<div class="wpb_column vc_column_container vc_col-sm-4">
+			<div class="vc_column-inner">
+				<div class="margin-top-15"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div></div>
+			</div>			
 		<?php
 		$k++;
 		if($k%3==0 || $k==count($source_slug)){
@@ -497,9 +515,11 @@ function loadNews(){
 		echo '<form  method="post"  class="frm tilan" name="frm">';		
 		echo '<input type="hidden" name="filter_page" value="1" />';
 		?>
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="single-title">TIN TỨC</h1>
+		<div class="section_inner_margin clearfix">
+			<div class="wpb_column vc_column_container vc_col-lg-12">
+				<div class="vc_column-inner">
+					<h1 class="single-title">TIN TỨC</h1>
+				</div>				
 			</div>
 		</div>
 		<?php
@@ -514,19 +534,25 @@ function loadNews(){
 			$thumbnail=get_the_post_thumbnail_url($post_id, 'thumbnail');   
 			?>
 			<div class="margin-top-15">
-				<div class="row">
-					<div class="col-lg-2"><a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" /></a></div>
-					<div class="col-lg-10">
-						<h2 class="box-featured-article-title"><a href="<?php echo $permalink; ?>"><?php echo $title; ?></a></h2>
-						<div class="margin-top-15"><?php echo $excerpt; ?></div>
-						<div class="box-featured-article-readmore">
-							<a href="<?php echo $permalink; ?>">
-								<div class="lialo">
-									<div><i class="fas fa-arrow-circle-right"></i></div>
-									<div class="margin-left-5">Xem thêm</div>
-								</div>									
-							</a>
-						</div>
+				<div class="section_inner_margin clearfix">
+					<div class="wpb_column vc_column_container vc_col-lg-2">
+						<div class="vc_column-inner">
+							<a href="<?php echo $permalink; ?>"><img src="<?php echo $thumbnail; ?>" /></a>
+						</div>						
+					</div>
+					<div class="wpb_column vc_column_container vc_col-lg-10">
+						<div class="vc_column-inner">
+							<h2 class="box-featured-article-title"><a href="<?php echo $permalink; ?>"><?php echo $title; ?></a></h2>
+							<div class="margin-top-15"><?php echo $excerpt; ?></div>
+							<div class="box-featured-article-readmore">
+								<a href="<?php echo $permalink; ?>">
+									<div class="lialo">
+										<div><i class="fas fa-arrow-circle-right"></i></div>
+										<div class="margin-left-5">Xem thêm</div>
+									</div>									
+								</a>
+							</div>
+						</div>						
 					</div>
 				</div>
 			</div>			

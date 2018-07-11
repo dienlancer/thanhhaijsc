@@ -1,4 +1,4 @@
-<div class="col-left">
+<div class="col-left margin-top-15">
 <?php 
                 $k=0;
                 $source_term = get_terms([
@@ -10,10 +10,14 @@
                     $source_image= get_field( 'image','za_manufacturer_'. $value->term_id ) ;       
                     $image=$source_image['sizes']['large'];
                     if($k%3==0){
-                        echo '<div class="row">';
+                        echo '<div class="section_inner_margin clearfix">';
                     }
                     ?>
-                    <div class="col-lg-4"><div class="margin-top-15"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div></div>
+                    <div class="wpb_column vc_column_container vc_col-sm-4">
+                        <div class="vc_column-inner">
+                            <div class="margin-top-15"><a href="<?php echo $term_link; ?>"><img src="<?php echo $image; ?>" /></a></div>
+                        </div>                        
+                    </div>
                     <?php
                     $k++;
                     if($k%3==0 || $k==count($source_term)){

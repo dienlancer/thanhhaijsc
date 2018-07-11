@@ -60,32 +60,36 @@
         </div>
     </div>
     <div class="categoryproductmnsc">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <?php 
-                    $args = array( 
-                        'menu'              => '', 
-                        'container'         => '', 
-                        'container_class'   => '', 
-                        'container_id'      => '', 
-                        'menu_class'        => 'category-product-menu', 
-                        'menu_id'           => '', 
-                        'echo'              => true, 
-                        'fallback_cb'       => 'wp_page_menu', 
-                        'before'            => '', 
-                        'after'             => '', 
-                        'link_before'       => '', 
-                        'link_after'        => '', 
-                        'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',  
-                        'depth'             => 3, 
-                        'walker'            => '', 
-                        'theme_location'    => 'category-product-menu' 
-                    );
-                    wp_nav_menu($args); 
-                    ?>        
-                </div>
-                <div class="col-lg-9"></div>
+        <div class="vc_row wpb_row section vc_row-fluid grid_section">
+            <div class="section_inner clearfix">
+                <div class="section_inner_margin clearfix">
+                    <div class="wpb_column vc_column_container vc_col-sm-3">
+                        <div class="vc_column-inner">
+                            <?php 
+                            $args = array( 
+                                'menu'              => '', 
+                                'container'         => '', 
+                                'container_class'   => '', 
+                                'container_id'      => '', 
+                                'menu_class'        => 'category-product-menu', 
+                                'menu_id'           => '', 
+                                'echo'              => true, 
+                                'fallback_cb'       => 'wp_page_menu', 
+                                'before'            => '', 
+                                'after'             => '', 
+                                'link_before'       => '', 
+                                'link_after'        => '', 
+                                'items_wrap'        => '<ul id="%1$s" class="%2$s">%3$s</ul>',  
+                                'depth'             => 3, 
+                                'walker'            => '', 
+                                'theme_location'    => 'category-product-menu' 
+                            );
+                            wp_nav_menu($args); 
+                            ?>
+                        </div>                            
+                    </div>
+                    <div class="wpb_column vc_column_container vc_col-sm-9"></div>
+                </div>                
             </div>
         </div>      
     </div>

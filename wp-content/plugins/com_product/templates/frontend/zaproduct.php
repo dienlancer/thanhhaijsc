@@ -13,262 +13,269 @@ $post_id=0;
 $term_id=0;
 ?>
 <div class="col-right">
-    <div class="container margin-top-15">   
-        <?php 
-        $the_query=$wp_query;
-        if($the_query->have_posts()){
-            while ($the_query->have_posts()){
-                $the_query->the_post();                            
-                $post_id=$the_query->post->ID; 
-                $title=get_the_title($post_id);  
-                $permalink=get_the_permalink($post_id);      
-                $term = wp_get_object_terms( $post_id,  'za_category' );   
-                $term_id=$term[0]->term_id;                          
-                $term_name=$term[0]->name;
-                $term_slug=$term[0]->slug;
-                $featured_img=get_the_post_thumbnail_url($post_id, 'full');        
-                $thumbnail=$vHtml->getSmallImage($featured_img);      
-                $sku=get_post_meta($post_id,"sku",true);
-                $price=get_post_meta($post_id,"price",true);
-                $sale_price=get_post_meta($post_id,"sale_price",true);        
-                $html_price='';   
-                if((int)@$price > 0){
-                    if((int)@$sale_price > 0){              
-                        $price_off_html='<div class="riu"><div>Giá niêm yết : </div><div class="detail-price-off">'.$vHtml->fnPrice($price).' đ</div></div>' ;                 
-                        $price_on_html ='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($sale_price).' đ</div></div>';                                       
-                        $html_price=$price_off_html . $price_on_html ;              
-                    }else{
-                        $html_price='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($price).' đ</div></div>' ;                  
-                    }
-                }else{
-                    $html_price='<div class="riu"><div>Giá : </div><div class="detail-price-on">LIÊN HỆ</div></div>' ;
-                }                                  
-                $intro=get_post_meta($post_id,"intro",true);
-                $technical=get_post_meta($post_id,"technical",true);
-                $video_id=get_post_meta($post_id,"video_id",true);
-                $content=get_the_content($post_id);  
-                $source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );                      
-                $manufacturer_name='';
-                $manufacturer_link='';
-                if(count($source_manufacturer) > 0){
-                    $manufacturer_name=$source_manufacturer[0]->name;
-                    $manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');                            
-                }        
-                ?>
-                <div class="row"> 
-                    <div class="col-lg-6">
-                        <div>
-                            <center><img class="zoom" src="<?php echo $thumbnail; ?>" data-zoom-image="<?php echo $featured_img; ?>" /></center>
-                        </div>
-                    </div>       
-                    <div class="col-lg-6">
-                        <form  method="post"  class="frm" name="frm">
-                            <h1 class="category-title">
-                                <div>Trang chủ</div>
-                                <div class="margin-left-5"><i class="fas fa-angle-right"></i></div>
-                                <div class="margin-left-5"><?php echo $term_name; ?></div>
-                            </h1>
-                            <h2 class="product-intro"><?php echo $intro; ?></h2>
-                            <div class="product-title margin-top-10"><?php echo $title; ?></div>
-                            <?php echo $html_price; ?>
-                            <div class="product-title margin-top-10"><span class="manufacturer-title">HÃNG SẢN XUẤT : </span><?php echo $manufacturer_name; ?></div>
-                            <?php 
-                            if((int)@$price > 0){
-                                ?>
-                                <div class="riu margin-top-15">
-                                    <div><input type="text" name="quantity" value="1" class="quantity" onkeypress="return isNumberKey(event);" /></div>
-                                    <div class="bellesa-cart margin-left-5">
-                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,document.getElementsByName('quantity')[0].value);" >THÊM VÀO GIỎ HÀNG</a>                            
-                                    </div>                                
-                                </div>
-                                <?php
-                            }else{
-                                ?>
-                                <div class="riu margin-top-15">                                   
-                                    <div class="bellesa-cart">
-                                        <a href="<?php echo site_url('lien-he'); ?>">LIÊN HỆ</a>                            
-                                    </div>                                
-                                </div>
-                                <?php
-                            }
-                            ?>                            
-                        </form>
-                    </div>                    
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <script type="text/javascript" language="javascript">
-                            function openCity(evt, cityName) {    
-                                var i, tabcontent, tablinks;
-                                tabcontent = document.getElementsByClassName("tabcontent");
-                                for (i = 0; i < tabcontent.length; i++) {
-                                    tabcontent[i].style.display = "none";
-                                }   
-                                tablinks = document.getElementsByClassName("tablinks");
-                                for (i = 0; i < tablinks.length; i++) {
-                                    tablinks[i].className = tablinks[i].className.replace(" active", "");
-                                }   
-                                document.getElementById(cityName).style.display = "block";
-                                evt.currentTarget.className += " active";
-                            }
-                            jQuery(document).ready(function(){
-                                jQuery("#description").show();
-                                jQuery("div.tab > button.tablinks:first-child").addClass('active');
-                            });
-                        </script>
-                        <div class="tab">
-                            <button class="tablinks h-title" onclick="openCity(event, 'description')">Mô tả</button>
-                            <button class="tablinks h-title" onclick="openCity(event, 'technical')">Thông số kỹ thuật</button>               
-                            <button class="tablinks h-title" onclick="openCity(event, 'video')">Video</button>
-
-                            <button class="tablinks h-title" onclick="openCity(event, 'comments')">Bình luận</button>                                                                 
-                        </div>
-                        <div id="description" class="tabcontent">
-                         <?php echo $content; ?>
-                        </div>
-                        <div id="technical" class="tabcontent">
-                        <?php echo $technical; ?>
-                        </div>
-                        <div id="video" class="tabcontent">
-                        <?php 
-                        if(!empty($video_id)){
-                            ?>
-                            <center><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center>
-                            <?php 
+    <div class="vc_row wpb_row section vc_row-fluid grid_section">
+        <div class="section_inner clearfix">
+            <?php 
+            $the_query=$wp_query;
+            if($the_query->have_posts()){ 
+                while ($the_query->have_posts()){
+                    $the_query->the_post();                            
+                    $post_id=$the_query->post->ID; 
+                    $title=get_the_title($post_id);  
+                    $permalink=get_the_permalink($post_id);      
+                    $term = wp_get_object_terms( $post_id,  'za_category' );   
+                    $term_id=$term[0]->term_id;                          
+                    $term_name=$term[0]->name;
+                    $term_slug=$term[0]->slug;
+                    $featured_img=get_the_post_thumbnail_url($post_id, 'full');        
+                    $thumbnail=$vHtml->getSmallImage($featured_img);      
+                    $sku=get_post_meta($post_id,"sku",true);
+                    $price=get_post_meta($post_id,"price",true);
+                    $sale_price=get_post_meta($post_id,"sale_price",true);        
+                    $html_price='';   
+                    if((int)@$price > 0){
+                        if((int)@$sale_price > 0){              
+                            $price_off_html='<div class="riu"><div>Giá niêm yết : </div><div class="detail-price-off">'.$vHtml->fnPrice($price).' đ</div></div>' ;                 
+                            $price_on_html ='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($sale_price).' đ</div></div>';                                       
+                            $html_price=$price_off_html . $price_on_html ;              
+                        }else{
+                            $html_price='<div class="riu"><div>Giá bán : </div><div class="detail-price-on">'.$vHtml->fnPrice($price).' đ</div></div>' ;                  
                         }
-                        ?>
-                        </div>      
-                        <div id="comments" class="tabcontent">
-                            <div class="fb-comments" data-href="<?php echo $permalink; ?>" data-numposts="10"></div>
-                        </div>
-                    </div>
-                </div>       
-                <?php  
-            }
-            wp_reset_postdata(); 
-        }
-        ?>  
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="related-product">SẢN PHẨM DÀNH RIÊNG CHO BẠN</div>
-                <?php                 
-                $args2 = array(
-                    'post_type' => 'zaproduct',  
-                    'orderby' => 'id',
-                    'order'   => 'DESC',     
-                    'post__not_in'=>array($post_id),                                   
-                    'tax_query' => array(
-                        array(
-                            'taxonomy' => 'za_category',
-                            'field'    => 'term_id',
-                            'terms'    => array($term_id),                                  
-                        ),
-                    ),
-                );                     
-                $the_query2 = new WP_Query( $args2 );
-                if($the_query2->have_posts()){
+                    }else{
+                        $html_price='<div class="riu"><div>Giá : </div><div class="detail-price-on">LIÊN HỆ</div></div>' ;
+                    }                                  
+                    $intro=get_post_meta($post_id,"intro",true);
+                    $technical=get_post_meta($post_id,"technical",true);
+                    $video_id=get_post_meta($post_id,"video_id",true);
+                    $content=get_the_content($post_id);  
+                    $source_manufacturer = wp_get_object_terms($post_id,  'za_manufacturer' );                      
+                    $manufacturer_name='';
+                    $manufacturer_link='';
+                    if(count($source_manufacturer) > 0){
+                        $manufacturer_name=$source_manufacturer[0]->name;
+                        $manufacturer_link=get_term_link($source_manufacturer[0],'za_manufacturer');                            
+                    }        
                     ?>
-                    <div>
-                        <script type="text/javascript" language="javascript">
-                            jQuery(document).ready(function(){
-                                jQuery(".product-for-you").owlCarousel({
-                                    autoplay:true,                    
-                                    loop:true,
-                                    margin:10,                        
-                                    nav:false,            
-                                    mouseDrag: true,
-                                    touchDrag: true,                                
-                                    responsiveClass:true,
-                                    responsive:{
-                                        0:{
-                                            items:1
-                                        },
-                                        600:{
-                                            items:5
-                                        },
-                                        1000:{
-                                            items:5
-                                        }
-                                    }
-                                });                                         
-                            });                
-                        </script>
-                        <div class="owl-carousel product-for-you owl-theme">
-                            <?php 
-                            while ($the_query2->have_posts()) {
-                                $the_query2->the_post();
-                                $post_id2=$the_query2->post->ID;                                                                        
-                                $permalink2=get_the_permalink($post_id2);
-                                $title2=get_the_title($post_id2);
-                                $featured_img2=get_the_post_thumbnail_url($post_id2, 'full');   
-                                $thumbnail2=$vHtml->getSmallImage($featured_img2);
-                                $sku2=get_post_meta($post_id2,"sku",true);
-                                $price2=get_post_meta($post_id2,"price",true);
-                                $sale_price2=get_post_meta($post_id2,"sale_price",true);                                            
-                                $html_price2='';                     
-                                if((int)@$price2 > 0){
-                                    if((int)@$sale_price2 > 0){              
-                                        $price2_off_html='<div class="price-off">'.$vHtml->fnPrice($price2).' đ</div>' ;                 
-                                        $price2_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price2).' đ</div>';                                     
-                                        $html_price2=$price2_off_html . $price2_on_html ;              
+                    <div class="section_inner_margin clearfix">
+                        <div class="wpb_column vc_column_container vc_col-sm-6">                            
+                            <div class="vc_column-inner">
+                                <center><img class="zoom" src="<?php echo $thumbnail; ?>" data-zoom-image="<?php echo $featured_img; ?>" /></center>
+                            </div>
+                        </div>
+                        <div class="wpb_column vc_column_container vc_col-sm-6">
+                            <div class="vc_column-inner">
+                                <form  method="post"  class="frm" name="frm">
+                                    <h1 class="category-title">
+                                        <div>Trang chủ</div>
+                                        <div class="margin-left-5"><i class="fas fa-angle-right"></i></div>
+                                        <div class="margin-left-5"><?php echo $term_name; ?></div>
+                                    </h1>
+                                    <h2 class="product-intro"><?php echo $intro; ?></h2>
+                                    <div class="product-title margin-top-10"><?php echo $title; ?></div>
+                                    <?php echo $html_price; ?>
+                                    <div class="product-title margin-top-10"><span class="manufacturer-title">HÃNG SẢN XUẤT : </span><?php echo $manufacturer_name; ?></div>
+                                    <?php 
+                                    if((int)@$price > 0){
+                                        ?>
+                                        <div class="riu margin-top-15">
+                                            <div><input type="text" name="quantity" value="1" class="quantity" onkeypress="return isNumberKey(event);" /></div>
+                                            <div class="bellesa-cart margin-left-5">
+                                                <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo $post_id; ?>,document.getElementsByName('quantity')[0].value);" >THÊM VÀO GIỎ HÀNG</a>                            
+                                            </div>                                
+                                        </div>
+                                        <?php
                                     }else{
-                                        $html_price2='<div class="price-on">'.$vHtml->fnPrice($price2).' đ</div>' ;                  
+                                        ?>
+                                        <div class="riu margin-top-15">                                   
+                                            <div class="bellesa-cart">
+                                                <a href="<?php echo site_url('lien-he'); ?>">LIÊN HỆ</a>                            
+                                            </div>                                
+                                        </div>
+                                        <?php
                                     }
-                                }else{
-                                    $html_price2='<div class="price-on">LIÊN HỆ</div>' ;                  
-                                }                                    
-                                $intro2=get_post_meta($post_id2,"intro",true);
-                                $source_manufacturer2 = wp_get_object_terms($post_id2,  'za_manufacturer' );                        
-                                $manufacturer_name2='';
-                                $manufacturer_link2='';
-                                if(count($source_manufacturer2) > 0){
-                                    $manufacturer_name2=$source_manufacturer2[0]->name;
-                                    $manufacturer_link2=get_term_link($source_manufacturer2[0],'za_manufacturer');                          
+                                    ?>                            
+                                </form>
+                            </div>                            
+                        </div>             
+                    </div>
+                    <div class="section_inner_margin clearfix">
+                        <div class="wpb_column vc_column_container vc_col-sm-12">
+                            <div class="vc_column-inner">
+                                <script type="text/javascript" language="javascript">
+                                    function openCity(evt, cityName) {    
+                                        var i, tabcontent, tablinks;
+                                        tabcontent = document.getElementsByClassName("tabcontent");
+                                        for (i = 0; i < tabcontent.length; i++) {
+                                            tabcontent[i].style.display = "none";
+                                        }   
+                                        tablinks = document.getElementsByClassName("tablinks");
+                                        for (i = 0; i < tablinks.length; i++) {
+                                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                                        }   
+                                        document.getElementById(cityName).style.display = "block";
+                                        evt.currentTarget.className += " active";
+                                    }
+                                    jQuery(document).ready(function(){
+                                        jQuery("#description").show();
+                                        jQuery("div.tab > button.tablinks:first-child").addClass('active');
+                                    });
+                                </script>
+                                <div class="tab">
+                                    <button class="tablinks h-title" onclick="openCity(event, 'description')">Mô tả</button>
+                                    <button class="tablinks h-title" onclick="openCity(event, 'technical')">Thông số kỹ thuật</button>               
+                                    <button class="tablinks h-title" onclick="openCity(event, 'video')">Video</button>
+
+                                    <button class="tablinks h-title" onclick="openCity(event, 'comments')">Bình luận</button>                                                                 
+                                </div>
+                                <div id="description" class="tabcontent">
+                                 <?php echo $content; ?>
+                                </div>
+                                <div id="technical" class="tabcontent">
+                                    <?php echo $technical; ?>
+                                </div>
+                                <div id="video" class="tabcontent">
+                                <?php 
+                                if(!empty($video_id)){
+                                    ?>
+                                    <center><iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo $video_id; ?>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></center>
+                                    <?php 
                                 }
                                 ?>
-                                <div class="box-product">
-                                    <div class="box-product-img">
-                                        <center><a href="<?php echo $permalink2; ?>"><img src="<?php echo $thumbnail2; ?>" alt="<?php echo $title2; ?>"></a></center>
-                                    </div>
-                                    <div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link2; ?>"><?php echo $manufacturer_name2; ?></a></div>
-                                    <div class="box-product-title margin-top-10"><a href="<?php echo $permalink2; ?>" title="<?php echo $title2; ?>" ><b><?php echo $title2; ?></b></a></div>
-                                    <div class="margin-top-10"><?php echo $sku2; ?></div>
-                                    <div class="box-product-intro margin-top-10">
-                                        <?php echo $intro2; ?>
-                                    </div>
-                                    <?php echo $html_price2; ?>
-                                    <div class="thia margin-top-10">
-                                        <?php 
-                                        if((int)@$price2 > 0){
-                                            ?>
-                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id2; ?>,1);" >
-                                                <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
-                                            </a>
-                                            <?php
-                                        }else{
-                                            ?>
-                                            <a href="<?php echo site_url('lien-he'); ?>" >
-                                                <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
-                                            </a>
-                                            <?php
-                                        }
-                                        ?>                                
-                                    </div>
                                 </div>
-                                <?php
-                            }
-                            wp_reset_postdata(); 
-                            ?>
+                                <div id="comments" class="tabcontent">
+                                    <div class="fb-comments" data-href="<?php echo $permalink; ?>" data-numposts="10"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <?php                            
+                    <?php
                 }
-                ?>
+                wp_reset_postdata(); 
+            }
+            ?>
+            <div class="section_inner_margin clearfix">
+                <div class="wpb_column vc_column_container vc_col-sm-12">
+                    <div class="vc_column-inner">
+                        <div class="related-product">SẢN PHẨM DÀNH RIÊNG CHO BẠN</div>
+                        <?php                 
+                        $args2 = array(
+                            'post_type' => 'zaproduct',  
+                            'orderby' => 'id',
+                            'order'   => 'DESC',     
+                            'post__not_in'=>array($post_id),                                   
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'za_category',
+                                    'field'    => 'term_id',
+                                    'terms'    => array($term_id),                                  
+                                ),
+                            ),
+                        );                     
+                        $the_query2 = new WP_Query( $args2 );
+                        if($the_query2->have_posts()){
+                            ?>
+                            <div>
+                                <script type="text/javascript" language="javascript">
+                                    jQuery(document).ready(function(){
+                                        jQuery(".product-for-you").owlCarousel({
+                                            autoplay:true,                    
+                                            loop:true,
+                                            margin:10,                        
+                                            nav:false,            
+                                            mouseDrag: true,
+                                            touchDrag: true,                                
+                                            responsiveClass:true,
+                                            responsive:{
+                                                0:{
+                                                    items:1
+                                                },
+                                                600:{
+                                                    items:4
+                                                },
+                                                1000:{
+                                                    items:4
+                                                }
+                                            }
+                                        });                                         
+                                    });                
+                                </script>
+                                <div class="owl-carousel product-for-you owl-theme">
+                                    <?php 
+                                    while ($the_query2->have_posts()) {
+                                        $the_query2->the_post();
+                                        $post_id2=$the_query2->post->ID;                                                                        
+                                        $permalink2=get_the_permalink($post_id2);
+                                        $title2=get_the_title($post_id2);
+                                        $featured_img2=get_the_post_thumbnail_url($post_id2, 'full');   
+                                        $thumbnail2=$vHtml->getSmallImage($featured_img2);
+                                        $sku2=get_post_meta($post_id2,"sku",true);
+                                        $price2=get_post_meta($post_id2,"price",true);
+                                        $sale_price2=get_post_meta($post_id2,"sale_price",true);                                            
+                                        $html_price2='';                     
+                                        if((int)@$price2 > 0){
+                                            if((int)@$sale_price2 > 0){              
+                                                $price2_off_html='<div class="price-off">'.$vHtml->fnPrice($price2).' đ</div>' ;                 
+                                                $price2_on_html ='<div class="price-on">'.$vHtml->fnPrice($sale_price2).' đ</div>';                                     
+                                                $html_price2=$price2_off_html . $price2_on_html ;              
+                                            }else{
+                                                $html_price2='<div class="price-on">'.$vHtml->fnPrice($price2).' đ</div>' ;                  
+                                            }
+                                        }else{
+                                            $html_price2='<div class="price-on">LIÊN HỆ</div>' ;                  
+                                        }                                    
+                                        $intro2=get_post_meta($post_id2,"intro",true);
+                                        $source_manufacturer2 = wp_get_object_terms($post_id2,  'za_manufacturer' );                        
+                                        $manufacturer_name2='';
+                                        $manufacturer_link2='';
+                                        if(count($source_manufacturer2) > 0){
+                                            $manufacturer_name2=$source_manufacturer2[0]->name;
+                                            $manufacturer_link2=get_term_link($source_manufacturer2[0],'za_manufacturer');                          
+                                        }
+                                        ?>
+                                        <div class="box-product">
+                                            <div class="box-product-img">
+                                                <center><a href="<?php echo $permalink2; ?>"><img src="<?php echo $thumbnail2; ?>" alt="<?php echo $title2; ?>"></a></center>
+                                            </div>
+                                            <div class="manufacturer-name margin-top-10"><a href="<?php echo $manufacturer_link2; ?>"><?php echo $manufacturer_name2; ?></a></div>
+                                            <div class="box-product-title margin-top-10"><a href="<?php echo $permalink2; ?>" title="<?php echo $title2; ?>" ><b><?php echo $title2; ?></b></a></div>
+                                            <div class="margin-top-10"><?php echo $sku2; ?></div>
+                                            <div class="box-product-intro margin-top-10">
+                                                <?php echo $intro2; ?>
+                                            </div>
+                                            <?php echo $html_price2; ?>
+                                            <div class="thia margin-top-10">
+                                                <?php 
+                                                if((int)@$price2 > 0){
+                                                    ?>
+                                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#modal-alert-add-cart" onclick="javascript:addToCart(<?php echo @$post_id2; ?>,1);" >
+                                                        <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                                                    </a>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                    <a href="<?php echo site_url('lien-he'); ?>" >
+                                                        <img  src="<?php echo site_url('wp-content/uploads/mua-ngay.png'); ?>">                           
+                                                    </a>
+                                                    <?php
+                                                }
+                                                ?>                                
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                    wp_reset_postdata(); 
+                                    ?>
+                                </div>
+                            </div>
+                            <?php                            
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
-        </div>                   
-    </div>                   
-</div>    
-  
+        </div>
+    </div>
+</div>
 <script language="javascript" type="text/javascript">
     jQuery('.zoom').elevateZoom({
         zoomType: "inner",
